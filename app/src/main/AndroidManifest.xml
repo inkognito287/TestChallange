@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Visual">
-        <activity android:name=".ThirdActivity"></activity>
-        <activity android:name=".SecondActivity" />
+        <activity android:name=".ThirdActivity"
+            android:noHistory="true"></activity>
+        <activity android:name=".SecondActivity"
+            android:noHistory="true"/>
         <activity
             android:name=".splashScreen"
             android:theme="@style/Splash">

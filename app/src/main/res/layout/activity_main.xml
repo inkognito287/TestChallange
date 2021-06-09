@@ -5,10 +5,19 @@
 
     <data>
         <variable
-            name="vari"
+            name="img1"
             type="int" />
         <variable
-            name="vari2"
+            name="img2"
+            type="int" />
+        <variable
+            name="img3"
+            type="int" />
+        <variable
+            name="img4"
+            type="int" />
+        <variable
+            name="img5"
             type="int" />
         <variable
             name="name"
@@ -61,7 +70,7 @@
                         layout="@layout/item_for_main_recycler"
                         tools:layout_editor_absoluteX="5dp"
                         app:name="@{name}"
-                        app:vari ="@{vari}"
+                        app:vari ="@{img1}"
                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -76,7 +85,7 @@
                         layout="@layout/item_for_main_recycler"
                         tools:layout_editor_absoluteX="5dp"
                         app:name="@{name2}"
-                        app:vari ="@{vari2}"/>
+                        app:vari ="@{img2}"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
@@ -97,7 +106,7 @@
                         layout="@layout/item_for_main_recycler"
                         tools:layout_editor_absoluteX="5dp"
                         app:name="@{name3}"
-                        app:vari ="@{vari}"/>
+                        app:vari ="@{img3}"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -111,7 +120,7 @@
                         layout="@layout/item_for_main_recycler"
                         tools:layout_editor_absoluteX="5dp"
                         app:name="@{name5}"
-                        app:vari ="@{vari}"/>
+                        app:vari ="@{img4}"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -133,7 +142,7 @@
                         layout="@layout/item_for_main_recycler"
                         tools:layout_editor_absoluteX="5dp"
                         app:name="@{name5}"
-                        app:vari ="@{vari}"/>
+                        app:vari ="@{img5}"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

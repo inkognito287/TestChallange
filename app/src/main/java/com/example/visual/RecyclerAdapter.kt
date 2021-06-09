@@ -1,5 +1,6 @@
 package com.example.visual
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -66,15 +67,22 @@ import java.security.AccessController.getContext
             fun bind(recycler: RecyclerClass) = with(binding) {
                 im.setImageResource(recycler.imageid)
                 rcTitle.text = recycler.title
-
                  itemView.setOnClickListener {
-                    Log.d("MyLog", it.toString())
-                    pos.posit = position
-                    var intent = Intent(itemView.context, ThirdActivity::class.java)
-                    startActivity(itemView.context, intent, null)
+                            if(it.context.toString().replaceAfter("Activity","").replaceBefore("visual.","").replaceBefore('.',"")==".SecondActivity") {
+                                Log.d("MyLog",
+                                    it.context.toString().replaceAfter("Activity", "")
+                                        .replaceBefore("visual.", "").replaceBefore('.', "")
+                                )
+                                pos.posit = position
+                                var intent = Intent(itemView.context, ThirdActivity::class.java)
+                                intent.putExtra("position", position)
 
-                    intent.putExtra("position", position)
-                  itemView.setClickable(false)
+                                it.context.startActivity(intent)
+                            }
+
+                   // startActivity(itemView.context, intent, null)
+
+
 
                   //  gege(position, this@RecyclerAdapter)
 
@@ -92,7 +100,7 @@ import java.security.AccessController.getContext
 
 
                     var MyLog = "MyLog"
-                    Log.d(MyLog, position.toString())
+                   // Log.d(MyLog, position.toString())
 
                 }
 

@@ -3,6 +3,7 @@ package com.example.visual
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.visual.databinding.ActivitySecondBinding
@@ -31,11 +32,12 @@ class ThirdActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("MyLog","Third")
         binding= ActivityThirdBinding.inflate(layoutInflater)
          setContentView(binding.root)
         val intent= getIntent()
         position=intent.getIntExtra("position",0)
-        position=pos.posit
+            //position=pos.posit
         //rcView=findViewById<RecyclerView>(R.id.rcView)
         binding.apply {
             adapter.recList.clear()
@@ -47,6 +49,7 @@ class ThirdActivity : AppCompatActivity() {
                 adapter.addItem(item)
 
             }
+
         }
     }
 }
