@@ -12,14 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.visual.databinding.RcItemBinding
 import java.security.AccessController.getContext
 
-class Lol:AppCompatActivity() {
 
 
-    class RecyclerAdapter (): RecyclerView.Adapter<RecyclerAdapter.RecHolder>() {
+
+    class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.RecHolder>() {
 
         var recList = ArrayList<RecyclerClass>()
-
-
         inner class RecHolder(item: View) : RecyclerView.ViewHolder(item) {
 
             val informationList = listOf(
@@ -69,12 +67,15 @@ class Lol:AppCompatActivity() {
                 im.setImageResource(recycler.imageid)
                 rcTitle.text = recycler.title
 
-
-                itemView.setOnClickListener() {
+                 itemView.setOnClickListener {
+                    Log.d("MyLog", it.toString())
                     pos.posit = position
-                    var intent = Intent(itemView.getContext(), ThirdActivity::class.java)
-                    startActivity(itemView.getContext(),intent,null)
-                    intent.putExtra("position",position)
+                    var intent = Intent(itemView.context, ThirdActivity::class.java)
+                    startActivity(itemView.context, intent, null)
+
+                    intent.putExtra("position", position)
+                  itemView.setClickable(false)
+
                   //  gege(position, this@RecyclerAdapter)
 
 
@@ -118,7 +119,7 @@ class Lol:AppCompatActivity() {
         }
     }
 
-}
+
 //}public fun gege(int:Int, context: Lol.RecyclerAdapter){
 //    val intent=Intent(context,ThirdActivity::class.java)
 //    intent.putExtra("positionint",int)

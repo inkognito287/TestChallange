@@ -11,7 +11,7 @@ import com.example.visual.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
     lateinit var binding: ActivitySecondBinding
-    private val adapter= Lol.RecyclerAdapter()
+    private val adapter= RecyclerAdapter()
     private var index=0
     private val imageList= listOf(R.drawable.rc_1,R.drawable.rc_2,R.drawable.rc_3,R.drawable.rc_4,R.drawable.rc_5,R.drawable.rc_6,R.drawable.rc_7,R.drawable.rc_8,R.drawable.rc_9,R.drawable.rc_10)
     private val titleList= listOf("Видеонаблюдение ","Управление доступом","Компьютерные розетки","Реклама на ТВ и мониторах","HD Телевидение","Эфирное телевидение","Музыкальное оформление","Бесперебойное питание","Сенсорные киоски","Охранная сигнализация")
