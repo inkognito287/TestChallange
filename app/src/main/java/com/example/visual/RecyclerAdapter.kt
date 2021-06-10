@@ -1,24 +1,15 @@
 package com.example.visual
 
-import android.content.Context
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.visual.databinding.RcItemBinding
-import java.security.AccessController.getContext
 
 
-
-
-    class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.RecHolder>() {
-
+class RecyclerAdapter()  : RecyclerView.Adapter<RecyclerAdapter.RecHolder>() {
         var recList = ArrayList<RecyclerClass>()
-        inner class RecHolder(item: View) : RecyclerView.ViewHolder(item) {
+        inner  class RecHolder(item: View) : RecyclerView.ViewHolder(item),View.OnClickListener {
 
             val informationList = listOf(
                 listOf(
@@ -63,18 +54,40 @@ import java.security.AccessController.getContext
             private val adapter = RecyclerAdapter()
             // val context: Context? = null
             val binding = RcItemBinding.bind(item)
+
             fun bind(recycler: RecyclerClass) = with(binding) {
                 im.setImageResource(recycler.imageid)
                 rcTitle.text = recycler.title
+                itemView.setOnClickListener(listener)
 
-                 itemView.setOnClickListener {
-                    Log.d("MyLog", it.toString())
-                    pos.posit = position
-                    var intent = Intent(itemView.context, ThirdActivity::class.java)
-                    startActivity(itemView.context, intent, null)
+              //  var listener1 = SecondActivity()
+              //  var listener2 = ThirdActivity()
 
-                    intent.putExtra("position", position)
-                  itemView.setClickable(false)
+               // itemView.setOnClickListener (View.OnClickListener () {
+               //   pos.posit=position
+              //      itemView.setOnClickListener(listener1)
+
+               // })
+//
+//
+//                 }
+
+//                {
+//                            if(it.context.toString().replaceAfter("Activity","").replaceBefore("visual.","").replaceBefore('.',"")==".SecondActivity") {
+//                                Log.d("MyLog",
+//                                    it.context.toString().replaceAfter("Activity", "")
+//                                        .replaceBefore("visual.", "").replaceBefore('.', "")
+//                                )
+//                                pos.posit = position
+//                                var intent = Intent(itemView.context, ThirdActivity::class.java)
+//                                intent.putExtra("position", position)
+//
+//                                it.context.startActivity(intent)
+//                            }
+
+                   // startActivity(itemView.context, intent, null)
+
+
 
                   //  gege(position, this@RecyclerAdapter)
 
@@ -91,13 +104,19 @@ import java.security.AccessController.getContext
 //                }
 
 
-                    var MyLog = "MyLog"
-                    Log.d(MyLog, position.toString())
-
-                }
+//                    var MyLog = "MyLog"
+//                   // Log.d(MyLog, position.toString())
+//
+//                }
 
 
             }
+
+            override fun onClick(v: View?) {
+
+            }
+
+
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecHolder {
@@ -119,7 +138,9 @@ import java.security.AccessController.getContext
         }
     }
 
-
+interface OnClickListener {
+    fun onClick(v: View?)
+}
 //}public fun gege(int:Int, context: Lol.RecyclerAdapter){
 //    val intent=Intent(context,ThirdActivity::class.java)
 //    intent.putExtra("positionint",int)

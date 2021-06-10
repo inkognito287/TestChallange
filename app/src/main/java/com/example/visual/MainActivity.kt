@@ -16,16 +16,20 @@ lateinit var rcView:RecyclerView
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var Binding: ActivityMainBinding? =DataBindingUtil.setContentView(this,R.layout.activity_main)
+        val Binding: ActivityMainBinding? = DataBindingUtil.setContentView(this,R.layout.activity_main)
         //setContentView(R.layout.abrakadabra)
-        Binding?.name="Заявки в работе"
-        Binding?.name2="Согласование заявок"
-        Binding?.name3="Выполненные заявки"
-        Binding?.name4="Поиск заявок"
-        Binding?.name5="Документация"
 
-        Binding?.vari=R.drawable.but4
-        Binding?.vari2=R.drawable.but5
+            Binding?.name = "Заявки в работе"
+            Binding?.name2 = "Согласование заявок"
+            Binding?.name3 = "Выполненные заявки"
+           Binding?.name4 = "Поиск заявок"
+            Binding?.name5 = "Документация"
+
+            Binding?.img1 = R.drawable.but1
+            Binding?.img2 = R.drawable.but2
+            Binding?.img3 = R.drawable.but3
+            Binding?.img4 = R.drawable.but4
+            Binding?.img5 = R.drawable.but5
 
 
     }

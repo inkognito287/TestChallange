@@ -5,10 +5,19 @@
 
     <data>
         <variable
-            name="vari"
+            name="img1"
             type="int" />
         <variable
-            name="vari2"
+            name="img2"
+            type="int" />
+        <variable
+            name="img3"
+            type="int" />
+        <variable
+            name="img4"
+            type="int" />
+        <variable
+            name="img5"
             type="int" />
         <variable
             name="name"
@@ -34,128 +43,50 @@
         android:background="#ECECEC"
         tools:context=".MainActivity">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="369dp"
-            android:layout_height="432dp"
-            android:orientation="vertical"
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            app:alignContent="flex_start"
+            app:alignItems="stretch"
+            app:flexWrap="wrap"
+
             app:layout_constraintBottom_toTopOf="@+id/button3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView17">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+            <include
+                layout="@layout/item_for_main_recycler"
+                app:name="@{name}"
+                app:vari="@{img1}"
+                tools:layout_editor_absoluteX="5dp" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    tools:ignore="NestedWeights">
+            <include
+                layout="@layout/item_for_main_recycler"
+                app:name="@{name2}"
+                app:vari="@{img2}"
+                tools:layout_editor_absoluteX="5dp" />
 
-                    <include
+            <include
+                layout="@layout/item_for_main_recycler"
+                app:name="@{name3}"
+                app:vari="@{img3}"
+                tools:layout_editor_absoluteX="5dp" />
 
-                        layout="@layout/item_for_main_recycler"
-                        tools:layout_editor_absoluteX="5dp"
-                        app:name="@{name}"
-                        app:vari ="@{vari}"
-                        />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+            <include
+                layout="@layout/item_for_main_recycler"
+                app:name="@{name4}"
+                app:vari="@{img4}"
+                tools:layout_editor_absoluteX="5dp" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1">
-
-                    <include
-
-                        layout="@layout/item_for_main_recycler"
-                        tools:layout_editor_absoluteX="5dp"
-                        app:name="@{name2}"
-                        app:vari ="@{vari2}"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1">
-
-                    <include
-                        layout="@layout/item_for_main_recycler"
-                        tools:layout_editor_absoluteX="5dp"
-                        app:name="@{name3}"
-                        app:vari ="@{vari}"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1">
-
-                    <include
-                        layout="@layout/item_for_main_recycler"
-                        tools:layout_editor_absoluteX="5dp"
-                        app:name="@{name5}"
-                        app:vari ="@{vari}"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1">
-
-                    <include
-                        layout="@layout/item_for_main_recycler"
-                        tools:layout_editor_absoluteX="5dp"
-                        app:name="@{name5}"
-                        app:vari ="@{vari}"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:visibility="invisible">
-
-                    <View
-                        android:id="@+id/view8"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#FFFFFF"
-                        tools:layout_editor_absoluteX="147dp"
-                        tools:layout_editor_absoluteY="10dp" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </LinearLayout>
-        </LinearLayout>
+            <include
+                layout="@layout/item_for_main_recycler"
+                app:name="@{name5}"
+                app:vari="@{img5}"
+                tools:layout_editor_absoluteX="5dp" />
+        </com.google.android.flexbox.FlexboxLayout>
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -164,7 +95,8 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/buttoncircle"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button3"
             app:srcCompat="@drawable/ic_baseline_add_ic_call_24" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -208,7 +140,7 @@
             android:text="Создать заявку"
             app:backgroundTint="#FF5722"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.478"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -237,12 +169,10 @@
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
             android:drawableLeft="@drawable/zamoksize"
             android:text="езопасность"
             android:textColor="#A5A5A5"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView8" />
@@ -270,7 +200,8 @@
             app:layout_constraintBottom_toTopOf="@+id/textView12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

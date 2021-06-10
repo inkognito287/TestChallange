@@ -1,16 +1,16 @@
 package com.example.visual
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.visual.databinding.ActivitySecondBinding
 import com.example.visual.databinding.ActivityThirdBinding
 
-class ThirdActivity : AppCompatActivity() {
+class ThirdActivity : AppCompatActivity(),View.OnClickListener {
     var position=0
     lateinit var binding: ActivityThirdBinding
+    var listener2 = ThirdActivity()
     private val adapter= RecyclerAdapter()
     private val imageList= listOf(R.drawable.rc_1,R.drawable.rc_2,R.drawable.rc_3,R.drawable.rc_4,R.drawable.rc_5,R.drawable.rc_6,R.drawable.rc_7,R.drawable.rc_8,R.drawable.rc_9,R.drawable.rc_10)
     private val titleList= listOf("Видеонаблюдение ","Управление доступом","Компьютерные розетки","Реклама на ТВ и мониторах","HD Телевидение","Эфирное телевидение","Музыкальное оформление","Бесперебойное питание","Сенсорные киоски","Охранная сигнализация")
@@ -31,11 +31,12 @@ class ThirdActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Log.d("MyLog","Third")
         binding= ActivityThirdBinding.inflate(layoutInflater)
          setContentView(binding.root)
         val intent= getIntent()
-        position=intent.getIntExtra("position",0)
-        position=pos.posit
+  position=intent.getIntExtra("position",0)
+           // position=pos.posit
         //rcView=findViewById<RecyclerView>(R.id.rcView)
         binding.apply {
             adapter.recList.clear()
@@ -47,6 +48,12 @@ class ThirdActivity : AppCompatActivity() {
                 adapter.addItem(item)
 
             }
+
         }
+    }
+
+    override fun onClick(v: View?) {
+        Log.d("MyLog","THIRD")
+
     }
 }
