@@ -4,37 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="img1"
-            type="int" />
-        <variable
-            name="img2"
-            type="int" />
-        <variable
-            name="img3"
-            type="int" />
-        <variable
-            name="img4"
-            type="int" />
-        <variable
-            name="img5"
-            type="int" />
-        <variable
-            name="name"
-            type="String" />
 
         <variable
-            name="name2"
-            type="String" />
-        <variable
-            name="name3"
-            type="String" />
-        <variable
-            name="name4"
-            type="String" />
-        <variable
-            name="name5"
-            type="String" />
+            name="information"
+            type="com.example.visual.Information" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,50 +16,65 @@
         android:background="#ECECEC"
         tools:context=".MainActivity">
 
-        <com.google.android.flexbox.FlexboxLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-
-            app:alignContent="flex_start"
-            app:alignItems="stretch"
-            app:flexWrap="wrap"
-
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="405dp"
             app:layout_constraintBottom_toTopOf="@+id/button3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView17">
 
-            <include
-                layout="@layout/item_for_main_recycler"
-                app:name="@{name}"
-                app:vari="@{img1}"
-                tools:layout_editor_absoluteX="5dp" />
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-            <include
-                layout="@layout/item_for_main_recycler"
-                app:name="@{name2}"
-                app:vari="@{img2}"
-                tools:layout_editor_absoluteX="5dp" />
 
-            <include
-                layout="@layout/item_for_main_recycler"
-                app:name="@{name3}"
-                app:vari="@{img3}"
-                tools:layout_editor_absoluteX="5dp" />
+                app:alignContent="flex_start"
+                app:alignItems="stretch"
+                app:flexWrap="wrap"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <include
-                layout="@layout/item_for_main_recycler"
-                app:name="@{name4}"
-                app:vari="@{img4}"
-                tools:layout_editor_absoluteX="5dp" />
+                <include
+                    layout="@layout/item_for_main_recycler"
+                    app:layout_flexGrow="1"
+                    app:name="@{information.title[0]}"
+                    app:vari="@{information.imgId[0]}"
+                    tools:layout_editor_absoluteX="5dp" />
 
-            <include
-                layout="@layout/item_for_main_recycler"
-                app:name="@{name5}"
-                app:vari="@{img5}"
-                tools:layout_editor_absoluteX="5dp" />
-        </com.google.android.flexbox.FlexboxLayout>
+                <include
+                    layout="@layout/item_for_main_recycler"
+
+                    app:layout_flexGrow="1"
+                    app:name="@{information.title[1]}"
+                    app:vari="@{information.imgId[1]}"
+                    tools:layout_editor_absoluteX="5dp" />
+
+                <include
+                    layout="@layout/item_for_main_recycler"
+
+                    app:layout_flexGrow="1"
+                    app:name="@{information.title[2]}"
+                    app:vari="@{information.imgId[2]}"
+                    tools:layout_editor_absoluteX="5dp" />
+
+                <include
+                    layout="@layout/item_for_main_recycler"
+                    app:layout_flexGrow="1"
+                    app:name="@{information.title[3]}"
+                    app:vari="@{information.imgId[3]}"
+                    tools:layout_editor_absoluteX="5dp" />
+
+                <include
+                    layout="@layout/item_for_main_recycler"
+                    app:layout_flexGrow="1"
+                    app:name="@{information.title[4]}"
+                    app:vari="@{information.imgId[4]}"
+                    tools:layout_editor_absoluteX="5dp" />
+            </com.google.android.flexbox.FlexboxLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageButton
             android:id="@+id/imageButton"

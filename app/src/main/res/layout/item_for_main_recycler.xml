@@ -25,6 +25,7 @@
             android:id="@+id/view"
             android:layout_width="168dp"
             android:layout_height="132dp"
+
             android:background="@drawable/viewcircle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
