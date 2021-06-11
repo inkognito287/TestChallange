@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,13 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.visual.databinding.ActivitySecondBinding
 
 
-class SecondActivity : AppCompatActivity(),View.OnClickListener {
+class SecondActivity : AppCompatActivity(),View.OnClickListener,RecyclerAdapter.OnItemClickListener {
     lateinit var binding: ActivitySecondBinding
-    var listener1 = SecondActivity()
-    private val adapter= RecyclerAdapter()
-    private var index=0
 
-    var instance: SecondActivity? = null
+    private var index=0
+    var recList = ArrayList<RecyclerClass>()
+    private val adapter= RecyclerAdapter(recList,this)
     private val imageList= listOf(R.drawable.rc_1,R.drawable.rc_2,R.drawable.rc_3,R.drawable.rc_4,R.drawable.rc_5,R.drawable.rc_6,R.drawable.rc_7,R.drawable.rc_8,R.drawable.rc_9,R.drawable.rc_10)
     private val titleList= listOf("Видеонаблюдение ","Управление доступом","Компьютерные розетки","Реклама на ТВ и мониторах","HD Телевидение","Эфирное телевидение","Музыкальное оформление","Бесперебойное питание","Сенсорные киоски","Охранная сигнализация")
     private val informationList= listOf(
@@ -37,27 +37,17 @@ class SecondActivity : AppCompatActivity(),View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //Log.d("MyLog","Second")
-
+       // adapter.setOnItemClickListener(RecyclerAdapter.OnItemClickListener)
         binding= ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        rcView=findViewById<RecyclerView>(R.id.rcView)
-        var i=findViewById<ConstraintLayout>(R.id.cvc)
-        i.setOnClickListener(View.OnClickListener() {
-
-            val intent4: Intent = Intent(it?.getContext(), ThirdActivity::class.java)
-            intent4.putExtra("position", pos.posit)
-            it?.context?.startActivity(intent4)
-
-            // it.context.startActivity(intent)
-            Log.d("MyLog", "SECOND")
-        })
+        var rcView=findViewById<RecyclerView>(R.id.rcView)
         binding.apply {
 
             rcView.layoutManager= LinearLayoutManager(this@SecondActivity)
             rcView.adapter = adapter
             for (x in 0..imageList.size-1){
             val item = RecyclerClass(imageList[index], titleList[index])
-            adapter.addItem(item)
+            addItem(item)
             index++
 
         }
@@ -82,5 +72,17 @@ fun send(){
         }
     }
 
+    override fun onItemClick(position: Int) {
+        val intent4: Intent = Intent(this@SecondActivity, ThirdActivity::class.java)
+        intent4.putExtra("position", position)
+        startActivity(intent4)
+//        Toast.makeText(this, "Item$position clicked", Toast.LENGTH_SHORT).show()
+//        val clickedItem = recList[position]
+//        clickedItem.title="YRA"
+//        adapter.notifyItemChanged(position)
+    }
+    fun addItem(recycler: RecyclerClass) {
+        recList.add(recycler)
+    }
 
 }

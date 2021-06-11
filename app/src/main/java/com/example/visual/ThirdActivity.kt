@@ -4,14 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.visual.databinding.ActivityThirdBinding
 
-class ThirdActivity : AppCompatActivity(),View.OnClickListener {
+class ThirdActivity : AppCompatActivity(),View.OnClickListener,RecyclerAdapter.OnItemClickListener {
     var position=0
     lateinit var binding: ActivityThirdBinding
-    var listener2 = ThirdActivity()
-    private val adapter= RecyclerAdapter()
+    var recList = ArrayList<RecyclerClass>()
+    private val adapter= RecyclerAdapter(recList,this)
     private val imageList= listOf(R.drawable.rc_1,R.drawable.rc_2,R.drawable.rc_3,R.drawable.rc_4,R.drawable.rc_5,R.drawable.rc_6,R.drawable.rc_7,R.drawable.rc_8,R.drawable.rc_9,R.drawable.rc_10)
     private val titleList= listOf("Видеонаблюдение ","Управление доступом","Компьютерные розетки","Реклама на ТВ и мониторах","HD Телевидение","Эфирное телевидение","Музыкальное оформление","Бесперебойное питание","Сенсорные киоски","Охранная сигнализация")
     private val informationList= listOf(
@@ -45,7 +46,7 @@ class ThirdActivity : AppCompatActivity(),View.OnClickListener {
             for (x in 0..informationList[position].size-1){
                 val item =RecyclerClass(imageList[position],informationList[position][x])
 //                    RecyclerClass(imageList[position],informationList[position][x])
-                adapter.addItem(item)
+                addItem(item)
 
             }
 
@@ -55,5 +56,15 @@ class ThirdActivity : AppCompatActivity(),View.OnClickListener {
     override fun onClick(v: View?) {
         Log.d("MyLog","THIRD")
 
+    }
+
+    override fun onItemClick(position: Int) {
+         Toast.makeText(this,"Item$position clicked", Toast.LENGTH_SHORT).show()
+        val clickedItem = recList[position]
+        clickedItem.title="YRA"
+        adapter.notifyItemChanged(position)
+    }
+    fun addItem(recycler: RecyclerClass) {
+        recList.add(recycler)
     }
 }
