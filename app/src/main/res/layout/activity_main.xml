@@ -26,12 +26,12 @@
 
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-
-                app:alignContent="flex_start"
+                android:layout_height="match_parent"
+                app:alignContent="stretch"
                 app:alignItems="stretch"
+                app:flexDirection="row"
                 app:flexWrap="wrap"
+                app:justifyContent="flex_start"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -39,41 +39,98 @@
 
                 <include
                     layout="@layout/item_for_main_recycler"
-                    app:layout_flexGrow="1"
+                    android:layout_width="168dp"
+                    android:layout_height="120dp"
+                    android:gravity="center"
+                    android:maxWidth="459495dp"
+                    android:maxHeight="459495dp"
+                    android:minWidth="168dp"
+                    android:minHeight="-1dp"
+                    android:text="30"
+                    app:layout_alignSelf="stretch"
+                    app:layout_flexShrink="1"
+                    app:layout_order="1"
+
                     app:name="@{information.title[0]}"
-                    app:vari="@{information.imgId[0]}"
-                    tools:layout_editor_absoluteX="5dp" />
+                    app:vari="@{information.imgId[0]}" />
 
                 <include
                     layout="@layout/item_for_main_recycler"
+                    android:layout_width="168dp"
+                    android:layout_height="120dp"
+                    android:gravity="center"
+                    android:maxWidth="459495dp"
+                    android:maxHeight="459495dp"
+                    android:minWidth="-1dp"
+                    android:minHeight="-1dp"
+                    android:text="30"
+                    app:layout_alignSelf="stretch"
+                    app:layout_flexShrink="1"
+                    app:layout_order="1"
 
-                    app:layout_flexGrow="1"
                     app:name="@{information.title[1]}"
-                    app:vari="@{information.imgId[1]}"
-                    tools:layout_editor_absoluteX="5dp" />
+                    app:vari="@{information.imgId[1]}" />
 
                 <include
                     layout="@layout/item_for_main_recycler"
+                    android:layout_width="168dp"
+                    android:layout_height="120dp"
+                    android:gravity="center"
+                    android:maxWidth="459495dp"
+                    android:maxHeight="459495dp"
 
-                    app:layout_flexGrow="1"
+                    android:minWidth="-1dp"
+
+                    android:minHeight="-1dp"
+                    android:text="30"
+                    app:layout_alignSelf="stretch"
+                    app:layout_flexShrink="1"
+                    app:layout_order="1"
+
                     app:name="@{information.title[2]}"
-                    app:vari="@{information.imgId[2]}"
-                    tools:layout_editor_absoluteX="5dp" />
+                    app:vari="@{information.imgId[2]}" />
 
                 <include
                     layout="@layout/item_for_main_recycler"
-                    app:layout_flexGrow="1"
+                    android:layout_width="168dp"
+                    android:layout_height="120dp"
+
+                    android:gravity="center"
+                    android:maxWidth="459495dp"
+                    android:maxHeight="459495dp"
+                    android:minWidth="-1dp"
+
+                    android:minHeight="-1dp"
+                    android:text="30"
+                    app:layout_alignSelf="stretch"
+                    app:layout_flexShrink="1"
+                    app:layout_order="1"
+
                     app:name="@{information.title[3]}"
-                    app:vari="@{information.imgId[3]}"
-                    tools:layout_editor_absoluteX="5dp" />
+                    app:vari="@{information.imgId[3]}" />
 
                 <include
                     layout="@layout/item_for_main_recycler"
-                    app:layout_flexGrow="1"
+                    android:layout_width="168dp"
+                    android:layout_height="120dp"
+
+                    android:gravity="center"
+                    android:maxWidth="459495dp"
+                    android:maxHeight="459495dp"
+                    android:minWidth="-1dp"
+                    android:minHeight="-1dp"
+                    android:text="30"
+                    app:layout_alignSelf="stretch"
+                    app:layout_flexShrink="1"
+                    app:layout_order="1"
+
                     app:name="@{information.title[4]}"
-                    app:vari="@{information.imgId[4]}"
-                    tools:layout_editor_absoluteX="5dp" />
+                    app:vari="@{information.imgId[4]}" />
+
+
             </com.google.android.flexbox.FlexboxLayout>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageButton
