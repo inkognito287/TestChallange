@@ -50,34 +50,7 @@ lateinit var array:MutableList<Int>
         "Сенсорные киоски",
         "Охранная сигнализация"
     )
-    private val informationList = listOf(
-        listOf(
-            "Видеонаблюдение",
-            "Видеонаблюдение",
-            "Видеонаблюдение",
-            "Видеонаблюдение",
-            "Видеонаблюдение",
-            "Видеонаблюдение"
-        ),
-        listOf(
-            "Управление доступом",
-            "Управление доступом",
-            "Управление доступом",
-            "Управление доступом",
-            "Управление доступом",
-            "Управление доступом"
-        ),
-        listOf("3", "3", "3", "3", "3", "3", "3", "3", "3", "3"),
-        listOf("4", "3", "3", "3", "3", "3", "3", "3", "3", "3"),
-        listOf("5", "3", "3", "3", "3", "3", "3", "3", "3", "3"),
-        listOf("6", "3", "3", "3", "3", "3", "3", "3", "3", "3"),
-        listOf("7", "3", "3", "3", "3", "3", "3", "3", "3", "3"),
-        listOf("8", "3", "3", "3", "3", "3", "3", "3", "3", "3"),
-        listOf("9", "3", "3", "3", "3", "3", "3", "3", "3", "3"),
-        listOf("10", "3", "3", "3", "3", "3", "3", "3", "3", "3"),
-        listOf("3", "3", "3", "3", "3", "3", "3", "3", "3", "3")
 
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,7 +109,6 @@ lateinit var array:MutableList<Int>
     fun send() {
         val intent4: Intent = Intent(this@SecondActivity, ThirdActivity::class.java)
         startActivity(intent4)
-
     }
 
     override fun onClick(v: View?) {
@@ -150,7 +122,6 @@ lateinit var array:MutableList<Int>
         Log.d("MyLog","Destroy")
     }
     override fun onItemClick(position: Int) {
-
         val intent4: Intent = Intent(this@SecondActivity, ThirdActivity::class.java)
         var search=findViewById<EditText>(R.id.search)
         if (search.text.toString()!="")
@@ -158,10 +129,6 @@ lateinit var array:MutableList<Int>
         else intent4.putExtra("position",position)
         startActivity(intent4)
         finish()
-//        Toast.makeText(this, "Item$position clicked", Toast.LENGTH_SHORT).show()
-//        val clickedItem = recList[position]
-//        clickedItem.title="YRA"
-//        adapter.notifyItemChanged(position)
     }
 
     fun addItem(recycler: RecyclerClass) {
