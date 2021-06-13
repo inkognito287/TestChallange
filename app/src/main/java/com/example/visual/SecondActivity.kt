@@ -145,6 +145,10 @@ lateinit var array:MutableList<Int>
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("MyLog","Destroy")
+    }
     override fun onItemClick(position: Int) {
 
         val intent4: Intent = Intent(this@SecondActivity, ThirdActivity::class.java)
@@ -153,6 +157,7 @@ lateinit var array:MutableList<Int>
         intent4.putExtra("position",array[position])
         else intent4.putExtra("position",position)
         startActivity(intent4)
+        finish()
 //        Toast.makeText(this, "Item$position clicked", Toast.LENGTH_SHORT).show()
 //        val clickedItem = recList[position]
 //        clickedItem.title="YRA"
