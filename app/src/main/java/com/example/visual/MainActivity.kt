@@ -18,8 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //var inf=Information(R.drawable.but1,"sus")
-        val Binding: ActivityMainBinding? =
-            DataBindingUtil.setContentView(this, R.layout.activity_main)
+        val Binding: ActivityMainBinding? = DataBindingUtil.setContentView(this, R.layout.activity_main)
         Binding?.information=Information(arrayOf(R.drawable.but1,R.drawable.but2,R.drawable.but3,R.drawable.but4,R.drawable.but5), arrayOf("Заявки в работе","Согласование заявок","Выполненные заявки","Поиск заявок","Документация"))
         //setContentView(R.layout.abrakadabra)
 

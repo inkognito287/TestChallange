@@ -4,6 +4,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.visual.databinding.RcItemBinding
 
@@ -23,13 +25,17 @@ class RecyclerAdapter( var recList: ArrayList<RecyclerClass>, val listener: OnIt
         }
 
         override fun onClick(v: View?) {
+            if(listener!=null) {
 //            val position: Int = adapterPosition
 //            val itemAtPosition = filteredList[position]
 //            val actualPosition = recList.indexOf(itemAtPosition)
-           // Log.d("MyLog",actualPosition.toString())
-            if (position != RecyclerView.NO_POSITION) {
-                listener.onItemClick(position)
+                // Log.d("MyLog",actualPosition.toString())
+
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(adapterPosition)
+                }
             }
+
         }
 
 
@@ -90,10 +96,12 @@ class RecyclerAdapter( var recList: ArrayList<RecyclerClass>, val listener: OnIt
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.rc_item, parent, false)
+
         return RecHolder(view)
     }
 
     override fun onBindViewHolder(holder: RecHolder, position: Int) {
+
         holder.bind(recList[position])
 
 

@@ -17,10 +17,12 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 var filteredList: ArrayList<RecyclerClass> = ArrayList()
+
+
 class SecondActivity : AppCompatActivity(), View.OnClickListener,
     RecyclerAdapter.OnItemClickListener {
     lateinit var binding: ActivitySecondBinding
-
+lateinit var array:MutableList<Int>
     private var index = 0
     var recList = ArrayList<RecyclerClass>()
     private val adapter = RecyclerAdapter(recList, this)
@@ -81,8 +83,10 @@ class SecondActivity : AppCompatActivity(), View.OnClickListener,
         super.onCreate(savedInstanceState)
         //Log.d("MyLog","Second")
         // adapter.setOnItemClickListener(RecyclerAdapter.OnItemClickListener)
+
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        array=ArrayList()
         var rcView = findViewById<RecyclerView>(R.id.rcView)
         binding.apply {
 
@@ -99,7 +103,7 @@ class SecondActivity : AppCompatActivity(), View.OnClickListener,
         var editText:EditText=findViewById<EditText>(R.id.search)
         editText.addTextChangedListener(object:TextWatcher{
             override fun afterTextChanged(s: Editable?) {
-                filter (s.toString())
+
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -107,16 +111,23 @@ class SecondActivity : AppCompatActivity(), View.OnClickListener,
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
+                filter (s.toString())
             }
 
         })
     }
     fun filter(text:String){
-
+        filteredList.clear()
+        var index=0
+        array.clear()
         for (d in recList ){
 
-            if(d.title.lowercase().contains(text.lowercase()))
+            if(d.title.lowercase().contains(text.lowercase())){
                 filteredList.add(d)
+                array.add(index)
+            }
+            index++
+
         }
         //recList=filteredList
         adapter.filterList(filteredList)
@@ -137,7 +148,10 @@ class SecondActivity : AppCompatActivity(), View.OnClickListener,
     override fun onItemClick(position: Int) {
 
         val intent4: Intent = Intent(this@SecondActivity, ThirdActivity::class.java)
-        intent4.putExtra("position", position)
+        var search=findViewById<EditText>(R.id.search)
+        if (search.text.toString()!="")
+        intent4.putExtra("position",array[position])
+        else intent4.putExtra("position",position)
         startActivity(intent4)
 //        Toast.makeText(this, "Item$position clicked", Toast.LENGTH_SHORT).show()
 //        val clickedItem = recList[position]
