@@ -19,6 +19,7 @@ class OrderActivity : AppCompatActivity() {
     val OTDEL = arrayOf(
         "TCP", "TDP", "UDP", "AMD", "UFC"
     )
+    val dela= arrayOf("Согласование","Разрешение","Управление")
     val employers = arrayOf(
         "Коротаев Александр", "Барбороскин Николай", "Куликовская Анастасия ", "Чурило Оксана", "Маршалов Пётр",
         "Касьян Кристина"
@@ -34,6 +35,9 @@ class OrderActivity : AppCompatActivity() {
         var view = findViewById<View>(R.id.createList)
         var view2 = findViewById<View>(R.id.createList2)
         var view3 = findViewById<View>(R.id.createList3)
+        var view4 = findViewById<View>(R.id.createList4)
+        var view5 = findViewById<View>(R.id.createList5)
+        var view6 = findViewById<View>(R.id.createList6)
         view.setOnClickListener {
             createList(OTDEL,1)
         }
@@ -43,7 +47,15 @@ class OrderActivity : AppCompatActivity() {
         view3.setOnClickListener {
             createList(OTDEL,3)
         }
-
+        view4.setOnClickListener {
+            createList(employers,4)
+        }
+        view5.setOnClickListener {
+            createList(OTDEL,5)
+        }
+        view6.setOnClickListener {
+            createList(employers,6)
+        }
     }
     fun bbw(v: View) {
 //
