@@ -1,5 +1,6 @@
 package com.example.visual
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -59,10 +60,13 @@ class ThirdActivity : AppCompatActivity(),View.OnClickListener,RecyclerAdapter.O
     }
 
     override fun onItemClick(position: Int) {
-         Toast.makeText(this,"Item$position clicked", Toast.LENGTH_SHORT).show()
-        val clickedItem = recList[position]
-        clickedItem.title="YRA"
-        adapter.notifyItemChanged(position)
+         //Toast.makeText(this,"Item$position clicked", Toast.LENGTH_SHORT).show()
+       // val clickedItem = recList[position]
+      //  clickedItem.title="YRA"
+        val intent: Intent = Intent(this@ThirdActivity, OrderActivity::class.java)
+        intent.putExtra("position",position)
+        startActivity(intent)
+       // adapter.notifyItemChanged(position)
     }
     fun addItem(recycler: RecyclerClass) {
         recList.add(recycler)
