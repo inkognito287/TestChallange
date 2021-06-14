@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.get
+import androidx.databinding.DataBindingUtil
+import com.example.visual.databinding.ActivityOrderBinding
 
 
 class OrderActivity : AppCompatActivity() {
@@ -20,21 +23,27 @@ class OrderActivity : AppCompatActivity() {
         "Коротаев Александр", "Барбороскин Николай", "Куликовская Анастасия ", "Чурило Оксана", "Маршалов Пётр",
         "Касьян Кристина"
     )
+    var textArr= arrayOf("1","2","3","4","5","6","7")
+    var titleArr=arrayOf("Контроль","Отдел исполнитель","Сотрудник отдела исполнителя","Подключенный отдел","Сотрудники...","Требуются на","Контакт в ЦО")
+   lateinit var Binding:ActivityOrderBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_order)
+         Binding = DataBindingUtil.setContentView(this, R.layout.activity_order)
+        Binding?.information2=Information2(titleArr,
+          textArr)
         var view = findViewById<View>(R.id.createList)
         var view2 = findViewById<View>(R.id.createList2)
         var view3 = findViewById<View>(R.id.createList3)
         view.setOnClickListener {
-            createList(OTDEL)
+            createList(OTDEL,1)
         }
         view2.setOnClickListener {
-            createList(employers)
+            createList(employers,2)
         }
         view3.setOnClickListener {
-            createList(OTDEL)
+            createList(OTDEL,3)
         }
+
     }
     fun bbw(v: View) {
 //
@@ -71,7 +80,7 @@ class OrderActivity : AppCompatActivity() {
 
     }
 
-    fun createList(array:Array<String>) {
+    fun createList(array:Array<String>,int: Int) {
         var List = ListView(this)
 
         var params: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
@@ -86,6 +95,14 @@ class OrderActivity : AppCompatActivity() {
         )
         List.adapter=adapter
         List.background = resources.getDrawable(R.drawable.notification)
+        List.setOnItemClickListener{parent, view, position, id ->
+        Log.d("MyLog", adapter.getItem(position).toString())
+       // val Binding: ActivityOrderBinding? = DataBindingUtil.setContentView(this, R.layout.activity_order)
+        textArr[int]=adapter.getItem(position).toString()
+         Binding?.information2=Information2(titleArr,textArr)
+          dad.removeView(List)
+
+        }
         dad.addView(List)
     }
 }

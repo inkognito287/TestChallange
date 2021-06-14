@@ -7,8 +7,8 @@
 
     <View
         android:id="@+id/view2"
-        android:layout_width="395dp"
-        android:layout_height="306dp"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
         android:background="@drawable/notification"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
