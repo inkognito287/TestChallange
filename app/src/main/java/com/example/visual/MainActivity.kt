@@ -21,7 +21,11 @@ class MainActivity : AppCompatActivity() {
         val Binding: ActivityMainBinding? = DataBindingUtil.setContentView(this, R.layout.activity_main)
         Binding?.information=Information(arrayOf(R.drawable.but1,R.drawable.but2,R.drawable.but3,R.drawable.but4,R.drawable.but5), arrayOf("Заявки в работе","Согласование заявок","Выполненные заявки","Поиск заявок","Документация"))
         //setContentView(R.layout.abrakadabra)
-
+        var Documentation=findViewById<View>(R.id.Documentation)
+        Documentation.setOnClickListener {
+            var intent = Intent(this@MainActivity, ImageActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     fun buttonRecycler(view: View) {

@@ -18,6 +18,7 @@
 
 
       <ScrollView
+          android:id="@+id/scrollView2"
           android:layout_width="match_parent"
           android:layout_height="match_parent">
 
@@ -47,12 +48,13 @@
                   </include>
 
                   <include
+                      android:id="@+id/createCalendar"
                       layout="@layout/order_item"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:layout_weight="1"
-                      app:title="@{information2.title[0]}"
-                      app:text="@{information2.text[0]}">
+                      app:text="@{information2.text[0]}"
+                      app:title="@{information2.title[0]}">
 
                   </include>
 
@@ -64,8 +66,8 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                   app:title="@{information2.title[1]}"
-                   app:text="@{information2.text[1]}">
+                   app:text="@{information2.text[1]}"
+                   app:title="@{information2.title[1]}">
 
                </include>
 
@@ -75,8 +77,8 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                   app:title="@{information2.title[2]}"
-                   app:text="@{information2.text[2]}">
+                   app:text="@{information2.text[2]}"
+                   app:title="@{information2.title[2]}">
 
                </include>
 
@@ -86,8 +88,8 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                   app:title="@{information2.title[3]}"
-                   app:text="@{information2.text[3]}">
+                   app:text="@{information2.text[3]}"
+                   app:title="@{information2.title[3]}">
 
                </include>
 
@@ -97,8 +99,8 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                   app:title="@{information2.title[4]}"
-                   app:text="@{information2.text[4]}">
+                   app:text="@{information2.text[4]}"
+                   app:title="@{information2.title[4]}">
 
                </include>
 
@@ -108,9 +110,8 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                   app:title="@{information2.title[5]}"
-                   app:text="@{information2.text[5]}">
-               </include>
+                   app:text="@{information2.text[5]}"
+                   app:title="@{information2.title[5]}"></include>
 
                <include
                    android:id="@+id/createList6"
@@ -118,8 +119,8 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                   app:title="@{information2.title[6]}"
-                   app:text="@{information2.text[6]}">
+                   app:text="@{information2.text[6]}"
+                   app:title="@{information2.title[6]}">
 
                </include>
 
@@ -127,13 +128,22 @@
 
                </include>
 
-               <include
+               <!--               <include-->
 
-                   layout="@layout/add_photo"
+               <!--                   layout="@layout/add_photo"-->
 
-                   android:onClick="bbw">
+               <!--                   android:onClick="bbw">-->
 
-               </include>
+               <!--               </include>-->
+               <Button
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp"
+                   android:layout_margin="5dp"
+                   android:background="@drawable/button2"
+                   android:onClick="bbw"
+                   android:text="Выбрать картинку"
+                   android:textColor="#150D0D"
+                   app:backgroundTint="@null" />
 
             </LinearLayout>
 

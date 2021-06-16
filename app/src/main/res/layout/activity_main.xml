@@ -91,6 +91,7 @@
                     app:vari="@{information.imgId[2]}" />
 
                 <include
+
                     layout="@layout/item_for_main_recycler"
                     android:layout_width="168dp"
                     android:layout_height="120dp"
@@ -110,6 +111,7 @@
                     app:vari="@{information.imgId[3]}" />
 
                 <include
+                    android:id="@+id/Documentation"
                     layout="@layout/item_for_main_recycler"
                     android:layout_width="168dp"
                     android:layout_height="120dp"
