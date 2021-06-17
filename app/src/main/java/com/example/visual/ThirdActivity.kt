@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.visual.Controllers.SecondActivityItem
 import com.example.visual.databinding.ActivityThirdBinding
 
 class ThirdActivity : AppCompatActivity(),View.OnClickListener,RecyclerAdapter.OnItemClickListener {
@@ -27,19 +28,14 @@ class ThirdActivity : AppCompatActivity(),View.OnClickListener,RecyclerAdapter.O
         listOf("Бесперебойное питание","Бесперебойное питание","Бесперебойное питание","Бесперебойное питание","Бесперебойное питание"),
         listOf("Сенсорные киоски","Сенсорные киоски","Сенсорные киоски"),
         listOf("Охранная сигнализация","Охранная сигнализация","Охранная сигнализация","Охранная сигнализация")
-
-
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //Log.d("MyLog","Third")
         binding= ActivityThirdBinding.inflate(layoutInflater)
-         setContentView(binding.root)
+        setContentView(binding.root)
         val intent= getIntent()
-  position=intent.getIntExtra("position",0)
-           // position=pos.posit
-        //rcView=findViewById<RecyclerView>(R.id.rcView)
+        position=intent.getIntExtra("position",0)
         binding.apply {
             adapter.recList.clear()
             rcView2.layoutManager= LinearLayoutManager(this@ThirdActivity)
@@ -48,25 +44,22 @@ class ThirdActivity : AppCompatActivity(),View.OnClickListener,RecyclerAdapter.O
                 val item =RecyclerClass(imageList[position],informationList[position][x])
 //                    RecyclerClass(imageList[position],informationList[position][x])
                 addItem(item)
-
             }
 
         }
     }
-
     override fun onClick(v: View?) {
         Log.d("MyLog","THIRD")
 
     }
-
     override fun onItemClick(position: Int) {
-         //Toast.makeText(this,"Item$position clicked", Toast.LENGTH_SHORT).show()
-       // val clickedItem = recList[position]
-      //  clickedItem.title="YRA"
+        //Toast.makeText(this,"Item$position clicked", Toast.LENGTH_SHORT).show()
+        // val clickedItem = recList[position]
+        //  clickedItem.title="YRA"
         val intent: Intent = Intent(this@ThirdActivity, OrderActivity::class.java)
         intent.putExtra("position",position)
         startActivity(intent)
-       // adapter.notifyItemChanged(position)
+        // adapter.notifyItemChanged(position)
     }
     fun addItem(recycler: RecyclerClass) {
         recList.add(recycler)

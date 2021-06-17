@@ -17,6 +17,7 @@ import androidx.core.view.contains
 import androidx.core.view.marginRight
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.example.visual.Controllers.FieldsOfOrderActivityController
 import com.example.visual.dataClasses.Information2
@@ -28,6 +29,7 @@ import com.makeramen.roundedimageview.RoundedImageView
 class OrderActivity : AppCompatActivity() {
     private lateinit var dadConstraintLayout: ConstraintLayout
     private lateinit var linearLayout:LinearLayout
+    private lateinit var timePicker:TimePicker
     private var listView:ListView?=null
     private lateinit var images:LinearLayout
     private var scrollview: ScrollView? =null
@@ -46,10 +48,7 @@ class OrderActivity : AppCompatActivity() {
         ViewGroup.LayoutParams.WRAP_CONTENT,
         ViewGroup.LayoutParams.WRAP_CONTENT
     )
-
-
     private var textArr = arrayOf("", "", "", "", "", "", "")
-
     lateinit var Binding: ActivityOrderBinding
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,12 +59,10 @@ class OrderActivity : AppCompatActivity() {
             controller.getTitleOfOrderFields(),
             textArr
         )
-
         dadConstraintLayout = findViewById<ConstraintLayout>(R.id.dad)
         var save=findViewById<Button>(R.id.button2)
         var comment=findViewById<EditText>(R.id.comment)
         save.setOnClickListener(){
-//            Log.d("MyLog",comment.text.toString()+imgs[0])
             var progress=LottieAnimationView(this)
             progress.setAnimation(R.raw.loader)
             progress.setId(1121)
@@ -99,7 +96,6 @@ class OrderActivity : AppCompatActivity() {
         var calendar = findViewById<View>(R.id.createCalendar)
         calendar.setOnClickListener {
             createCalendar()
-            // createTimePicker()
         }
         view.setOnClickListener {
             createList(controller.getDepartment(), 1)
@@ -120,12 +116,10 @@ class OrderActivity : AppCompatActivity() {
             createList(controller.getEmployers(), 6)
         }
     }
-
     @SuppressLint("ResourceAsColor")
     fun createCalendar() {
         var pickDate=""
         var pickTime=""
-
         linearLayout = LinearLayout(this)
         linearLayout.orientation = LinearLayout.VERTICAL
         linearLayout.layoutParams = params2
@@ -138,20 +132,16 @@ class OrderActivity : AppCompatActivity() {
         calendarView.setOnDateChangeListener (CalendarView.OnDateChangeListener(){
             view: CalendarView, year: Int, month: Int, dayOfMonth: Int ->
                pickDate= dayOfMonth.toString()+"/"+month+"/"+year
-
         })
+        timePicker=TimePicker(this)
+        timePicker.setOnTimeChangedListener(TimePicker.OnTimeChangedListener(){
+                view, hourOfDay, minute ->
+            pickTime=hourOfDay.toString()+":"+minute
+        })
+        timePicker.visibility=View.VISIBLE
 
-
-        var timePicker = TimePicker(this)
-
-        //timePicker.addc
-        // dad.addView(timePicker)
         timePicker.layoutParams = paramsForTimePicker
         timePicker.setBackgroundResource(R.color.white)
-        timePicker.setOnTimeChangedListener(TimePicker.OnTimeChangedListener(){
-           view, hourOfDay, minute ->
-           pickTime=hourOfDay.toString()+":"+minute
-        })
         var submit=Button(this)
         submit.layoutParams=paramsForTimePicker
         submit.text="Подтвердить"
@@ -173,7 +163,7 @@ class OrderActivity : AppCompatActivity() {
                 1F
             )
         )
-         scrollview=ScrollView(this)
+        scrollview=ScrollView(this)
         scrollview!!.setBackgroundResource(R.color.white)
         scrollview!!.layoutParams=params2
         scrollview!!.addView(linearLayout)
@@ -184,23 +174,22 @@ class OrderActivity : AppCompatActivity() {
             Binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr)
 
         }
-        // dad.addView(linearLayout)
         dadConstraintLayout.addView(scrollview)
         val calendarAnim=AnimationUtils.loadAnimation(this,R.anim.calendar_view)
         scrollview!!.startAnimation(calendarAnim)
     }
 
-    fun bbw(v: View) {
+    fun addPhoto(v: View) {
         var intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, 123)
-
     }
 
     override fun onBackPressed() {
 
-        if (scrollview!=null && dadConstraintLayout.contains(scrollview!!))
-        dadConstraintLayout.removeView(scrollview)
+        if (scrollview!=null && dadConstraintLayout.contains(scrollview!!)) {
+            dadConstraintLayout.removeView(scrollview)
+           }
         else  if (listView!=null &&dadConstraintLayout.contains(listView!!))
             dadConstraintLayout.removeView(listView)
         else
@@ -212,48 +201,26 @@ class OrderActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 123) {
             if(data!=null){
-            // var bmp=data?.extras?.get("data") as Bitmap
              images = findViewById<LinearLayout>(R.id.imagesGallery)
             var img = RoundedImageView(this)
-            //img.setBackgroundResource(R.drawable.button2)
-           // img.scaleType = ImageView.ScaleType.CENTER_CROP
             img.setImageURI(data?.data)
             img.scaleType=ImageView.ScaleType.CENTER_CROP
             img.cornerRadius=30F
             images.addView(img, 350, 350)
-            index++
-            Log.d("MyLog", "click")
-            }
+            var divider=View(this)
+            divider.layoutParams=ConstraintLayout.LayoutParams(30,1)
+                images.addView(divider)
+           }
         }
-
     }
-
     fun createList(array: Array<String>, int: Int) {
-//         listView = ListView(this)
-//        val params: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
-//            ViewGroup.LayoutParams.MATCH_PARENT,
-//            ViewGroup.LayoutParams.MATCH_PARENT
-//        )
-//        listView!!.layoutParams = params
-//        val adapter = ArrayAdapter(
-//            this,
-//            android.R.layout.simple_list_item_1, array
-//        )
-//        listView!!.adapter = adapter
-//        listView!!.background = resources.getDrawable(R.drawable.notification)
-//        listView!!.setOnItemClickListener { parent, view, position, id ->
-//            Log.d("MyLog", adapter.getItem(position).toString())
-//            textArr[int] = adapter.getItem(position).toString()
-//            Binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr)
-//            dadConstraintLayout.removeView(listView)
-//        }
-        var m=controller.createList(array,textArr)
-        m.setOnItemClickListener(){parent, view, position, id ->
+        listView=controller.createList(array,textArr)
+        listView!!.setOnItemClickListener(){ parent, view, position, id ->
             textArr[int]=array[position]
             Binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr)
-            dadConstraintLayout.removeView(m)
+            dadConstraintLayout.removeView(listView)
         }
-        dadConstraintLayout.addView(m)
+        dadConstraintLayout.addView(listView)
 
     }
 }

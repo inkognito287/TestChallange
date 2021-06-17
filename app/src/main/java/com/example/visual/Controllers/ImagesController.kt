@@ -16,10 +16,11 @@ class ImagesController(var model:Images, var view:ImageActivity ) {
     fun getPageCount():Int{
         return sampleImages.size
     }
+
     fun setImageUrl(position:Int){
         model.url=sampleImages[position]
     }
     fun updateView(){
-        view.printDetails(model.url)
+        //view.printDetails(model.url)
     }
 }

@@ -60,6 +60,4 @@ class FieldsOfOrderActivityController( var view: OrderActivity) {
 
      return list
     }
-
-
 }

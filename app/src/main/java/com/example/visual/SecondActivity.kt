@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.visual.Controllers.SecondActivityItem
 import com.example.visual.databinding.ActivitySecondBinding
 import java.util.*
 import kotlin.collections.ArrayList
@@ -22,71 +23,50 @@ var filteredList: ArrayList<RecyclerClass> = ArrayList()
 class SecondActivity : AppCompatActivity(), View.OnClickListener,
     RecyclerAdapter.OnItemClickListener {
     lateinit var binding: ActivitySecondBinding
-lateinit var array:MutableList<Int>
+    lateinit var array:MutableList<Int>
     private var index = 0
     var recList = ArrayList<RecyclerClass>()
+    lateinit var itemOfRecList:RecyclerClass
     private val adapter = RecyclerAdapter(recList, this)
-    private val imageList = listOf(
-        R.drawable.rc_1,
-        R.drawable.rc_2,
-        R.drawable.rc_3,
-        R.drawable.rc_4,
-        R.drawable.rc_5,
-        R.drawable.rc_6,
-        R.drawable.rc_7,
-        R.drawable.rc_8,
-        R.drawable.rc_9,
-        R.drawable.rc_10
-    )
-    private val titleList = listOf(
-        "Видеонаблюдение ",
-        "Управление доступом",
-        "Компьютерные розетки",
-        "Реклама на ТВ и мониторах",
-        "HD Телевидение",
-        "Эфирное телевидение",
-        "Музыкальное оформление",
-        "Бесперебойное питание",
-        "Сенсорные киоски",
-        "Охранная сигнализация"
-    )
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //Log.d("MyLog","Second")
-        // adapter.setOnItemClickListener(RecyclerAdapter.OnItemClickListener)
-
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
         array=ArrayList()
         var rcView = findViewById<RecyclerView>(R.id.rcView)
         binding.apply {
-
             rcView.layoutManager = LinearLayoutManager(this@SecondActivity)
             rcView.adapter = adapter
-            for (x in 0..imageList.size - 1) {
-                val item = RecyclerClass(imageList[index], titleList[index])
-                addItem(item)
-                index++
-
-            }
-
+            itemOfRecList= RecyclerClass( R.drawable.rc_1,"Видеонаблюдение")
+            addItem(itemOfRecList)
+            itemOfRecList= RecyclerClass( R.drawable.rc_2,"Управление доступом")
+            addItem(itemOfRecList)
+            itemOfRecList= RecyclerClass( R.drawable.rc_3,"Компьютерные розетки")
+            addItem(itemOfRecList)
+            itemOfRecList= RecyclerClass( R.drawable.rc_4,"Реклама на ТВ и мониторах")
+            addItem(itemOfRecList)
+            itemOfRecList= RecyclerClass( R.drawable.rc_5,"HD Телевидение")
+            addItem(itemOfRecList)
+            itemOfRecList= RecyclerClass( R.drawable.rc_6,"Эфирное телевидение")
+            addItem(itemOfRecList)
+            itemOfRecList= RecyclerClass( R.drawable.rc_7,"Музыкальное оформление")
+            addItem(itemOfRecList)
+            itemOfRecList= RecyclerClass( R.drawable.rc_8,"Бесперебойное питание")
+            addItem(itemOfRecList)
+            itemOfRecList= RecyclerClass( R.drawable.rc_9,"Сенсорные киоски")
+            addItem(itemOfRecList)
+            itemOfRecList= RecyclerClass( R.drawable.rc_10,"Охранная сигнализация")
+            addItem(itemOfRecList)
         }
         var editText:EditText=findViewById<EditText>(R.id.search)
         editText.addTextChangedListener(object:TextWatcher{
             override fun afterTextChanged(s: Editable?) {
-
             }
-
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
                 filter (s.toString())
             }
-
         })
     }
     fun filter(text:String){
@@ -100,23 +80,17 @@ lateinit var array:MutableList<Int>
                 array.add(index)
             }
             index++
-
         }
-        //recList=filteredList
         adapter.filterList(filteredList)
     }
-
     fun send() {
         val intent4: Intent = Intent(this@SecondActivity, ThirdActivity::class.java)
         startActivity(intent4)
     }
-
     override fun onClick(v: View?) {
         View.OnClickListener() {
-
         }
     }
-
     override fun onDestroy() {
         super.onDestroy()
         Log.d("MyLog","Destroy")
@@ -125,7 +99,7 @@ lateinit var array:MutableList<Int>
         val intent4: Intent = Intent(this@SecondActivity, ThirdActivity::class.java)
         var search=findViewById<EditText>(R.id.search)
         if (search.text.toString()!="")
-        intent4.putExtra("position",array[position])
+            intent4.putExtra("position",array[position])
         else intent4.putExtra("position",position)
         startActivity(intent4)
         finish()

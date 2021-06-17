@@ -155,7 +155,7 @@
                    android:paddingRight="120dp"
                    app:iconGravity="textStart"
                    android:fontFamily="sans-serif"
-                   android:onClick="bbw"
+                   android:onClick="addPhoto"
                    android:text="Добавить фото"
                    android:textAllCaps="false"
                    android:textColor="#000000"
@@ -285,6 +285,11 @@
          </LinearLayout>
       </ScrollView>
 
-
+      <TimePicker
+          android:id="@+id/timePicker"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:timePickerMode="spinner"
+          android:visibility="gone"/>
    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

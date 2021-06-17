@@ -15,20 +15,33 @@ class MainActivity : AppCompatActivity() {
     lateinit var rcView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //var inf=Information(R.drawable.but1,"sus")
-        val Binding: ActivityMainBinding? = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        Binding?.information=
-            Information(arrayOf(R.drawable.but1,R.drawable.but2,R.drawable.but3,R.drawable.but4,R.drawable.but5), arrayOf("Заявки в работе","Согласование заявок","Выполненные заявки","Поиск заявок","Документация"))
-        //setContentView(R.layout.abrakadabra)
-        var Documentation=findViewById<View>(R.id.Documentation)
+        val binding: ActivityMainBinding? =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding?.information =
+            Information(
+                arrayOf(
+                    R.drawable.but1,
+                    R.drawable.but2,
+                    R.drawable.but3,
+                    R.drawable.but4,
+                    R.drawable.but5
+                ),
+                arrayOf(
+                    "Заявки в работе",
+                    "Согласование заявок",
+                    "Выполненные заявки",
+                    "Поиск заявок",
+                    "Документация"
+                )
+            )
+        val Documentation = findViewById<View>(R.id.Documentation)
         Documentation.setOnClickListener {
-            var intent = Intent(this@MainActivity, ImageActivity::class.java)
+            val intent = Intent(this@MainActivity, ImageActivity::class.java)
             startActivity(intent)
         }
     }
-
     fun buttonRecycler(view: View) {
-        var intent = Intent(this@MainActivity, SecondActivity::class.java)
+        val intent = Intent(this@MainActivity, SecondActivity::class.java)
         startActivity(intent)
     }
 }

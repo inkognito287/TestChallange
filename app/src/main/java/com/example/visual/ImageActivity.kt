@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.davemorrissey.labs.subscaleview.ImageSource
 import com.example.visual.Controllers.ImagesController
+import com.example.visual.Controllers.ItemUrl
 import com.example.visual.dataClasses.Images
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
@@ -24,6 +25,8 @@ class ImageActivity : AppCompatActivity() {
     lateinit var saveparams:ViewGroup.LayoutParams
     lateinit var model:Images
     lateinit var controller:ImagesController
+    lateinit var item: ItemUrl
+    var itemList = ArrayList<ItemUrl>();
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
@@ -31,27 +34,28 @@ class ImageActivity : AppCompatActivity() {
         var view=ImageActivity()
         controller=ImagesController(model,view)
         val carouselView = findViewById(R.id.carouselView) as CarouselView;
-        carouselView.setPageCount(controller.getPageCount());
+
         carouselView.setImageListener(imageListener)
         carousel=findViewById(R.id.carouselView)
         saveparams=carousel.layoutParams
-
-       // controller.setImageUrl("https://images.hdqwalls.com/wallpapers/godzilla-king-of-the-monsters-10k-he.jpg")
-         Log.d("MyLog",model.url)
+        item=ItemUrl("https://images.hdqwalls.com/wallpapers/godzilla-king-of-the-monsters-10k-he.jpg")
+        itemList.add(item)
+        itemList.add(item)
+        itemList.add(item)
+        itemList.add(item)
+        carouselView.setPageCount(itemList.size);
+        Log.d("MyLog",model.url)
     }
-
     private fun getDatafromDb(): Images {
         return Images("https://images.hdqwalls.com/wallpapers/godzilla-king-of-the-monsters-11k-he.jpg")
     }
-
     fun printDetails(url: String) {
-
     }
-
     var imageListener: ImageListener = object : ImageListener {
         override fun setImageForPosition(position: Int, imageView: ImageView) {
-            controller.setImageUrl(position)
-            var a=Picasso.get().load(model.url)
+           var a=Picasso.get().load(itemList[position].getUrl())
+//            controller.setImageUrl(position)
+//            var a=Picasso.get().load(model.url)
             a.rotate(90f)
             a.into(imageView)
             imageView.setOnClickListener {
