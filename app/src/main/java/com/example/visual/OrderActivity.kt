@@ -3,41 +3,37 @@ package com.example.visual
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.graphics.drawable.RoundedBitmapDrawable
 import androidx.core.view.contains
-import androidx.core.view.get
+import androidx.core.view.marginRight
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.airbnb.lottie.LottieAnimationView
+import com.example.visual.Controllers.FieldsOfOrderActivityController
+import com.example.visual.dataClasses.Information2
 import com.example.visual.databinding.ActivityOrderBinding
+
+import com.makeramen.roundedimageview.RoundedImageView
 
 
 class OrderActivity : AppCompatActivity() {
-    lateinit var dad: ConstraintLayout
-    lateinit var linearLayout:LinearLayout
-    var List:ListView?=null
-    lateinit var imgs:LinearLayout
-    var scrollview: ScrollView? =null
-    var index = 0
-
+    private lateinit var dadConstraintLayout: ConstraintLayout
+    private lateinit var linearLayout:LinearLayout
+    private var listView:ListView?=null
+    private lateinit var images:LinearLayout
+    private var scrollview: ScrollView? =null
+    private var index = 0
     lateinit var context:Context
-    val OTDEL = arrayOf(
-        "TCP", "TDP", "UDP", "AMD", "UFC"
-    )
-    var params: LinearLayout.LayoutParams = LinearLayout.LayoutParams(
-        ViewGroup.LayoutParams.MATCH_PARENT,
-        ViewGroup.LayoutParams.MATCH_PARENT / 2
-    )
+    private lateinit var controller:FieldsOfOrderActivityController
     var paramsForTimePicker:LinearLayout.LayoutParams= LinearLayout.LayoutParams(
         ViewGroup.LayoutParams.MATCH_PARENT,
         ViewGroup.LayoutParams.MATCH_PARENT
@@ -51,35 +47,21 @@ class OrderActivity : AppCompatActivity() {
         ViewGroup.LayoutParams.WRAP_CONTENT
     )
 
-    val dela = arrayOf("Согласование", "Разрешение", "Управление")
-    val employers = arrayOf(
-        "Коротаев Александр",
-        "Барбороскин Николай",
-        "Куликовская Анастасия ",
-        "Чурило Оксана",
-        "Маршалов Пётр",
-        "Касьян Кристина"
-    )
-    var textArr = arrayOf("1", "2", "3", "4", "5", "6", "7")
-    var titleArr = arrayOf(
-        "Контроль",
-        "Отдел исполнитель",
-        "Сотрудник отдела исполнителя",
-        "Подключенный отдел",
-        "Сотрудники...",
-        "Требуются на",
-        "Контакт в ЦО"
-    )
+
+    private var textArr = arrayOf("", "", "", "", "", "", "")
+
     lateinit var Binding: ActivityOrderBinding
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        controller= FieldsOfOrderActivityController(this)
         Binding = DataBindingUtil.setContentView(this, R.layout.activity_order)
         Binding.information2 = Information2(
-            titleArr,
+            controller.getTitleOfOrderFields(),
             textArr
         )
-        dad = findViewById<ConstraintLayout>(R.id.dad)
+
+        dadConstraintLayout = findViewById<ConstraintLayout>(R.id.dad)
         var save=findViewById<Button>(R.id.button2)
         var comment=findViewById<EditText>(R.id.comment)
         save.setOnClickListener(){
@@ -89,14 +71,14 @@ class OrderActivity : AppCompatActivity() {
             progress.setId(1121)
             progress.setPadding(0,0,0,0)
             progress.layoutParams=paramsForImage
-            dad.addView(progress)
+            dadConstraintLayout.addView(progress)
             var constraintSet=ConstraintSet()
-            constraintSet.clone(dad)
-            constraintSet.connect(progress.id,ConstraintSet.TOP,dad.id,ConstraintSet.TOP)
-            constraintSet.connect(progress.id,ConstraintSet.BOTTOM,dad.id,ConstraintSet.BOTTOM)
-            constraintSet.connect(progress.id,ConstraintSet.RIGHT,dad.id,ConstraintSet.RIGHT)
-            constraintSet.connect(progress.id,ConstraintSet.LEFT,dad.id,ConstraintSet.LEFT)
-            constraintSet.applyTo(dad)
+            constraintSet.clone(dadConstraintLayout)
+            constraintSet.connect(progress.id,ConstraintSet.TOP,dadConstraintLayout.id,ConstraintSet.TOP)
+            constraintSet.connect(progress.id,ConstraintSet.BOTTOM,dadConstraintLayout.id,ConstraintSet.BOTTOM)
+            constraintSet.connect(progress.id,ConstraintSet.RIGHT,dadConstraintLayout.id,ConstraintSet.RIGHT)
+            constraintSet.connect(progress.id,ConstraintSet.LEFT,dadConstraintLayout.id,ConstraintSet.LEFT)
+            constraintSet.applyTo(dadConstraintLayout)
             var isCheckedDone=true
             if(isCheckedDone) {
                 progress.setSpeed(-1.0f)
@@ -104,20 +86,9 @@ class OrderActivity : AppCompatActivity() {
                 progress.playAnimation()
                Thread(Runnable {
                    Thread.sleep(4000)
-                   runOnUiThread { dad.removeView(progress) }
+                   runOnUiThread { dadConstraintLayout.removeView(progress) }
                }).start()
-
-
-
-
             }
-
-
-            //val progressAnim=AnimationUtils.loadAnimation(this,R.anim.progress)
-            //progress.startAnimation(progressAnim)
-
-
-
         }
         var view = findViewById<View>(R.id.createList)
         var view2 = findViewById<View>(R.id.createList2)
@@ -131,22 +102,22 @@ class OrderActivity : AppCompatActivity() {
             // createTimePicker()
         }
         view.setOnClickListener {
-            createList(OTDEL, 1)
+            createList(controller.getDepartment(), 1)
         }
         view2.setOnClickListener {
-            createList(employers, 2)
+            createList(controller.getEmployers(), 2)
         }
         view3.setOnClickListener {
-            createList(OTDEL, 3)
+            createList(controller.getDepartment(), 3)
         }
         view4.setOnClickListener {
-            createList(employers, 4)
+            createList(controller.getEmployers(), 4)
         }
         view5.setOnClickListener {
-            createList(OTDEL, 5)
+            createList(controller.getActions(), 5)
         }
         view6.setOnClickListener {
-            createList(employers, 6)
+            createList(controller.getEmployers(), 6)
         }
     }
 
@@ -207,25 +178,19 @@ class OrderActivity : AppCompatActivity() {
         scrollview!!.layoutParams=params2
         scrollview!!.addView(linearLayout)
         submit.setOnClickListener{
-            dad.removeView(scrollview)
+            dadConstraintLayout.removeView(scrollview)
 
             textArr[0] =pickDate+" "+pickTime
-            Binding.information2 = Information2(titleArr, textArr)
+            Binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr)
 
         }
         // dad.addView(linearLayout)
-        dad.addView(scrollview)
+        dadConstraintLayout.addView(scrollview)
         val calendarAnim=AnimationUtils.loadAnimation(this,R.anim.calendar_view)
         scrollview!!.startAnimation(calendarAnim)
     }
 
     fun bbw(v: View) {
-//
-//        var imgs=findViewById<LinearLayout>(R.id.imagesGallery)
-//        var img=ImageView(this,set)
-//        imgs.addView()
-//        index++
-//        Log.d("MyLog","click")
         var intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, 123)
@@ -234,31 +199,28 @@ class OrderActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
 
-        if (scrollview!=null && dad.contains(scrollview!!))
-        dad.removeView(scrollview)
-        else  if (List!=null &&dad.contains(List!!))
-            dad.removeView(List)
+        if (scrollview!=null && dadConstraintLayout.contains(scrollview!!))
+        dadConstraintLayout.removeView(scrollview)
+        else  if (listView!=null &&dadConstraintLayout.contains(listView!!))
+            dadConstraintLayout.removeView(listView)
         else
         super.onBackPressed()
 
     }
-
     @SuppressLint("ResourceAsColor")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 123) {
             if(data!=null){
             // var bmp=data?.extras?.get("data") as Bitmap
-             imgs = findViewById<LinearLayout>(R.id.imagesGallery)
-            var img = ImageView(this)
-            var divider = View(this)
-            divider.setBackgroundResource(R.color.black)
-
+             images = findViewById<LinearLayout>(R.id.imagesGallery)
+            var img = RoundedImageView(this)
+            //img.setBackgroundResource(R.drawable.button2)
+           // img.scaleType = ImageView.ScaleType.CENTER_CROP
             img.setImageURI(data?.data)
-            img.scaleType = ImageView.ScaleType.CENTER_CROP
-            imgs.addView(img, 350, 350)
-            imgs.addView(divider, 5, 350)
-
+            img.scaleType=ImageView.ScaleType.CENTER_CROP
+            img.cornerRadius=30F
+            images.addView(img, 350, 350)
             index++
             Log.d("MyLog", "click")
             }
@@ -267,29 +229,32 @@ class OrderActivity : AppCompatActivity() {
     }
 
     fun createList(array: Array<String>, int: Int) {
-         List = ListView(this)
-
-        var params: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-        )
-        List!!.layoutParams = params
-
-        val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_list_item_1, array
-        )
-        List!!.adapter = adapter
-        List!!.background = resources.getDrawable(R.drawable.notification)
-        List!!.setOnItemClickListener { parent, view, position, id ->
-            Log.d("MyLog", adapter.getItem(position).toString())
-            // val Binding: ActivityOrderBinding? = DataBindingUtil.setContentView(this, R.layout.activity_order)
-            textArr[int] = adapter.getItem(position).toString()
-            Binding.information2 = Information2(titleArr, textArr)
-            dad.removeView(List)
-
+//         listView = ListView(this)
+//        val params: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
+//            ViewGroup.LayoutParams.MATCH_PARENT,
+//            ViewGroup.LayoutParams.MATCH_PARENT
+//        )
+//        listView!!.layoutParams = params
+//        val adapter = ArrayAdapter(
+//            this,
+//            android.R.layout.simple_list_item_1, array
+//        )
+//        listView!!.adapter = adapter
+//        listView!!.background = resources.getDrawable(R.drawable.notification)
+//        listView!!.setOnItemClickListener { parent, view, position, id ->
+//            Log.d("MyLog", adapter.getItem(position).toString())
+//            textArr[int] = adapter.getItem(position).toString()
+//            Binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr)
+//            dadConstraintLayout.removeView(listView)
+//        }
+        var m=controller.createList(array,textArr)
+        m.setOnItemClickListener(){parent, view, position, id ->
+            textArr[int]=array[position]
+            Binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr)
+            dadConstraintLayout.removeView(m)
         }
-        dad.addView(List)
+        dadConstraintLayout.addView(m)
+
     }
 }
 
