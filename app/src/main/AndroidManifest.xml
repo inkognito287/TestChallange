@@ -21,13 +21,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Visual"
         tools:targetApi="m">
-        <activity android:name=".ImageActivity"/>
-        <activity android:name=".OrderActivity" />
+        <activity android:name=".activity.ImageActivity"/>
+        <activity android:name=".activity.OrderActivity" />
         <activity
-            android:name=".ThirdActivity"
+            android:name=".activity.ThirdActivity"
             android:noHistory="true" />
         <activity
-            android:name=".SecondActivity"
+            android:name=".activity.SecondActivity"
             android:noHistory="true" />
         <activity
             android:name=".splashScreen"
@@ -38,7 +38,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".activity.MainActivity" />
     </application>
 
 </manifest>

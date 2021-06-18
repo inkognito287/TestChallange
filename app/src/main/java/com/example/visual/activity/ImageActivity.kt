@@ -1,4 +1,4 @@
-package com.example.visual
+package com.example.visual.activity
 
 
 
@@ -12,14 +12,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.davemorrissey.labs.subscaleview.ImageSource
 import com.example.visual.Controllers.ImagesController
 import com.example.visual.Controllers.ItemUrl
+import com.example.visual.R
 import com.example.visual.dataClasses.Images
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
 
 class ImageActivity : AppCompatActivity() {
-    lateinit var iamgeSource:ImageSource
-    lateinit var image1:Bitmap
     var switch=0
     lateinit var carousel:CarouselView
     lateinit var saveparams:ViewGroup.LayoutParams
@@ -31,10 +30,9 @@ class ImageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
         model=getDatafromDb()
-        var view=ImageActivity()
+        var view= ImageActivity()
         controller=ImagesController(model,view)
         val carouselView = findViewById(R.id.carouselView) as CarouselView;
-
         carouselView.setImageListener(imageListener)
         carousel=findViewById(R.id.carouselView)
         saveparams=carousel.layoutParams
@@ -54,8 +52,6 @@ class ImageActivity : AppCompatActivity() {
     var imageListener: ImageListener = object : ImageListener {
         override fun setImageForPosition(position: Int, imageView: ImageView) {
            var a=Picasso.get().load(itemList[position].getUrl())
-//            controller.setImageUrl(position)
-//            var a=Picasso.get().load(model.url)
             a.rotate(90f)
             a.into(imageView)
             imageView.setOnClickListener {

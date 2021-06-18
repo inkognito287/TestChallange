@@ -1,11 +1,11 @@
 package com.example.visual.Controllers
 
-import android.R
-import android.util.Log
+
+import com.example.visual.R
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import com.example.visual.OrderActivity
+import com.example.visual.activity.OrderActivity
 
 class FieldsOfOrderActivityController( var view: OrderActivity) {
     private val employers = arrayOf(
@@ -25,6 +25,16 @@ class FieldsOfOrderActivityController( var view: OrderActivity) {
         "Требуются на",
         "Контакт в ЦО"
     )
+    private var imageOfOrderFields = arrayOf(
+        R.drawable.notification,
+        R.drawable.notification,
+         R.drawable.notification,
+         R.drawable.notification,
+         R.drawable.notification,
+         R.drawable.notification,
+         R.drawable.notification,
+         R.drawable.notification
+    )
     private val department = arrayOf(
         "TCP", "TDP", "UDP", "AMD", "UFC"
     )
@@ -37,6 +47,9 @@ class FieldsOfOrderActivityController( var view: OrderActivity) {
     }
     fun getTitleOfOrderFields():Array<String>{
         return titleOfOrderFields
+    }
+    fun getImageOfOrderFields():Array<Int>{
+        return imageOfOrderFields
     }
     fun getDepartment():Array<String>{
         return department
@@ -53,10 +66,10 @@ class FieldsOfOrderActivityController( var view: OrderActivity) {
         list.layoutParams=params
         val adapter = ArrayAdapter(
             view,
-            R.layout.simple_list_item_1, array
+            android.R.layout.simple_list_item_1, array
         )
         list.adapter=adapter
-        list.setBackgroundResource(R.color.white)
+        list.setBackgroundResource(com.example.visual.R.drawable.notification)
 
      return list
     }

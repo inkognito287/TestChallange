@@ -1,21 +1,34 @@
-package com.example.visual
+package com.example.visual.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.visual.Controllers.SecondActivityItem
+import com.example.visual.R
+import com.example.visual.RecyclerAdapter
+import com.example.visual.RecyclerClass
 import com.example.visual.databinding.ActivityThirdBinding
 
-class ThirdActivity : AppCompatActivity(),View.OnClickListener,RecyclerAdapter.OnItemClickListener {
+class ThirdActivity : AppCompatActivity(),View.OnClickListener,
+    RecyclerAdapter.OnItemClickListener {
     var position=0
     lateinit var binding: ActivityThirdBinding
     var recList = ArrayList<RecyclerClass>()
     private val adapter= RecyclerAdapter(recList,this)
-    private val imageList= listOf(R.drawable.rc_1,R.drawable.rc_2,R.drawable.rc_3,R.drawable.rc_4,R.drawable.rc_5,R.drawable.rc_6,R.drawable.rc_7,R.drawable.rc_8,R.drawable.rc_9,R.drawable.rc_10)
+    private val imageList= listOf(
+        R.drawable.rc_1,
+        R.drawable.rc_2,
+        R.drawable.rc_3,
+        R.drawable.rc_4,
+        R.drawable.rc_5,
+        R.drawable.rc_6,
+        R.drawable.rc_7,
+        R.drawable.rc_8,
+        R.drawable.rc_9,
+        R.drawable.rc_10
+    )
     private val titleList= listOf("Видеонаблюдение ","Управление доступом","Компьютерные розетки","Реклама на ТВ и мониторах","HD Телевидение","Эфирное телевидение","Музыкальное оформление","Бесперебойное питание","Сенсорные киоски","Охранная сигнализация")
     private val informationList= listOf(
         listOf("Видеонаблюдение","Видеонаблюдение","Видеонаблюдение","Видеонаблюдение","Видеонаблюдение","Видеонаблюдение"),
@@ -41,7 +54,7 @@ class ThirdActivity : AppCompatActivity(),View.OnClickListener,RecyclerAdapter.O
             rcView2.layoutManager= LinearLayoutManager(this@ThirdActivity)
             rcView2.adapter =    adapter
             for (x in 0..informationList[position].size-1){
-                val item =RecyclerClass(imageList[position],informationList[position][x])
+                val item = RecyclerClass(imageList[position],informationList[position][x])
 //                    RecyclerClass(imageList[position],informationList[position][x])
                 addItem(item)
             }

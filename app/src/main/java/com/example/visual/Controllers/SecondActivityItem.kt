@@ -1,12 +1,6 @@
 package com.example.visual.Controllers
 
-class SecondActivityItem {
-    private var title:String
-    private var image:Int
-    constructor(title: String, image: Int) {
-        this.title = title
-        this.image = image
-    }
+class SecondActivityItem(private var title: String, private var image: Int) {
     fun getTitle():String{
         return title
     }

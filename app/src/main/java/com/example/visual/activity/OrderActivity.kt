@@ -1,46 +1,64 @@
-package com.example.visual
+package com.example.visual.activity
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.text.Layout
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.graphics.drawable.RoundedBitmapDrawable
 import androidx.core.view.contains
-import androidx.core.view.marginRight
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.example.visual.Controllers.FieldsOfOrderActivityController
+import com.example.visual.R
 import com.example.visual.dataClasses.Information2
 import com.example.visual.databinding.ActivityOrderBinding
 
 import com.makeramen.roundedimageview.RoundedImageView
+import java.text.SimpleDateFormat
 
 
 class OrderActivity : AppCompatActivity() {
+    private var imageOfOrderFields = arrayOf(
+        R.drawable.notification,
+        R.drawable.notification,
+        R.drawable.notification,
+        R.drawable.notification,
+        R.drawable.notification,
+        R.drawable.notification,
+        R.drawable.notification
+    )
+    private var visibilityOficon = arrayOf(
+        View.VISIBLE,
+        View.VISIBLE,
+        View.VISIBLE,
+        View.VISIBLE,
+        View.VISIBLE,
+        View.VISIBLE,
+        View.VISIBLE,
+        View.VISIBLE
+    )
     private lateinit var dadConstraintLayout: ConstraintLayout
     private lateinit var linearLayout:LinearLayout
     private lateinit var timePicker:TimePicker
     private var listView:ListView?=null
     private lateinit var images:LinearLayout
     private var scrollview: ScrollView? =null
-    private var index = 0
     lateinit var context:Context
     private lateinit var controller:FieldsOfOrderActivityController
-    var paramsForTimePicker:LinearLayout.LayoutParams= LinearLayout.LayoutParams(
+    private var paramsForTimePicker:LinearLayout.LayoutParams= LinearLayout.LayoutParams(
         ViewGroup.LayoutParams.MATCH_PARENT,
         ViewGroup.LayoutParams.MATCH_PARENT
     )
-    var params2: ConstraintLayout.LayoutParams = ConstraintLayout.LayoutParams(
+    private var paramsForLinearLayout: ConstraintLayout.LayoutParams = ConstraintLayout.LayoutParams(
         ViewGroup.LayoutParams.MATCH_PARENT,
         ViewGroup.LayoutParams.MATCH_PARENT
     )
@@ -49,92 +67,117 @@ class OrderActivity : AppCompatActivity() {
         ViewGroup.LayoutParams.WRAP_CONTENT
     )
     private var textArr = arrayOf("", "", "", "", "", "", "")
-    lateinit var Binding: ActivityOrderBinding
+    lateinit var binding: ActivityOrderBinding
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         controller= FieldsOfOrderActivityController(this)
-        Binding = DataBindingUtil.setContentView(this, R.layout.activity_order)
-        Binding.information2 = Information2(
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_order)
+        binding.information2 = Information2(
             controller.getTitleOfOrderFields(),
-            textArr
+            textArr,imageOfOrderFields,visibilityOficon
         )
         dadConstraintLayout = findViewById<ConstraintLayout>(R.id.dad)
-        var save=findViewById<Button>(R.id.button2)
-        var comment=findViewById<EditText>(R.id.comment)
-        save.setOnClickListener(){
-            var progress=LottieAnimationView(this)
+        val save=findViewById<Button>(R.id.button2)
+        save.setOnClickListener {
+            val progress=LottieAnimationView(this)
             progress.setAnimation(R.raw.loader)
-            progress.setId(1121)
+            progress.id = 1121
             progress.setPadding(0,0,0,0)
             progress.layoutParams=paramsForImage
             dadConstraintLayout.addView(progress)
-            var constraintSet=ConstraintSet()
+            val constraintSet=ConstraintSet()
             constraintSet.clone(dadConstraintLayout)
             constraintSet.connect(progress.id,ConstraintSet.TOP,dadConstraintLayout.id,ConstraintSet.TOP)
             constraintSet.connect(progress.id,ConstraintSet.BOTTOM,dadConstraintLayout.id,ConstraintSet.BOTTOM)
             constraintSet.connect(progress.id,ConstraintSet.RIGHT,dadConstraintLayout.id,ConstraintSet.RIGHT)
             constraintSet.connect(progress.id,ConstraintSet.LEFT,dadConstraintLayout.id,ConstraintSet.LEFT)
             constraintSet.applyTo(dadConstraintLayout)
-            var isCheckedDone=true
-            if(isCheckedDone) {
-                progress.setSpeed(-1.0f)
+                progress.speed = 1.0f
                 progress.repeatCount=5
                 progress.playAnimation()
                Thread(Runnable {
                    Thread.sleep(4000)
                    runOnUiThread { dadConstraintLayout.removeView(progress) }
                }).start()
-            }
         }
-        var view = findViewById<View>(R.id.createList)
-        var view2 = findViewById<View>(R.id.createList2)
-        var view3 = findViewById<View>(R.id.createList3)
-        var view4 = findViewById<View>(R.id.createList4)
-        var view5 = findViewById<View>(R.id.createList5)
-        var view6 = findViewById<View>(R.id.createList6)
-        var calendar = findViewById<View>(R.id.createCalendar)
+        val view = findViewById<View>(R.id.createList)
+        val view2 = findViewById<View>(R.id.createList2)
+        val view3 = findViewById<View>(R.id.createList3)
+        val view4 = findViewById<View>(R.id.createList4)
+        val view5 = findViewById<View>(R.id.createList5)
+        val view6 = findViewById<View>(R.id.createList6)
+        val calendar = findViewById<View>(R.id.createCalendar)
         calendar.setOnClickListener {
             createCalendar()
+            imageOfOrderFields[0]=R.drawable.order_item_clicked
+           visibilityOficon[0]=View.INVISIBLE
+            binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr,imageOfOrderFields,visibilityOficon)
+            //calendar.visibility=View.GONE
+//            var calendarPost=findViewById<View>(R.id.createCalendarpost)
+//            calendarPost.visibility=View.VISIBLE
         }
         view.setOnClickListener {
             createList(controller.getDepartment(), 1)
+            imageOfOrderFields[1]=R.drawable.order_item_clicked
+            visibilityOficon[1]=View.INVISIBLE
+            binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr,imageOfOrderFields,visibilityOficon)
+
         }
         view2.setOnClickListener {
             createList(controller.getEmployers(), 2)
+            imageOfOrderFields[2]=R.drawable.order_item_clicked
+            visibilityOficon[2]=View.INVISIBLE
+            binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr,imageOfOrderFields,visibilityOficon)
         }
         view3.setOnClickListener {
             createList(controller.getDepartment(), 3)
+            imageOfOrderFields[3]=R.drawable.order_item_clicked
+            visibilityOficon[3]=View.INVISIBLE
+            binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr,imageOfOrderFields,visibilityOficon)
         }
         view4.setOnClickListener {
             createList(controller.getEmployers(), 4)
+            imageOfOrderFields[4]=R.drawable.order_item_clicked
+            visibilityOficon[4]=View.INVISIBLE
+            binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr,imageOfOrderFields,visibilityOficon)
         }
+
         view5.setOnClickListener {
             createList(controller.getActions(), 5)
+            imageOfOrderFields[5]=R.drawable.order_item_clicked
+            visibilityOficon[5]=View.INVISIBLE
+            binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr,imageOfOrderFields,visibilityOficon)
         }
         view6.setOnClickListener {
             createList(controller.getEmployers(), 6)
+            imageOfOrderFields[6]=R.drawable.order_item_clicked
+            visibilityOficon[6]=View.INVISIBLE
+            binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr,imageOfOrderFields,visibilityOficon)
         }
     }
-    @SuppressLint("ResourceAsColor")
+    @RequiresApi(Build.VERSION_CODES.M)
+    @SuppressLint("ResourceAsColor", "SimpleDateFormat")
     fun createCalendar() {
         var pickDate=""
         var pickTime=""
         linearLayout = LinearLayout(this)
         linearLayout.orientation = LinearLayout.VERTICAL
-        linearLayout.layoutParams = params2
-
-        var calendarView = CalendarView(this)
-        //dad.addView(calendarView)
+        linearLayout.layoutParams = paramsForLinearLayout
+        val calendarView = CalendarView(this)
         calendarView.setBackgroundResource(R.color.white)
         calendarView.alpha = 1.0F
         calendarView.layoutParams = paramsForTimePicker
-        calendarView.setOnDateChangeListener (CalendarView.OnDateChangeListener(){
+        var format=SimpleDateFormat("dd.MM.yyyy")
+        pickDate= format.format(calendarView.date).toString()
+
+        calendarView.setOnDateChangeListener (CalendarView.OnDateChangeListener {
             view: CalendarView, year: Int, month: Int, dayOfMonth: Int ->
-               pickDate= dayOfMonth.toString()+"/"+month+"/"+year
+               pickDate= "$dayOfMonth.$month.$year"
         })
         timePicker=TimePicker(this)
-        timePicker.setOnTimeChangedListener(TimePicker.OnTimeChangedListener(){
+        pickTime= timePicker.hour.toString()+":"+timePicker.minute.toString()
+        timePicker.setOnTimeChangedListener(TimePicker.OnTimeChangedListener {
                 view, hourOfDay, minute ->
             pickTime=hourOfDay.toString()+":"+minute
         })
@@ -142,7 +185,7 @@ class OrderActivity : AppCompatActivity() {
 
         timePicker.layoutParams = paramsForTimePicker
         timePicker.setBackgroundResource(R.color.white)
-        var submit=Button(this)
+        val submit=Button(this)
         submit.layoutParams=paramsForTimePicker
         submit.text="Подтвердить"
         linearLayout.addView(
@@ -165,36 +208,32 @@ class OrderActivity : AppCompatActivity() {
         )
         scrollview=ScrollView(this)
         scrollview!!.setBackgroundResource(R.color.white)
-        scrollview!!.layoutParams=params2
+        scrollview!!.layoutParams=paramsForLinearLayout
         scrollview!!.addView(linearLayout)
         submit.setOnClickListener{
             dadConstraintLayout.removeView(scrollview)
 
             textArr[0] =pickDate+" "+pickTime
-            Binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr)
+            binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr,imageOfOrderFields,visibilityOficon)
 
         }
         dadConstraintLayout.addView(scrollview)
-        val calendarAnim=AnimationUtils.loadAnimation(this,R.anim.calendar_view)
+        val calendarAnim=AnimationUtils.loadAnimation(this, R.anim.calendar_view)
         scrollview!!.startAnimation(calendarAnim)
     }
-
     fun addPhoto(v: View) {
-        var intent = Intent(Intent.ACTION_PICK)
+        val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, 123)
     }
-
     override fun onBackPressed() {
-
         if (scrollview!=null && dadConstraintLayout.contains(scrollview!!)) {
             dadConstraintLayout.removeView(scrollview)
            }
-        else  if (listView!=null &&dadConstraintLayout.contains(listView!!))
-            dadConstraintLayout.removeView(listView)
+        else  if (listView!=null &&dadConstraintLayout.contains(linearLayout!!))
+            dadConstraintLayout.removeView(linearLayout)
         else
         super.onBackPressed()
-
     }
     @SuppressLint("ResourceAsColor")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -202,25 +241,38 @@ class OrderActivity : AppCompatActivity() {
         if (requestCode == 123) {
             if(data!=null){
              images = findViewById<LinearLayout>(R.id.imagesGallery)
-            var img = RoundedImageView(this)
-            img.setImageURI(data?.data)
+            val img = RoundedImageView(this)
+            img.setImageURI(data.data)
             img.scaleType=ImageView.ScaleType.CENTER_CROP
             img.cornerRadius=30F
             images.addView(img, 350, 350)
-            var divider=View(this)
+            val divider=View(this)
             divider.layoutParams=ConstraintLayout.LayoutParams(30,1)
                 images.addView(divider)
            }
         }
     }
-    fun createList(array: Array<String>, int: Int) {
+    private fun createList(array: Array<String>, int: Int) {
         listView=controller.createList(array,textArr)
-        listView!!.setOnItemClickListener(){ parent, view, position, id ->
+        listView!!.setOnItemClickListener { _, _, position, _ ->
             textArr[int]=array[position]
-            Binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr)
-            dadConstraintLayout.removeView(listView)
+            binding.information2 = Information2(controller.getTitleOfOrderFields(), textArr,imageOfOrderFields,visibilityOficon)
+            dadConstraintLayout.removeView(linearLayout)
         }
-        dadConstraintLayout.addView(listView)
+        val view=View(this)
+        view.setBackgroundResource(R.color.black)
+        view.alpha=0.7f
+        view.layoutParams= ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,200)
+        linearLayout = LinearLayout(this)
+        linearLayout.orientation = LinearLayout.VERTICAL
+        linearLayout.layoutParams = paramsForLinearLayout
+        linearLayout.addView(view)
+        linearLayout.addView(listView)
+        dadConstraintLayout.addView(linearLayout)
+        val calendarAnim=AnimationUtils.loadAnimation(this, R.anim.calendar_view)
+        listView!!.startAnimation(calendarAnim)
+        val blackViewAnim=AnimationUtils.loadAnimation(this, R.anim.black_view)
+        view.startAnimation(blackViewAnim)
 
     }
 }

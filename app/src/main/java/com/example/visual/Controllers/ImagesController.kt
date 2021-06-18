@@ -1,9 +1,9 @@
 package com.example.visual.Controllers
 
 import com.example.visual.dataClasses.Images
-import com.example.visual.ImageActivity
+import com.example.visual.activity.ImageActivity
 
-class ImagesController(var model:Images, var view:ImageActivity ) {
+class ImagesController(var model:Images, var view: ImageActivity) {
     var sampleImages = arrayOf(
         "https://images.hdqwalls.com/wallpapers/godzilla-king-of-the-monsters-10k-he.jpg",
         "https://kenrockwell.com/leica/images/50mm-f35/sample-images/L1012285.jpg",

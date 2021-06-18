@@ -44,7 +44,9 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:layout_margin="2dp"
-                      android:layout_weight="1">
+                      android:layout_weight="1"
+                      app:image="@{information2.image[7]}"
+                      app:visibility="@{information2.visibility[7]}">
 
                   </include>
 
@@ -56,9 +58,9 @@
                       android:layout_margin="2dp"
                       android:layout_weight="1"
                       app:text="@{information2.text[0]}"
-                      app:title="@{information2.title[0]}">
-
-                  </include>
+                      app:title="@{information2.title[0]}"
+                      app:image="@{information2.image[0]}"
+                      app:visibility="@{information2.visibility[0]}"/>
 
                </LinearLayout>
 
@@ -70,9 +72,10 @@
                    android:layout_margin="2dp"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:text="@{information2.text[1]}"
-                   app:title="@{information2.title[1]}">
+                   app:title="@{information2.title[1]}"
+                   app:image="@{information2.image[1]}"
+                   app:visibility="@{information2.visibility[1]}"/>
 
-               </include>
 
                <include
                    android:id="@+id/createList2"
@@ -82,7 +85,9 @@
                    android:layout_margin="2dp"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:text="@{information2.text[2]}"
-                   app:title="@{information2.title[2]}">
+                   app:title="@{information2.title[2]}"
+                   app:image="@{information2.image[2]}"
+                   app:visibility="@{information2.visibility[2]}">
 
                </include>
 
@@ -94,7 +99,9 @@
                    android:layout_margin="2dp"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:text="@{information2.text[3]}"
-                   app:title="@{information2.title[3]}">
+                   app:title="@{information2.title[3]}"
+                   app:image="@{information2.image[3]}"
+                   app:visibility="@{information2.visibility[3]}">
 
                </include>
 
@@ -106,7 +113,9 @@
                    android:layout_margin="2dp"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:text="@{information2.text[4]}"
-                   app:title="@{information2.title[4]}">
+                   app:title="@{information2.title[4]}"
+                   app:image="@{information2.image[4]}"
+                   app:visibility="@{information2.visibility[4]}">
 
                </include>
 
@@ -118,7 +127,9 @@
                    android:layout_margin="2dp"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:text="@{information2.text[5]}"
-                   app:title="@{information2.title[5]}"></include>
+                   app:title="@{information2.title[5]}"
+                   app:image="@{information2.image[5]}"
+                   app:visibility="@{information2.visibility[5]}"/>
 
                <include
                    android:id="@+id/createList6"
@@ -128,7 +139,9 @@
                    android:layout_margin="2dp"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:text="@{information2.text[6]}"
-                   app:title="@{information2.title[6]}">
+                   app:title="@{information2.title[6]}"
+                   app:image="@{information2.image[6]}"
+                   app:visibility="@{information2.visibility[6]}">
 
                </include>
 

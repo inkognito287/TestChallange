@@ -1,4 +1,4 @@
-package com.example.visual
+package com.example.visual.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.visual.R
 import com.example.visual.dataClasses.Information
 
 import com.example.visual.databinding.ActivityMainBinding
@@ -34,8 +35,8 @@ class MainActivity : AppCompatActivity() {
                     "Документация"
                 )
             )
-        val Documentation = findViewById<View>(R.id.Documentation)
-        Documentation.setOnClickListener {
+        val documentation = findViewById<View>(R.id.Documentation)
+        documentation.setOnClickListener {
             val intent = Intent(this@MainActivity, ImageActivity::class.java)
             startActivity(intent)
         }

@@ -1,4 +1,4 @@
-package com.example.visual
+package com.example.visual.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,12 +7,12 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.visual.Controllers.SecondActivityItem
+import com.example.visual.R
+import com.example.visual.RecyclerAdapter
+import com.example.visual.RecyclerClass
 import com.example.visual.databinding.ActivitySecondBinding
 import java.util.*
 import kotlin.collections.ArrayList
@@ -26,7 +26,7 @@ class SecondActivity : AppCompatActivity(), View.OnClickListener,
     lateinit var array:MutableList<Int>
     private var index = 0
     var recList = ArrayList<RecyclerClass>()
-    lateinit var itemOfRecList:RecyclerClass
+    lateinit var itemOfRecList: RecyclerClass
     private val adapter = RecyclerAdapter(recList, this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
