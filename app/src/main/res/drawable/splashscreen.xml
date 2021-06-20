@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/splash"
         android:height="300dp"/>
-    <item >
+    <item  >
         <bitmap
             android:src="@drawable/splashscreen2"
-
+            android:gravity="center"
             />
 
     </item>

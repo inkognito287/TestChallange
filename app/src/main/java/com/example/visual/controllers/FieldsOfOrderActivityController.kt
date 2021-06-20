@@ -1,4 +1,4 @@
-package com.example.visual.Controllers
+package com.example.visual.controllers
 
 
 import com.example.visual.R
@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import com.example.visual.activity.OrderActivity
 
-class FieldsOfOrderActivityController( var view: OrderActivity) {
+class FieldsOfOrderActivityController(var view: OrderActivity) {
     private val employers = arrayOf(
         "Коротаев Александр",
         "Барбороскин Николай",
@@ -23,54 +23,60 @@ class FieldsOfOrderActivityController( var view: OrderActivity) {
         "Подключенный отдел",
         "Сотрудники...",
         "Требуются на",
-        "Контакт в ЦО"
+        "Контакт в ЦО",
+        "Поступила:"
     )
     private var imageOfOrderFields = arrayOf(
         R.drawable.notification,
         R.drawable.notification,
-         R.drawable.notification,
-         R.drawable.notification,
-         R.drawable.notification,
-         R.drawable.notification,
-         R.drawable.notification,
-         R.drawable.notification
+        R.drawable.notification,
+        R.drawable.notification,
+        R.drawable.notification,
+        R.drawable.notification,
+        R.drawable.notification,
+        R.drawable.notification
     )
     private val department = arrayOf(
-        "TCP", "TDP", "UDP", "AMD", "UFC"
+        "TCP",
+        "TDP",
+        "UDP",
+        "AMD",
+        "UFC"
     )
     private val actions = arrayOf("Согласование", "Разрешение", "Управление")
-    fun getListSze():Int{
+    fun getListSze(): Int {
         return employers.size
     }
-    fun getEmployers():Array<String>{
+    fun getEmployers(): Array<String> {
         return employers
     }
-    fun getTitleOfOrderFields():Array<String>{
+    fun getTitleOfOrderFields(): Array<String> {
         return titleOfOrderFields
     }
-    fun getImageOfOrderFields():Array<Int>{
+    fun getImageOfOrderFields(): Array<Int> {
         return imageOfOrderFields
     }
-    fun getDepartment():Array<String>{
+    fun getDepartment(): Array<String> {
         return department
     }
-    fun getActions():Array<String>{
+    fun getActions(): Array<String> {
         return actions
     }
-    fun createList(array: Array<String>,textArr:Array<String>):ListView{
+    fun createList(array: Array<String>, textArr: Array<String?>): ListView {
         val params: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
         )
-        var list=ListView(view)
-        list.layoutParams=params
+        val list = ListView(view)
+        list.layoutParams = params
         val adapter = ArrayAdapter(
             view,
-            android.R.layout.simple_list_item_1, array
+            android.R.layout.simple_list_item_1,
+            array
         )
-        list.adapter=adapter
-        list.setBackgroundResource(com.example.visual.R.drawable.notification)
+        list.adapter = adapter
+        list.setBackgroundResource(R.drawable.notification)
 
-     return list
+        return list
     }
 }

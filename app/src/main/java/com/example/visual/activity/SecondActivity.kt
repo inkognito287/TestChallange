@@ -20,93 +20,92 @@ import kotlin.collections.ArrayList
 var filteredList: ArrayList<RecyclerClass> = ArrayList()
 
 
-class SecondActivity : AppCompatActivity(), View.OnClickListener,
+class SecondActivity :
+    AppCompatActivity(),
+    View.OnClickListener,
     RecyclerAdapter.OnItemClickListener {
     lateinit var binding: ActivitySecondBinding
-    lateinit var array:MutableList<Int>
-    private var index = 0
-    var recList = ArrayList<RecyclerClass>()
-    lateinit var itemOfRecList: RecyclerClass
+    private lateinit var array: MutableList<Int>
+    private var recList = ArrayList<RecyclerClass>()
+    private lateinit var itemOfRecList: RecyclerClass
     private val adapter = RecyclerAdapter(recList, this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        array=ArrayList()
-        var rcView = findViewById<RecyclerView>(R.id.rcView)
+        array = ArrayList()
+        val rcView = findViewById<RecyclerView>(R.id.rcView)
         binding.apply {
             rcView.layoutManager = LinearLayoutManager(this@SecondActivity)
             rcView.adapter = adapter
-            itemOfRecList= RecyclerClass( R.drawable.rc_1,"Видеонаблюдение")
+            itemOfRecList = RecyclerClass(R.drawable.rc_1, "Видеонаблюдение")
             addItem(itemOfRecList)
-            itemOfRecList= RecyclerClass( R.drawable.rc_2,"Управление доступом")
+            itemOfRecList = RecyclerClass(R.drawable.rc_2, "Управление доступом")
             addItem(itemOfRecList)
-            itemOfRecList= RecyclerClass( R.drawable.rc_3,"Компьютерные розетки")
+            itemOfRecList = RecyclerClass(R.drawable.rc_3, "Компьютерные розетки")
             addItem(itemOfRecList)
-            itemOfRecList= RecyclerClass( R.drawable.rc_4,"Реклама на ТВ и мониторах")
+            itemOfRecList = RecyclerClass(R.drawable.rc_4, "Реклама на ТВ и мониторах")
             addItem(itemOfRecList)
-            itemOfRecList= RecyclerClass( R.drawable.rc_5,"HD Телевидение")
+            itemOfRecList = RecyclerClass(R.drawable.rc_5, "HD Телевидение")
             addItem(itemOfRecList)
-            itemOfRecList= RecyclerClass( R.drawable.rc_6,"Эфирное телевидение")
+            itemOfRecList = RecyclerClass(R.drawable.rc_6, "Эфирное телевидение")
             addItem(itemOfRecList)
-            itemOfRecList= RecyclerClass( R.drawable.rc_7,"Музыкальное оформление")
+            itemOfRecList = RecyclerClass(R.drawable.rc_7, "Музыкальное оформление")
             addItem(itemOfRecList)
-            itemOfRecList= RecyclerClass( R.drawable.rc_8,"Бесперебойное питание")
+            itemOfRecList = RecyclerClass(R.drawable.rc_8, "Бесперебойное питание")
             addItem(itemOfRecList)
-            itemOfRecList= RecyclerClass( R.drawable.rc_9,"Сенсорные киоски")
+            itemOfRecList = RecyclerClass(R.drawable.rc_9, "Сенсорные киоски")
             addItem(itemOfRecList)
-            itemOfRecList= RecyclerClass( R.drawable.rc_10,"Охранная сигнализация")
+            itemOfRecList = RecyclerClass(R.drawable.rc_10, "Охранная сигнализация")
             addItem(itemOfRecList)
         }
-        var editText:EditText=findViewById<EditText>(R.id.search)
-        editText.addTextChangedListener(object:TextWatcher{
-            override fun afterTextChanged(s: Editable?) {
+        val editText: EditText = findViewById(R.id.search)
+        editText.addTextChangedListener(
+            object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                }
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                }
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    filter(s.toString())
+                }
             }
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                filter (s.toString())
-            }
-        })
+        )
     }
-    fun filter(text:String){
+    fun filter(text: String) {
         filteredList.clear()
-        var index=0
         array.clear()
-        for (d in recList ){
-
-            if(d.title.lowercase().contains(text.lowercase())){
+        for ((index, d) in recList.withIndex()) {
+            if (d.title.lowercase().contains(text.lowercase())) {
                 filteredList.add(d)
                 array.add(index)
             }
-            index++
         }
         adapter.filterList(filteredList)
     }
     fun send() {
-        val intent4: Intent = Intent(this@SecondActivity, ThirdActivity::class.java)
-        startActivity(intent4)
+        val intent = Intent(this@SecondActivity, ThirdActivity::class.java)
+        startActivity(intent)
     }
     override fun onClick(v: View?) {
-        View.OnClickListener() {
+        View.OnClickListener {
         }
     }
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("MyLog","Destroy")
+        Log.d("MyLog", "Destroy")
     }
     override fun onItemClick(position: Int) {
-        val intent4: Intent = Intent(this@SecondActivity, ThirdActivity::class.java)
-        var search=findViewById<EditText>(R.id.search)
-        if (search.text.toString()!="")
-            intent4.putExtra("position",array[position])
-        else intent4.putExtra("position",position)
-        startActivity(intent4)
+        val intent = Intent(this@SecondActivity, ThirdActivity::class.java)
+        val search = findViewById<EditText>(R.id.search)
+        if (search.text.toString() != "")
+            intent.putExtra("position", array[position])
+        else intent.putExtra("position", position)
+        startActivity(intent)
         finish()
     }
 
-    fun addItem(recycler: RecyclerClass) {
+    private fun addItem(recycler: RecyclerClass) {
         recList.add(recycler)
     }
-
 }

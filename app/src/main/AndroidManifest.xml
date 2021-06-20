@@ -30,8 +30,9 @@
             android:name=".activity.SecondActivity"
             android:noHistory="true" />
         <activity
-            android:name=".splashScreen"
-            android:theme="@style/Splash">
+            android:name=".SplashScreen"
+            android:theme="@style/Splash"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
