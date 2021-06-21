@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.example.visual.controllers.ItemUrl
 import com.example.visual.R
 import com.squareup.picasso.Picasso
@@ -36,18 +37,22 @@ class ImageActivity : AppCompatActivity() {
         carouselView.pageCount = itemList.size
     }
     var imageListener: ImageListener = ImageListener { position, imageView ->
-        val imageOfCarousel = Picasso.get().load(itemList[position].getUrl())
-        imageOfCarousel.rotate(90f)
+        val imageOfCarousel = Picasso.get().load(itemList[position].getUrl()).fit().centerInside()
+       // imageOfCarousel.rotate(90f)
+        //imageOfCarousel.into(imageView)
+        //var scaleImageView=SubsamplingScaleImageView(this)
+        //scaleImageView.setImage(imageOfCarousel.get())
         imageOfCarousel.into(imageView)
-        imageView.setOnClickListener {
-            if (switchOfCarouselSize == 0) {
-                carousel.layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.MATCH_PARENT)
-                switchOfCarouselSize++
-            } else {
-                carousel.layoutParams = saveparams
-                switchOfCarouselSize = 0
-            }
-        }
+        //imageView.setImageBitmap(imageOfCarousel.get())
+//        imageView.setOnClickListener {
+//            if (switchOfCarouselSize == 0) {
+//                carousel.layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.MATCH_PARENT)
+//                switchOfCarouselSize++
+//            } else {
+//                carousel.layoutParams = saveparams
+//                switchOfCarouselSize = 0
+//            }
+//        }
     }
     fun back(v: View) {
         finish()

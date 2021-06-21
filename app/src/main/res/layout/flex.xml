@@ -42,45 +42,45 @@
         android:layout_height="match_parent">
 
         <com.google.android.flexbox.FlexboxLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="403dp"
+            android:layout_height="729dp"
 
 
-            app:flexWrap="wrap"
-            app:alignItems="stretch"
             app:alignContent="flex_start"
+            app:alignItems="stretch"
+            app:flexWrap="wrap"
 
             >
 
             <include
                 layout="@layout/item_for_main_recycler"
-                tools:layout_editor_absoluteX="5dp"
                 app:name="@{name1}"
-                app:vari="@{img1}" />
+                app:vari="@{img1}"
+                tools:layout_editor_absoluteX="5dp" />
 
             <include
                 layout="@layout/item_for_main_recycler"
-                tools:layout_editor_absoluteX="5dp"
                 app:name="@{name2}"
-                app:vari="@{img2}" />
+                app:vari="@{img2}"
+                tools:layout_editor_absoluteX="5dp" />
 
             <include
                 layout="@layout/item_for_main_recycler"
-                tools:layout_editor_absoluteX="5dp"
                 app:name="@{name3}"
-                app:vari="@{img3}" />
+                app:vari="@{img3}"
+                tools:layout_editor_absoluteX="5dp" />
+
             <include
                 layout="@layout/item_for_main_recycler"
-                tools:layout_editor_absoluteX="5dp"
                 app:name="@{name4}"
-                app:vari="@{img4}" />
+                app:vari="@{img4}"
+                tools:layout_editor_absoluteX="5dp" />
+
             <include
                 layout="@layout/item_for_main_recycler"
-                tools:layout_editor_absoluteX="5dp"
                 app:name="@{name5}"
-                app:vari="@{img5}" />
+                app:vari="@{img5}"
+                tools:layout_editor_absoluteX="5dp" />
         </com.google.android.flexbox.FlexboxLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

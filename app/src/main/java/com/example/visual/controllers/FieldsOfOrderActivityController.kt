@@ -63,6 +63,12 @@ class FieldsOfOrderActivityController(var view: OrderActivity) {
         return actions
     }
     fun createList(array: Array<String>, textArr: Array<String?>): ListView {
+
+
+
+
+
+
         val params: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT

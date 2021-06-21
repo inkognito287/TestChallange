@@ -1,13 +1,14 @@
 package com.example.visual.activity
 
+import android.R.attr.maxHeight
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,8 @@ import com.example.visual.R
 import com.example.visual.controllers.FieldsOfOrderActivityController
 import com.example.visual.dataClasses.Information2
 import com.example.visual.databinding.ActivityOrderBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.makeramen.roundedimageview.RoundedImageView
 import java.text.SimpleDateFormat
 import java.util.*
@@ -48,30 +51,19 @@ class OrderActivity : AppCompatActivity() {
     )
     private lateinit var dadConstraintLayout: ConstraintLayout
     private lateinit var linearLayout: LinearLayout
-    private lateinit var timePicker: TimePicker
     private lateinit var images: LinearLayout
     private lateinit var controller: FieldsOfOrderActivityController
     private var listView: ListView? = null
     private var scrollview: ScrollView? = null
     lateinit var context: Context
-    private var paramsForTimePicker: LinearLayout.LayoutParams = LinearLayout.LayoutParams(
-        ViewGroup.LayoutParams.MATCH_PARENT,
-        ViewGroup.LayoutParams.MATCH_PARENT
-    )
-    private var paramsForLinearLayout: ConstraintLayout.LayoutParams =
-        ConstraintLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-        )
     private var paramsForImage: ConstraintLayout.LayoutParams = ConstraintLayout.LayoutParams(
         ViewGroup.LayoutParams.WRAP_CONTENT,
         ViewGroup.LayoutParams.WRAP_CONTENT
     )
     private var textArr = arrayOfNulls<String>(8)
     lateinit var binding: ActivityOrderBinding
-
     @RequiresApi(Build.VERSION_CODES.M)
-    @SuppressLint("ResourceType", "SimpleDateFormat")
+    @SuppressLint("ResourceType", "SimpleDateFormat", "NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         controller = FieldsOfOrderActivityController(this)
@@ -111,7 +103,6 @@ class OrderActivity : AppCompatActivity() {
                 connect(progress.id, ConstraintSet.LEFT, dadConstraintLayout.id, ConstraintSet.LEFT)
                 applyTo(dadConstraintLayout)
             }
-
             progress.speed = 1.0f
             progress.repeatCount = 5
             progress.playAnimation()
@@ -120,7 +111,6 @@ class OrderActivity : AppCompatActivity() {
                 runOnUiThread { dadConstraintLayout.removeView(progress) }
             }.start()
         }
-
         val view = findViewById<View>(R.id.createList)
         val view2 = findViewById<View>(R.id.createList2)
         val view3 = findViewById<View>(R.id.createList3)
@@ -129,18 +119,47 @@ class OrderActivity : AppCompatActivity() {
         val view6 = findViewById<View>(R.id.createList6)
         val calendar = findViewById<View>(R.id.createCalendar)
         val calendarNow=findViewById<View>(R.id.now)
-
         calendar.setOnClickListener {
-            createCalendar()
-            imageOfOrderFields[0] = R.drawable.order_item_clicked
-            visibilityOfIcon[0] = View.INVISIBLE
-            binding.information2 = Information2(
-                controller.getTitleOfOrderFields(),
-                textArr,
-                imageOfOrderFields,
-                visibilityOfIcon
-            )
-        }
+            val bottomSheetDialog = BottomSheetDialog(
+                this@OrderActivity,R.style.BottomSheetDialog)
+            val bottomSheetView=LayoutInflater.from(applicationContext).inflate(R.layout.pick_date_time,null)
+            bottomSheetDialog.setContentView(bottomSheetView)
+            var mBehavior = BottomSheetBehavior.from(bottomSheetView.getParent() as View)
+            mBehavior.setPeekHeight(maxHeight)
+            bottomSheetDialog.show()
+          var calendarView=bottomSheetView.findViewById<DatePicker>(R.id.calendar)
+            var timePicker=bottomSheetView.findViewById<TimePicker>(R.id.timePicker1)
+            val format = SimpleDateFormat("dd.MM.yyyy")
+            val format2 = SimpleDateFormat("hh:mm")
+            var pickDate:String=format.format(Date())
+           var pickTime:String=format2.format(Date())
+           var text:String
+            calendarView.setOnDateChangedListener{_, year: Int, month: Int, dayOfMonth: Int ->
+                pickDate = "$dayOfMonth.$month.$year"
+                text= "$pickDate $pickTime"
+           }
+            timePicker.setOnTimeChangedListener(){_, hourOfDay, minute ->
+                pickTime = "$hourOfDay:$minute"
+                text= "$pickDate $pickTime"
+
+            }
+            text= "$pickDate $pickTime"
+
+            val submit =bottomSheetView.findViewById<Button>(R.id.submit)
+            submit.setOnClickListener() {
+            bottomSheetDialog.dismiss()
+                Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+                imageOfOrderFields[0] = R.drawable.order_item_clicked
+                visibilityOfIcon[0] = View.INVISIBLE
+                textArr[0]=text
+                binding.information2 = Information2(
+                    controller.getTitleOfOrderFields(),
+                    textArr,
+                    imageOfOrderFields,
+                    visibilityOfIcon
+                )
+            }
+            }
         view.setOnClickListener {
             createList(controller.getDepartment(), 1)
             imageOfOrderFields[1] = R.drawable.order_item_clicked
@@ -210,78 +229,6 @@ class OrderActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    @SuppressLint("ResourceAsColor", "SimpleDateFormat")
-    fun createCalendar() {
-        var pickDate: String
-        var pickTime: String
-        linearLayout = LinearLayout(this)
-        linearLayout.orientation = LinearLayout.VERTICAL
-        linearLayout.layoutParams = paramsForLinearLayout
-        val calendarView = CalendarView(this)
-        calendarView.setBackgroundResource(R.color.white)
-        calendarView.alpha = 1.0F
-        calendarView.layoutParams = paramsForTimePicker
-        val format = SimpleDateFormat("dd.MM.yyyy")
-        pickDate = format.format(calendarView.date).toString()
-
-        calendarView.setOnDateChangeListener { _: CalendarView, year: Int, month: Int, dayOfMonth: Int ->
-            pickDate = "$dayOfMonth.$month.$year"
-        }
-        timePicker = TimePicker(this)
-        pickTime = timePicker.hour.toString() + ":" + timePicker.minute.toString()
-        timePicker.setOnTimeChangedListener { _, hourOfDay, minute ->
-            pickTime = "$hourOfDay:$minute"
-        }
-        timePicker.visibility = View.VISIBLE
-        timePicker.layoutParams = paramsForTimePicker
-        timePicker.setBackgroundResource(R.color.white)
-        val submit = Button(this)
-        submit.layoutParams = paramsForTimePicker
-        submit.text = "Подтвердить"
-        linearLayout.addView(
-            calendarView,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                1F
-            )
-        )
-        linearLayout.addView(
-            timePicker,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                1F
-            )
-        )
-        linearLayout.addView(
-            submit,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                1F
-            )
-        )
-        scrollview = ScrollView(this)
-        scrollview!!.setBackgroundResource(R.color.white)
-        scrollview!!.layoutParams = paramsForLinearLayout
-        scrollview!!.addView(linearLayout)
-        submit.setOnClickListener {
-            dadConstraintLayout.removeView(scrollview)
-            textArr[0] = "$pickDate $pickTime"
-            binding.information2 = Information2(
-                controller.getTitleOfOrderFields(),
-                textArr,
-                imageOfOrderFields,
-                visibilityOfIcon
-            )
-        }
-        dadConstraintLayout.addView(scrollview)
-        val calendarAnim = AnimationUtils.loadAnimation(this, R.anim.calendar_view)
-        scrollview!!.startAnimation(calendarAnim)
-    }
-
     fun addPhoto(v: View) {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
@@ -314,10 +261,34 @@ class OrderActivity : AppCompatActivity() {
             }
         }
     }
+    fun SubmitClick(v: View){
+        setContentView(R.layout.activity_order)
+        imageOfOrderFields[0] = R.drawable.order_item_clicked
+        visibilityOfIcon[0] = View.INVISIBLE
+        binding.information2 = Information2(
+            controller.getTitleOfOrderFields(),
+            textArr,
+            imageOfOrderFields,
+            visibilityOfIcon
+        )
 
+    }
     private fun createList(array: Array<String>, int: Int) {
-        listView = controller.createList(array, textArr)
-        listView!!.setOnItemClickListener { _, _, position, _ ->
+        val bottomSheetDialog = BottomSheetDialog(
+            this@OrderActivity,R.style.BottomSheetDialog)
+        val bottomSheetView=LayoutInflater.from(applicationContext).inflate(R.layout.list,null)
+        bottomSheetDialog.setContentView(bottomSheetView)
+        var Behavior = BottomSheetBehavior.from(bottomSheetView.getParent() as View)
+        Behavior.setPeekHeight(maxHeight)
+        bottomSheetDialog.show()
+        val listOfOrder=bottomSheetView.findViewById<ListView>(R.id.list)
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_list_item_1,
+            array
+        )
+        listOfOrder.adapter=adapter
+        listOfOrder.setOnItemClickListener(){_, _, position, _ ->
             textArr[int] = array[position]
             binding.information2 = Information2(
                 controller.getTitleOfOrderFields(),
@@ -325,21 +296,7 @@ class OrderActivity : AppCompatActivity() {
                 imageOfOrderFields,
                 visibilityOfIcon
             )
-            dadConstraintLayout.removeView(linearLayout)
+            bottomSheetDialog.dismiss()
         }
-        val view = View(this)
-        view.setBackgroundResource(R.color.black)
-        view.alpha = 0.7f
-        view.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200)
-        linearLayout = LinearLayout(this)
-        linearLayout.orientation = LinearLayout.VERTICAL
-        linearLayout.layoutParams = paramsForLinearLayout
-        linearLayout.addView(view)
-        linearLayout.addView(listView)
-        dadConstraintLayout.addView(linearLayout)
-        val calendarAnim = AnimationUtils.loadAnimation(this, R.anim.calendar_view)
-        listView!!.startAnimation(calendarAnim)
-        val blackViewAnim = AnimationUtils.loadAnimation(this, R.anim.black_view)
-        view.startAnimation(blackViewAnim)
     }
 }
