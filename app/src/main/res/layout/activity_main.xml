@@ -17,8 +17,9 @@
         tools:context=".activity.MainActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="387dp"
-            android:layout_height="430dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="6:6"
             app:layout_constraintBottom_toTopOf="@+id/button3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +32,7 @@
                 app:alignItems="stretch"
                 app:flexDirection="row"
                 app:flexWrap="wrap"
-                app:justifyContent="flex_start"
+                app:justifyContent="space_between"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,13 +45,13 @@
                     android:gravity="center"
                     android:maxWidth="459495dp"
                     android:maxHeight="459495dp"
-                    android:minWidth="168dp"
+                    android:minWidth="-1dp"
                     android:minHeight="-1dp"
                     android:text="30"
-                    app:layout_alignSelf="stretch"
+                    app:layout_flexGrow="1"
+
                     app:layout_flexShrink="1"
                     app:layout_order="1"
-
                     app:name="@{information.title[0]}"
                     app:vari="@{information.imgId[0]}" />
 
@@ -64,13 +65,13 @@
                     android:minWidth="-1dp"
                     android:minHeight="-1dp"
                     android:text="30"
-                    app:layout_alignSelf="stretch"
                     app:layout_flexShrink="1"
-                    app:layout_order="1"
 
+                    app:layout_order="1"
                     app:name="@{information.title[1]}"
                     app:vari="@{information.imgId[1]}"
-                    tools:layout_editor_absoluteX="168dp" />
+                    tools:layout_editor_absoluteX="168dp"
+                    tools:layout_editor_absoluteY="130dp" />
 
                 <include
                     layout="@layout/item_for_main_recycler"
@@ -84,12 +85,12 @@
 
                     android:minHeight="-1dp"
                     android:text="30"
-                    app:layout_alignSelf="stretch"
                     app:layout_flexShrink="1"
-                    app:layout_order="1"
 
+                    app:layout_order="1"
                     app:name="@{information.title[2]}"
                     app:vari="@{information.imgId[2]}"
+                    tools:layout_editor_absoluteX="380dp"
                     tools:layout_editor_absoluteY="135dp" />
 
                 <include
@@ -105,10 +106,9 @@
 
                     android:minHeight="-1dp"
                     android:text="30"
-                    app:layout_alignSelf="stretch"
                     app:layout_flexShrink="1"
-                    app:layout_order="1"
 
+                    app:layout_order="1"
                     app:name="@{information.title[3]}"
                     app:vari="@{information.imgId[3]}"
                     tools:layout_editor_absoluteX="168dp"
@@ -126,10 +126,9 @@
                     android:minWidth="-1dp"
                     android:minHeight="-1dp"
                     android:text="30"
-                    app:layout_alignSelf="stretch"
                     app:layout_flexShrink="1"
-                    app:layout_order="1"
 
+                    app:layout_order="1"
                     app:name="@{information.title[4]}"
                     app:vari="@{information.imgId[4]}"
                     tools:layout_editor_absoluteY="270dp" />

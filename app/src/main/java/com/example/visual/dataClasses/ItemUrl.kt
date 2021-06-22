@@ -1,4 +1,4 @@
-package com.example.visual.controllers
+package com.example.visual.dataClasses
 
 class ItemUrl(private var url: String) {
 

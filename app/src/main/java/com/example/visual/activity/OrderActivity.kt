@@ -2,6 +2,7 @@ package com.example.visual.activity
 
 import android.R.attr.maxHeight
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -10,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -62,8 +64,9 @@ class OrderActivity : AppCompatActivity() {
     )
     private var textArr = arrayOfNulls<String>(8)
     lateinit var binding: ActivityOrderBinding
+
     @RequiresApi(Build.VERSION_CODES.M)
-    @SuppressLint("ResourceType", "SimpleDateFormat", "NewApi")
+    @SuppressLint("ResourceType", "SimpleDateFormat", "NewApi", "InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         controller = FieldsOfOrderActivityController(this)
@@ -76,7 +79,7 @@ class OrderActivity : AppCompatActivity() {
         )
         dadConstraintLayout = findViewById(R.id.dad)
         val dateFormat = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
-        textArr[7]= dateFormat.format(Date())
+        textArr[7] = dateFormat.format(Date())
         val save = findViewById<Button>(R.id.button2)
         save.setOnClickListener {
             val progress = LottieAnimationView(this)
@@ -111,47 +114,47 @@ class OrderActivity : AppCompatActivity() {
                 runOnUiThread { dadConstraintLayout.removeView(progress) }
             }.start()
         }
-        val view = findViewById<View>(R.id.createList)
+        val view1 = findViewById<View>(R.id.createList)
         val view2 = findViewById<View>(R.id.createList2)
         val view3 = findViewById<View>(R.id.createList3)
         val view4 = findViewById<View>(R.id.createList4)
         val view5 = findViewById<View>(R.id.createList5)
         val view6 = findViewById<View>(R.id.createList6)
         val calendar = findViewById<View>(R.id.createCalendar)
-        val calendarNow=findViewById<View>(R.id.now)
         calendar.setOnClickListener {
             val bottomSheetDialog = BottomSheetDialog(
-                this@OrderActivity,R.style.BottomSheetDialog)
-            val bottomSheetView=LayoutInflater.from(applicationContext).inflate(R.layout.pick_date_time,null)
+                this@OrderActivity, R.style.BottomSheetDialog
+            )
+            val bottomSheetView =
+                LayoutInflater.from(applicationContext).inflate(R.layout.pick_date_time, null)
             bottomSheetDialog.setContentView(bottomSheetView)
-            var mBehavior = BottomSheetBehavior.from(bottomSheetView.getParent() as View)
-            mBehavior.setPeekHeight(maxHeight)
+            val mBehavior = BottomSheetBehavior.from(bottomSheetView.parent as View)
+            mBehavior.peekHeight = maxHeight
             bottomSheetDialog.show()
-          var calendarView=bottomSheetView.findViewById<DatePicker>(R.id.calendar)
-            var timePicker=bottomSheetView.findViewById<TimePicker>(R.id.timePicker1)
+            val calendarView = bottomSheetView.findViewById<DatePicker>(R.id.calendar)
+            val timePicker = bottomSheetView.findViewById<TimePicker>(R.id.timePicker1)
             val format = SimpleDateFormat("dd.MM.yyyy")
             val format2 = SimpleDateFormat("hh:mm")
-            var pickDate:String=format.format(Date())
-           var pickTime:String=format2.format(Date())
-           var text:String
-            calendarView.setOnDateChangedListener{_, year: Int, month: Int, dayOfMonth: Int ->
+            var pickDate: String = format.format(Date())
+            var pickTime: String = format2.format(Date())
+            var text: String
+            calendarView.setOnDateChangedListener { _, year: Int, month: Int, dayOfMonth: Int ->
                 pickDate = "$dayOfMonth.$month.$year"
-                text= "$pickDate $pickTime"
-           }
-            timePicker.setOnTimeChangedListener(){_, hourOfDay, minute ->
-                pickTime = "$hourOfDay:$minute"
-                text= "$pickDate $pickTime"
-
+                text = "$pickDate $pickTime"
             }
-            text= "$pickDate $pickTime"
+            timePicker.setOnTimeChangedListener { _, hourOfDay, minute ->
+                pickTime = "$hourOfDay:$minute"
+                text = "$pickDate $pickTime"
+            }
+            text = "$pickDate $pickTime"
 
-            val submit =bottomSheetView.findViewById<Button>(R.id.submit)
-            submit.setOnClickListener() {
-            bottomSheetDialog.dismiss()
+            val submit = bottomSheetView.findViewById<Button>(R.id.submit)
+            submit.setOnClickListener {
+                bottomSheetDialog.dismiss()
                 Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
                 imageOfOrderFields[0] = R.drawable.order_item_clicked
                 visibilityOfIcon[0] = View.INVISIBLE
-                textArr[0]=text
+                textArr[0] = text
                 binding.information2 = Information2(
                     controller.getTitleOfOrderFields(),
                     textArr,
@@ -159,8 +162,8 @@ class OrderActivity : AppCompatActivity() {
                     visibilityOfIcon
                 )
             }
-            }
-        view.setOnClickListener {
+        }
+        view1.setOnClickListener {
             createList(controller.getDepartment(), 1)
             imageOfOrderFields[1] = R.drawable.order_item_clicked
             visibilityOfIcon[1] = View.INVISIBLE
@@ -232,7 +235,7 @@ class OrderActivity : AppCompatActivity() {
     fun addPhoto(v: View) {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        startActivityForResult(intent, 123)
+        openSomeActivityForResult()
     }
 
     override fun onBackPressed() {
@@ -244,14 +247,14 @@ class OrderActivity : AppCompatActivity() {
             super.onBackPressed()
     }
 
-    @SuppressLint("ResourceAsColor")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 123) {
-            if (data != null) {
-                images = findViewById<LinearLayout>(R.id.imagesGallery)
+    private var resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                // There are no request codes
+                val data: Intent? = result.data
+                images = findViewById(R.id.imagesGallery)
                 val img = RoundedImageView(this)
-                img.setImageURI(data.data)
+                img.setImageURI(data?.data)
                 img.scaleType = ImageView.ScaleType.CENTER_CROP
                 img.cornerRadius = 30F
                 images.addView(img, 350, 350)
@@ -260,35 +263,31 @@ class OrderActivity : AppCompatActivity() {
                 images.addView(divider)
             }
         }
-    }
-    fun SubmitClick(v: View){
-        setContentView(R.layout.activity_order)
-        imageOfOrderFields[0] = R.drawable.order_item_clicked
-        visibilityOfIcon[0] = View.INVISIBLE
-        binding.information2 = Information2(
-            controller.getTitleOfOrderFields(),
-            textArr,
-            imageOfOrderFields,
-            visibilityOfIcon
-        )
 
+    private fun openSomeActivityForResult() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        resultLauncher.launch(intent)
     }
+
+    @SuppressLint("InflateParams")
     private fun createList(array: Array<String>, int: Int) {
         val bottomSheetDialog = BottomSheetDialog(
-            this@OrderActivity,R.style.BottomSheetDialog)
-        val bottomSheetView=LayoutInflater.from(applicationContext).inflate(R.layout.list,null)
+            this@OrderActivity, R.style.BottomSheetDialog
+        )
+        val bottomSheetView = LayoutInflater.from(applicationContext).inflate(R.layout.list, null)
         bottomSheetDialog.setContentView(bottomSheetView)
-        var Behavior = BottomSheetBehavior.from(bottomSheetView.getParent() as View)
-        Behavior.setPeekHeight(maxHeight)
+        val behavior = BottomSheetBehavior.from(bottomSheetView.parent as View)
+        behavior.peekHeight = maxHeight
         bottomSheetDialog.show()
-        val listOfOrder=bottomSheetView.findViewById<ListView>(R.id.list)
+        val listOfOrder = bottomSheetView.findViewById<ListView>(R.id.list)
         val adapter = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
             array
         )
-        listOfOrder.adapter=adapter
-        listOfOrder.setOnItemClickListener(){_, _, position, _ ->
+        listOfOrder.adapter = adapter
+        listOfOrder.setOnItemClickListener { _, _, position, _ ->
             textArr[int] = array[position]
             binding.information2 = Information2(
                 controller.getTitleOfOrderFields(),

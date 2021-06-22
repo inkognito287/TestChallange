@@ -231,6 +231,7 @@
                    android:paddingLeft="35dip"
                    android:paddingRight="35dp"
                    android:text="Сохранить"
+                   android:textSize="14sp"
                    app:backgroundTint="#FF6D00" />
 
                <Button

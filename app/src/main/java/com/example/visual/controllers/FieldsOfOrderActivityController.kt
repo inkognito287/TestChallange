@@ -1,6 +1,5 @@
 package com.example.visual.controllers
 
-
 import com.example.visual.R
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -62,27 +61,5 @@ class FieldsOfOrderActivityController(var view: OrderActivity) {
     fun getActions(): Array<String> {
         return actions
     }
-    fun createList(array: Array<String>, textArr: Array<String?>): ListView {
 
-
-
-
-
-
-        val params: ViewGroup.LayoutParams = ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-        )
-        val list = ListView(view)
-        list.layoutParams = params
-        val adapter = ArrayAdapter(
-            view,
-            android.R.layout.simple_list_item_1,
-            array
-        )
-        list.adapter = adapter
-        list.setBackgroundResource(R.drawable.notification)
-
-        return list
-    }
 }

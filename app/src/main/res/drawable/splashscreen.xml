@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@color/splash"
-        android:height="300dp"/>
-    <item  >
+    <item android:drawable="@color/splash" />
+    <item>
         <bitmap
-            android:src="@drawable/splashscreen2"
+            android:src="@drawable/splash"
             android:gravity="center"
             />
 

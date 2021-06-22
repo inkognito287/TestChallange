@@ -8,7 +8,7 @@ import com.example.visual.activity.MainActivity
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
+        setTheme(R.style.Splash)
         val intent = Intent(this@SplashScreen, MainActivity::class.java)
         startActivity(intent)
         finish()
