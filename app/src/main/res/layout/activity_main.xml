@@ -17,22 +17,25 @@
         tools:context=".activity.MainActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="6:6"
-            app:layout_constraintBottom_toTopOf="@+id/button3"
+
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView17">
+            app:layout_constraintTop_toTopOf="@+id/guideline5">
 
             <com.google.android.flexbox.FlexboxLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 app:alignContent="stretch"
                 app:alignItems="stretch"
                 app:flexDirection="row"
                 app:flexWrap="wrap"
-                app:justifyContent="space_between"
+                app:justifyContent="flex_start"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -40,33 +43,28 @@
 
                 <include
                     layout="@layout/item_for_main_recycler"
-                    android:layout_width="190dp"
-                    android:layout_height="130dp"
-                    android:gravity="center"
-                    android:maxWidth="459495dp"
-                    android:maxHeight="459495dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:minWidth="-1dp"
                     android:minHeight="-1dp"
-                    android:text="30"
-                    app:layout_flexGrow="1"
-
+                    app:layout_flexBasisPercent="50%"
                     app:layout_flexShrink="1"
+                    app:layout_minHeight="-1dp"
+                    app:layout_minWidth="-1dp"
                     app:layout_order="1"
                     app:name="@{information.title[0]}"
                     app:vari="@{information.imgId[0]}" />
 
                 <include
                     layout="@layout/item_for_main_recycler"
-                    android:layout_width="190dp"
-                    android:layout_height="130dp"
-                    android:gravity="center"
-                    android:maxWidth="459495dp"
-                    android:maxHeight="459495dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:minWidth="-1dp"
                     android:minHeight="-1dp"
-                    android:text="30"
+                    app:layout_flexBasisPercent="50%"
                     app:layout_flexShrink="1"
-
+                    app:layout_minHeight="-1dp"
+                    app:layout_minWidth="-1dp"
                     app:layout_order="1"
                     app:name="@{information.title[1]}"
                     app:vari="@{information.imgId[1]}"
@@ -75,18 +73,14 @@
 
                 <include
                     layout="@layout/item_for_main_recycler"
-                    android:layout_width="190dp"
-                    android:layout_height="130dp"
-                    android:gravity="center"
-                    android:maxWidth="459495dp"
-                    android:maxHeight="459495dp"
-
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:minWidth="-1dp"
-
                     android:minHeight="-1dp"
-                    android:text="30"
+                    app:layout_flexBasisPercent="50%"
                     app:layout_flexShrink="1"
-
+                    app:layout_minHeight="-1dp"
+                    app:layout_minWidth="-1dp"
                     app:layout_order="1"
                     app:name="@{information.title[2]}"
                     app:vari="@{information.imgId[2]}"
@@ -96,18 +90,14 @@
                 <include
 
                     layout="@layout/item_for_main_recycler"
-                    android:layout_width="190dp"
-                    android:layout_height="130dp"
-
-                    android:gravity="center"
-                    android:maxWidth="459495dp"
-                    android:maxHeight="459495dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:minWidth="-1dp"
-
                     android:minHeight="-1dp"
-                    android:text="30"
+                    app:layout_flexBasisPercent="50%"
                     app:layout_flexShrink="1"
-
+                    app:layout_minHeight="-1dp"
+                    app:layout_minWidth="-1dp"
                     app:layout_order="1"
                     app:name="@{information.title[3]}"
                     app:vari="@{information.imgId[3]}"
@@ -117,17 +107,14 @@
                 <include
                     android:id="@+id/Documentation"
                     layout="@layout/item_for_main_recycler"
-                    android:layout_width="190dp"
-                    android:layout_height="130dp"
-
-                    android:gravity="center"
-                    android:maxWidth="459495dp"
-                    android:maxHeight="459495dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:minWidth="-1dp"
                     android:minHeight="-1dp"
-                    android:text="30"
+                    app:layout_flexBasisPercent="50%"
                     app:layout_flexShrink="1"
-
+                    app:layout_minHeight="-1dp"
+                    app:layout_minWidth="-1dp"
                     app:layout_order="1"
                     app:name="@{information.title[4]}"
                     app:vari="@{information.imgId[4]}"
@@ -139,15 +126,29 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.9"  />
+
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/buttoncircle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button3"
+            app:layout_constraintTop_toTopOf="@+id/guideline4"
             app:srcCompat="@drawable/ic_baseline_add_ic_call_24" />
 
         <ImageButton
@@ -165,8 +166,8 @@
         <Button
             android:id="@+id/button3"
             style="@style/RoundedCornerButton"
-            android:layout_width="313dp"
-            android:layout_height="53dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/button"
@@ -180,7 +181,9 @@
             android:text="Создать заявку"
             app:backgroundTint="#FF5722"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
         <TextView
             android:id="@+id/textView12"
@@ -196,7 +199,7 @@
         <ImageView
             android:id="@+id/imageView8"
             android:layout_width="168dp"
-            android:layout_height="109dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/textView13"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -247,6 +250,7 @@
             android:text="on-line"
             android:textColor="#FD7E55"
             android:textSize="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView12" />

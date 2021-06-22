@@ -3,84 +3,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-        <variable
-            name="img1"
-            type="int" />
-        <variable
-            name="img2"
-            type="int" />
-        <variable
-            name="img3"
-            type="int" />
-        <variable
-            name="img4"
-            type="int" />
-        <variable
-            name="img5"
-            type="int" />
-        <variable
-            name="name1"
-            type="String" />
-
-        <variable
-            name="name2"
-            type="String" />
-        <variable
-            name="name3"
-            type="String" />
-        <variable
-            name="name4"
-            type="String" />
-        <variable
-            name="name5"
-            type="String" />
-    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
 
         <com.google.android.flexbox.FlexboxLayout
-            android:layout_width="403dp"
-            android:layout_height="729dp"
-
-
-            app:alignContent="flex_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:alignContent="stretch"
             app:alignItems="stretch"
+            app:flexDirection="row"
             app:flexWrap="wrap"
+            app:justifyContent="flex_start"
 
-            >
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <include
-                layout="@layout/item_for_main_recycler"
-                app:name="@{name1}"
-                app:vari="@{img1}"
+                layout="@layout/item_forflex"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:minWidth="-1dp"
+                android:minHeight="-1dp"
+                app:layout_flexBasisPercent="50%"
+                app:layout_flexShrink="1"
+                app:layout_minHeight="-1dp"
+                app:layout_minWidth="-1dp"
+                app:layout_order="1"
                 tools:layout_editor_absoluteX="5dp" />
 
             <include
-                layout="@layout/item_for_main_recycler"
-                app:name="@{name2}"
-                app:vari="@{img2}"
-                tools:layout_editor_absoluteX="5dp" />
+                layout="@layout/item_forflex"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:minWidth="-1dp"
+                android:minHeight="-1dp"
+                app:layout_flexBasisPercent="50%"
+                app:layout_flexShrink="1"
+                app:layout_minHeight="-1dp"
+                app:layout_minWidth="-1dp"
+                app:layout_order="1"
+                tools:layout_editor_absoluteX="5dp"
+                tools:layout_editor_absoluteY="100dp" />
 
             <include
-                layout="@layout/item_for_main_recycler"
-                app:name="@{name3}"
-                app:vari="@{img3}"
-                tools:layout_editor_absoluteX="5dp" />
+                layout="@layout/item_forflex"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:minWidth="-1dp"
+                android:minHeight="-1dp"
+                app:layout_flexBasisPercent="50%"
+                app:layout_flexShrink="1"
+                app:layout_minHeight="-1dp"
+                app:layout_minWidth="-1dp"
+                app:layout_order="1"
+                tools:layout_editor_absoluteX="5dp"
+                tools:layout_editor_absoluteY="135dp" />
 
             <include
-                layout="@layout/item_for_main_recycler"
-                app:name="@{name4}"
-                app:vari="@{img4}"
-                tools:layout_editor_absoluteX="5dp" />
+                layout="@layout/item_forflex"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:minWidth="-1dp"
+                android:minHeight="-1dp"
+                app:layout_flexBasisPercent="50%"
+                app:layout_flexShrink="1"
+                app:layout_minHeight="-1dp"
+                app:layout_minWidth="-1dp"
+                app:layout_order="1"
+                tools:layout_editor_absoluteX="5dp"
+                tools:layout_editor_absoluteY="410dp" />
 
             <include
-                layout="@layout/item_for_main_recycler"
-                app:name="@{name5}"
-                app:vari="@{img5}"
-                tools:layout_editor_absoluteX="5dp" />
+                layout="@layout/item_forflex"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:minWidth="-1dp"
+                android:minHeight="-1dp"
+                app:layout_flexBasisPercent="50%"
+                app:layout_flexShrink="1"
+                app:layout_minHeight="-1dp"
+                app:layout_minWidth="-1dp"
+                app:layout_order="1"
+                tools:layout_editor_absoluteX="5dp"
+                tools:layout_editor_absoluteY="100dp" />
         </com.google.android.flexbox.FlexboxLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
