@@ -5,10 +5,14 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.visual.dataClasses.ItemUrl
+import androidx.core.view.contains
+import com.davemorrissey.labs.subscaleview.ImageSource
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.example.visual.R
+import com.example.visual.dataClasses.ItemUrl
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
@@ -17,6 +21,8 @@ class ImageActivity : AppCompatActivity() {
     lateinit var carousel: CarouselView
     lateinit var saveParamsOfCarousel: ViewGroup.LayoutParams
     lateinit var item: ItemUrl
+    lateinit var mainConstraintLayout: ConstraintLayout
+    lateinit var m:SubsamplingScaleImageView
     var itemList = ArrayList<ItemUrl>()
     private var switchOfCarouselSize = 0
 
@@ -24,6 +30,7 @@ class ImageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
+        mainConstraintLayout=findViewById(R.id.main)
         val carouselView = findViewById<CarouselView>(R.id.carouselView)
         carouselView.setImageListener(imageListener)
         carousel = findViewById(R.id.carouselView)
@@ -39,24 +46,44 @@ class ImageActivity : AppCompatActivity() {
     }
 
     var imageListener: ImageListener = ImageListener { position, imageView ->
+
         val imageOfCarousel = Picasso.get().load(itemList[position].getUrl())
+
         imageOfCarousel.rotate(90f)
         imageOfCarousel.into(imageView)
+
         imageView.setOnClickListener {
-            if (switchOfCarouselSize == 0) {
-                carousel.layoutParams = ConstraintLayout.LayoutParams(
-                    ConstraintLayout.LayoutParams.MATCH_PARENT,
-                    ConstraintLayout.LayoutParams.MATCH_PARENT
-                )
-                switchOfCarouselSize++
-            } else {
-                carousel.layoutParams = saveParamsOfCarousel
-                switchOfCarouselSize = 0
-            }
+            m=SubsamplingScaleImageView(this)
+            Thread(Runnable {
+                var image=imageOfCarousel.get()
+                var zxc=ImageSource.bitmap(image)
+                runOnUiThread(){
+                    m.setImage(zxc)
+                }
+             }).start()
+
+            mainConstraintLayout.addView(m)
+
+//            if (switchOfCarouselSize == 0) {
+//                carousel.layoutParams = ConstraintLayout.LayoutParams(
+//                    ConstraintLayout.LayoutParams.MATCH_PARENT,
+//                    ConstraintLayout.LayoutParams.MATCH_PARENT
+//                )
+//                switchOfCarouselSize++
+//            } else {
+//                carousel.layoutParams = saveParamsOfCarousel
+//                switchOfCarouselSize = 0
+//            }
         }
     }
 
+    override fun onBackPressed() {
+        if (mainConstraintLayout.contains(m))
+        mainConstraintLayout.removeView(m)
+        else super.onBackPressed()
+    }
     fun back(v: View) {
         finish()
     }
+
 }

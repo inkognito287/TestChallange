@@ -21,7 +21,7 @@
         <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
     </style>
     <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
-        <item name="behavior_peekHeight">95px</item>
+        <item name="behavior_peekHeight">300dp</item>
     </style>
     <style name="Splash" parent="Theme.MaterialComponents.DayNight.DarkActionBar" >
     <item name="android:windowBackground">@drawable/splashscreen</item>

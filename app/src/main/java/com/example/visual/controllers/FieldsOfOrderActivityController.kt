@@ -1,12 +1,9 @@
 package com.example.visual.controllers
 
 import com.example.visual.R
-import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import com.example.visual.activity.OrderActivity
 
-class FieldsOfOrderActivityController(var view: OrderActivity) {
+class FieldsOfOrderActivityController(var view: OrderActivity?) {
     private val employers = arrayOf(
         "Коротаев Александр",
         "Барбороскин Николай",

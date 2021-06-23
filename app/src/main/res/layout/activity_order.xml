@@ -213,9 +213,9 @@
                </LinearLayout>
             </HorizontalScrollView>
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="74dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
@@ -223,21 +223,36 @@
                    android:id="@+id/button2"
                    android:layout_width="0dp"
 
-                   android:layout_height="wrap_content"
+                   android:layout_height="0dp"
                    android:layout_margin="5dp"
                    android:layout_weight="1"
                    android:background="@drawable/but_save_order"
                    android:drawableLeft="@drawable/drawable_left_save"
                    android:paddingLeft="35dip"
                    android:paddingRight="35dp"
+
                    android:text="Сохранить"
-                   android:textSize="14sp"
-                   app:backgroundTint="#FF6D00" />
+
+                   app:autoSizeTextType="uniform"
+                   app:backgroundTint="#FF6D00"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toStartOf="@+id/guidelinenew"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent" />
+
+               <androidx.constraintlayout.widget.Guideline
+                   android:id="@+id/guidelinenew"
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   app:layout_constraintGuide_percent="0.5">
+
+               </androidx.constraintlayout.widget.Guideline>
 
                <Button
                    android:id="@+id/button4"
                    android:layout_width="0dp"
-                   android:layout_height="wrap_content"
+                   android:layout_height="0dp"
                    android:layout_margin="5dp"
                    android:layout_weight="1"
                    android:background="@drawable/but_save_order"
@@ -245,8 +260,14 @@
                    android:paddingLeft="25dip"
                    android:paddingRight="25dp"
                    android:text="Согласовать"
-                   app:backgroundTint="#00C853" />
-            </LinearLayout>
+
+                   app:autoSizeTextType="uniform"
+                   app:backgroundTint="#00C853"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="@+id/guidelinenew"
+                   app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
