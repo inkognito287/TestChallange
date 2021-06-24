@@ -1,89 +1,69 @@
 package com.example.visual.activity
 
 
-import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.contains
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.davemorrissey.labs.subscaleview.ImageSource
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.example.visual.R
-import com.example.visual.dataClasses.ItemUrl
+import com.example.visual.data.ItemUrl
 import com.squareup.picasso.Picasso
-import com.synnapps.carouselview.CarouselView
-import com.synnapps.carouselview.ImageListener
 
 class ImageActivity : AppCompatActivity() {
-    lateinit var carousel: CarouselView
-    lateinit var saveParamsOfCarousel: ViewGroup.LayoutParams
-    lateinit var item: ItemUrl
-    lateinit var mainConstraintLayout: ConstraintLayout
-    lateinit var m:SubsamplingScaleImageView
-    var itemList = ArrayList<ItemUrl>()
-    private var switchOfCarouselSize = 0
-
-    @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
-        mainConstraintLayout=findViewById(R.id.main)
-        val carouselView = findViewById<CarouselView>(R.id.carouselView)
-        carouselView.setImageListener(imageListener)
-        carousel = findViewById(R.id.carouselView)
-        saveParamsOfCarousel = carousel.layoutParams
-        item =
-            ItemUrl("https://images.hdqwalls.com/wallpapers/godzilla-king-of-the-monsters-10k-he.jpg")
-        itemList.add(item)
-        item= ItemUrl("https://i1.wallbox.ru/wallpapers/main/201120/2d56741e0a7ee12673870def1d8a9856.jpg")
-        itemList.add(item)
-        itemList.add(item)
-        itemList.add(item)
-        carouselView.pageCount = itemList.size
+
+        displayList()
     }
 
-    var imageListener: ImageListener = ImageListener { position, imageView ->
+    private fun displayList() {
+        val imageList = ArrayList<ItemUrl>()
+        var recyclerView=findViewById<RecyclerView>(R.id.recyclerView)
+        imageList.clear()
+        imageList.add(ItemUrl("https://i.stack.imgur.com/v9y5v.png"))
+        imageList.add(ItemUrl("https://i.stack.imgur.com/v9y5v.png"))
+        imageList.add(ItemUrl("https://i.stack.imgur.com/v9y5v.png"))
+        imageList.add(ItemUrl("https://i.stack.imgur.com/v9y5v.png"))
+        imageList.add(ItemUrl("https://i.stack.imgur.com/v9y5v.png"))
+        imageList.add(ItemUrl("https://i.stack.imgur.com/v9y5v.png"))
+        imageList.add(ItemUrl("https://i.stack.imgur.com/v9y5v.png"))
+       recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL,false)
 
-        val imageOfCarousel = Picasso.get().load(itemList[position].getUrl())
+       var adapter = ViewAdapter(imageList)
+        recyclerView.adapter=adapter
 
-        imageOfCarousel.rotate(90f)
-        imageOfCarousel.into(imageView)
+    }
+  inner  class ViewAdapter(private val imageDataModelList: ArrayList<ItemUrl>) : RecyclerView.Adapter<ViewAdapter.ViewHolder>() {
 
-        imageView.setOnClickListener {
-            m=SubsamplingScaleImageView(this)
-            Thread(Runnable {
-                var image=imageOfCarousel.get()
-                var zxc=ImageSource.bitmap(image)
-                runOnUiThread(){
-                    m.setImage(zxc)
-                }
-             }).start()
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.image_item_image_activity, parent, false))
+        }
 
-            mainConstraintLayout.addView(m)
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            holder.bindItems(imageDataModelList[position])
+        }
 
-//            if (switchOfCarouselSize == 0) {
-//                carousel.layoutParams = ConstraintLayout.LayoutParams(
-//                    ConstraintLayout.LayoutParams.MATCH_PARENT,
-//                    ConstraintLayout.LayoutParams.MATCH_PARENT
-//                )
-//                switchOfCarouselSize++
-//            } else {
-//                carousel.layoutParams = saveParamsOfCarousel
-//                switchOfCarouselSize = 0
-//            }
+        override fun getItemCount(): Int {
+            return imageDataModelList.size
+        }
+
+       inner  class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            fun bindItems(imageDataModel: ItemUrl) {
+                val imageView = itemView.findViewById<SubsamplingScaleImageView>(R.id.imageView)
+               Thread(Runnable {
+                   var x=ImageSource.bitmap(Picasso.get().load(imageDataModel.getUrl()).get())
+                   runOnUiThread { imageView.setImage(x) }
+               }).start()
+
+
+            }
         }
     }
-
-    override fun onBackPressed() {
-        if (mainConstraintLayout.contains(m))
-        mainConstraintLayout.removeView(m)
-        else super.onBackPressed()
-    }
-    fun back(v: View) {
-        finish()
-    }
-
 }

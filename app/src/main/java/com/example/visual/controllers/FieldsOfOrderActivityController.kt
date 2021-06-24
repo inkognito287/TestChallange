@@ -3,7 +3,7 @@ package com.example.visual.controllers
 import com.example.visual.R
 import com.example.visual.activity.OrderActivity
 
-class FieldsOfOrderActivityController(var view: OrderActivity?) {
+open class FieldsOfOrderActivityController(var view: OrderActivity?) {
     private val employers = arrayOf(
         "Коротаев Александр",
         "Барбороскин Николай",

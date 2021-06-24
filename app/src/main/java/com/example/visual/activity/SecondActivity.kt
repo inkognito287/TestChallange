@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.visual.R
 import com.example.visual.RecyclerAdapter
-import com.example.visual.dataClasses.RecyclerClass
+import com.example.visual.data.RecyclerClass
 import com.example.visual.databinding.ActivitySecondBinding
-import com.example.visual.modelClasses.ModelOfSecondActivity
+import com.example.visual.model.ModelOfSecondActivity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -78,7 +78,7 @@ class SecondActivity :
     }
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("MyLog", "Destroy")
+        //Log.d("MyLog", "Destroy")
     }
     override fun onItemClick(position: Int) {
         val intent = Intent(this@SecondActivity, ThirdActivity::class.java)
@@ -87,6 +87,15 @@ class SecondActivity :
             intent.putExtra("position", array[position])
         else intent.putExtra("position", position)
         startActivity(intent)
+
+    }
+    fun back(v:View){
         finish()
+    }
+
+
+    override fun onPause() {
+        super.onPause()
+      //  Toast.makeText(this, "sleep", Toast.LENGTH_SHORT).show()
     }
 }

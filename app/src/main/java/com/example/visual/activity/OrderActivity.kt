@@ -21,7 +21,7 @@ import androidx.databinding.DataBindingUtil
 import com.airbnb.lottie.LottieAnimationView
 import com.example.visual.R
 import com.example.visual.controllers.FieldsOfOrderActivityController
-import com.example.visual.dataClasses.Information2
+import com.example.visual.data.Information2
 import com.example.visual.databinding.ActivityOrderBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -131,14 +131,14 @@ class OrderActivity : AppCompatActivity() {
             val mBehavior = BottomSheetBehavior.from(bottomSheetView.parent as View)
             mBehavior.peekHeight = maxHeight
             bottomSheetDialog.show()
-            val calendarView = bottomSheetView.findViewById<DatePicker>(R.id.calendar)
+            val calendarView = bottomSheetView.findViewById<CalendarView>(R.id.calendar)
             val timePicker = bottomSheetView.findViewById<TimePicker>(R.id.timePicker1)
             val format = SimpleDateFormat("dd.MM.yyyy")
             val format2 = SimpleDateFormat("hh:mm")
             var pickDate: String = format.format(Date())
             var pickTime: String = format2.format(Date())
             var text: String
-            calendarView.setOnDateChangedListener { _, year: Int, month: Int, dayOfMonth: Int ->
+            calendarView.setOnDateChangeListener { _, year: Int, month: Int, dayOfMonth: Int ->
                 pickDate = "$dayOfMonth.$month.$year"
                 text = "$pickDate $pickTime"
             }
@@ -298,4 +298,8 @@ class OrderActivity : AppCompatActivity() {
             bottomSheetDialog.dismiss()
         }
     }
+    fun back(v:View){
+        finish()
+    }
 }
+

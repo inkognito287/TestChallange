@@ -1,8 +1,7 @@
-package com.example.visual.modelClasses
+package com.example.visual.model
 
 import com.example.visual.R
-import com.example.visual.dataClasses.Information
-import com.example.visual.dataClasses.RecyclerClass
+import com.example.visual.data.RecyclerClass
 import java.util.*
 import kotlin.collections.ArrayList
 

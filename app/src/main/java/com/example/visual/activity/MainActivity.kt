@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.visual.R
 
 import com.example.visual.databinding.ActivityMainBinding
-import com.example.visual.modelClasses.ModelOfFirstActivity
+import com.example.visual.model.ModelOfFirstActivity
 
 
 class MainActivity : AppCompatActivity() {

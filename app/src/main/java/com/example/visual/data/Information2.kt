@@ -1,4 +1,4 @@
-package com.example.visual.dataClasses
+package com.example.visual.data
 
 data class Information2(var title: Array<String>,var text: Array<String?>,var image: Array<Int>,var visibility: Array<Int>) {
     override fun equals(other: Any?): Boolean {

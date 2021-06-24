@@ -3,10 +3,11 @@ package com.example.visual.controllers
 import org.junit.Assert
 import org.junit.Test
 
+
 internal class FieldsOfOrderActivityControllerTest {
 
-    @Test
 
+    @Test
     fun getListSze() {
         val m=FieldsOfOrderActivityController(null)
         Assert.assertEquals(6,m.getListSze())
@@ -15,7 +16,5 @@ internal class FieldsOfOrderActivityControllerTest {
     fun Lol(){
         val z=FieldsOfOrderActivityController(null)
         Assert.assertTrue("ahaaha",z.getEmployers()[0].toString()=="Коротаев Александр")
-
-
     }
 }

@@ -1,10 +1,6 @@
 package com.example.visual
 
-import com.example.visual.activity.ImageActivity
-import com.example.visual.activity.OrderActivity
-import com.example.visual.controllers.FieldsOfOrderActivityController
-import com.example.visual.dataClasses.Information
-import com.example.visual.dataClasses.ItemUrl
+import com.example.visual.data.ItemUrl
 import org.junit.Test
 
 import org.junit.Assert.*

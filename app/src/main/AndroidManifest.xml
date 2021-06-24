@@ -25,10 +25,10 @@
         <activity android:name=".activity.OrderActivity" />
         <activity
             android:name=".activity.ThirdActivity"
-            android:noHistory="true" />
+            />
         <activity
             android:name=".activity.SecondActivity"
-            android:noHistory="true" />
+             />
         <activity
             android:name=".SplashScreen"
             >

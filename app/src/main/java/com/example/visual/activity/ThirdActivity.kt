@@ -1,16 +1,15 @@
 package com.example.visual.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.visual.R
 import com.example.visual.RecyclerAdapter
-import com.example.visual.dataClasses.RecyclerClass
+import com.example.visual.data.RecyclerClass
 import com.example.visual.databinding.ActivityThirdBinding
-import com.example.visual.modelClasses.ModelOfThirdActivity
+import com.example.visual.model.ModelOfThirdActivity
 
 class ThirdActivity :
     AppCompatActivity(),
@@ -40,5 +39,8 @@ class ThirdActivity :
         val intent = Intent(this@ThirdActivity, OrderActivity::class.java)
         intent.putExtra("position", position)
         startActivity(intent)
+    }
+    fun back(v:View){
+    finish()
     }
 }
