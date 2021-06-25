@@ -16,6 +16,13 @@
         android:background="#ECECEC"
         tools:context=".activity.MainActivity">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.99" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="0dp"
@@ -144,12 +151,11 @@
             android:id="@+id/imageButton"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="3dp"
-            android:background="@drawable/buttoncircle"
+            android:background="@drawable/circle"
             android:paddingBottom="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline20"
-            app:layout_constraintStart_toStartOf="@+id/guideline14"
+            app:layout_constraintDimensionRatio="4:4"
+            app:layout_constraintEnd_toStartOf="@+id/guideline15"
             app:layout_constraintTop_toTopOf="@+id/guideline4"
             app:srcCompat="@drawable/ic_baseline_add_ic_call_24" />
 
@@ -169,18 +175,17 @@
             style="@style/RoundedCornerButton"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="2dp"
             android:background="@drawable/buttoncircle"
-            android:drawableLeft="@drawable/ic_chrest_foreground"
-            android:drawablePadding="2dip"
+            android:drawableLeft="@drawable/ic_baseline_add_24"
+
+            android:gravity="center"
             android:onClick="buttonRecycler"
-            android:paddingLeft="-12dip"
-            android:paddingRight="50dip"
+            android:paddingStart="40dp"
             android:singleLine="true"
             android:text="Создать заявку"
-            app:autoSizeTextType="uniform"
             app:backgroundTint="#FF5722"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:iconPadding="-20dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline35"
             app:layout_constraintEnd_toStartOf="@+id/guideline17"
             app:layout_constraintStart_toStartOf="@+id/guideline10"
             app:layout_constraintTop_toTopOf="@+id/guideline4" />
@@ -192,10 +197,10 @@
             android:gravity="center"
             android:text="Обеспечиваем безопасность"
             app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toTopOf="@+id/guideline12"
+            app:layout_constraintBottom_toTopOf="@+id/guideline5"
             app:layout_constraintEnd_toStartOf="@+id/guideline17"
             app:layout_constraintStart_toStartOf="@+id/guideline11"
-            app:layout_constraintTop_toTopOf="@+id/guideline16"
+            app:layout_constraintTop_toTopOf="@+id/guideline12"
             app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
@@ -257,10 +262,10 @@
             android:textColor="#FD7E55"
             android:textSize="16dp"
             app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toTopOf="@+id/guideline5"
+            app:layout_constraintBottom_toTopOf="@+id/textView12"
             app:layout_constraintEnd_toStartOf="@+id/guideline19"
             app:layout_constraintStart_toStartOf="@+id/guideline18"
-            app:layout_constraintTop_toTopOf="@+id/guideline12" />
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline10"

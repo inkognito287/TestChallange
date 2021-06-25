@@ -20,8 +20,9 @@
       <LinearLayout
           android:id="@+id/linearLayout4"
           android:layout_width="0dp"
-          android:layout_height="wrap_content"
+          android:layout_height="0dp"
           android:orientation="horizontal"
+          app:layout_constraintBottom_toTopOf="@+id/guideline32"
           app:layout_constraintEnd_toStartOf="@+id/guideline24"
           app:layout_constraintStart_toStartOf="@+id/guideline23"
           app:layout_constraintTop_toTopOf="parent">
@@ -29,7 +30,7 @@
          <ImageButton
              android:id="@+id/imageButton14"
              android:layout_width="0dp"
-             android:layout_height="50dp"
+             android:layout_height="match_parent"
              android:layout_weight="0.15"
              android:background="@null"
              android:onClick="back"
@@ -53,7 +54,7 @@
           app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
           app:layout_constraintEnd_toStartOf="@+id/guideline24"
           app:layout_constraintStart_toStartOf="@+id/guideline23"
-          app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+          app:layout_constraintTop_toTopOf="@+id/guideline32">
 
          <LinearLayout
              android:layout_width="match_parent"
@@ -184,7 +185,7 @@
                <include
                    layout="@layout/order_edit_text"
                    android:layout_width="match_parent"
-                   android:layout_height="150dp"
+                   android:layout_height="wrap_content"
                    android:layout_margin="2dp">
 
                </include>
@@ -266,17 +267,15 @@
              android:layout_width="0dp"
 
              android:layout_height="0dp"
-             android:layout_margin="5dp"
+             android:layout_margin="1dp"
              android:layout_weight="1"
-             android:background="@drawable/but_save_order"
+             android:background="@drawable/button2"
+             app:backgroundTint="#EC3902"
              android:drawableLeft="@drawable/drawable_left_save"
-             android:paddingLeft="15dp"
-
-             android:paddingRight="10dp"
              android:singleLine="true"
              android:text="Сохранить"
+             android:textSize="12sp"
              app:autoSizeTextType="none"
-             app:backgroundTint="#FF6D00"
              app:layout_constraintBottom_toBottomOf="parent"
              app:layout_constraintEnd_toStartOf="@+id/guidelinenew"
              app:layout_constraintStart_toStartOf="parent"
@@ -295,15 +294,14 @@
              android:id="@+id/button4"
              android:layout_width="0dp"
              android:layout_height="0dp"
-             android:layout_margin="5dp"
+             android:layout_margin="1dp"
              android:layout_weight="1"
-             android:background="@drawable/but_save_order"
-             android:drawableLeft="@drawable/drawable_left_sogl"
-             android:paddingLeft="15dip"
 
-             android:paddingRight="10dp"
+             android:background="@drawable/button2"
+             android:drawableLeft="@drawable/drawable_left_sogl"
              android:singleLine="true"
              android:text="Согласовать"
+             android:textSize="12sp"
              app:backgroundTint="#00C853"
              app:layout_constraintBottom_toBottomOf="parent"
              app:layout_constraintEnd_toEndOf="parent"
@@ -391,5 +389,20 @@
           android:layout_height="wrap_content"
           android:orientation="horizontal"
           app:layout_constraintGuide_percent="0.82" />
+
+      <androidx.constraintlayout.widget.Guideline
+          android:id="@+id/guideline32"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          app:layout_constraintGuide_percent="0.1" />
+
+      <View
+          android:id="@+id/view8"
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="#FFFFFF"
+          app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

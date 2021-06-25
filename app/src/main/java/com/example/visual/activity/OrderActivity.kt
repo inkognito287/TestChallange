@@ -164,7 +164,7 @@ class OrderActivity : AppCompatActivity() {
             }
         }
         view1.setOnClickListener {
-            createList(controller.getDepartment(), 1)
+            createList(controller.getDepartment(), 1,controller.getTitleOfOrderFields()[1])
             imageOfOrderFields[1] = R.drawable.order_item_clicked
             visibilityOfIcon[1] = View.INVISIBLE
             binding.information2 = Information2(
@@ -175,7 +175,7 @@ class OrderActivity : AppCompatActivity() {
             )
         }
         view2.setOnClickListener {
-            createList(controller.getEmployers(), 2)
+            createList(controller.getEmployers(), 2,controller.getTitleOfOrderFields()[2])
             imageOfOrderFields[2] = R.drawable.order_item_clicked
             visibilityOfIcon[2] = View.INVISIBLE
             binding.information2 = Information2(
@@ -186,7 +186,7 @@ class OrderActivity : AppCompatActivity() {
             )
         }
         view3.setOnClickListener {
-            createList(controller.getDepartment(), 3)
+            createList(controller.getDepartment(), 3,controller.getTitleOfOrderFields()[3])
             imageOfOrderFields[3] = R.drawable.order_item_clicked
             visibilityOfIcon[3] = View.INVISIBLE
             binding.information2 = Information2(
@@ -197,7 +197,7 @@ class OrderActivity : AppCompatActivity() {
             )
         }
         view4.setOnClickListener {
-            createList(controller.getEmployers(), 4)
+            createList(controller.getEmployers(),4, controller.getTitleOfOrderFields()[4])
             imageOfOrderFields[4] = R.drawable.order_item_clicked
             visibilityOfIcon[4] = View.INVISIBLE
             binding.information2 = Information2(
@@ -209,7 +209,7 @@ class OrderActivity : AppCompatActivity() {
         }
 
         view5.setOnClickListener {
-            createList(controller.getActions(), 5)
+            createList(controller.getActions(), 5,controller.getTitleOfOrderFields()[5])
             imageOfOrderFields[5] = R.drawable.order_item_clicked
             visibilityOfIcon[5] = View.INVISIBLE
             binding.information2 = Information2(
@@ -220,7 +220,7 @@ class OrderActivity : AppCompatActivity() {
             )
         }
         view6.setOnClickListener {
-            createList(controller.getEmployers(), 6)
+            createList(controller.getEmployers(), 6,controller.getTitleOfOrderFields()[6])
             imageOfOrderFields[6] = R.drawable.order_item_clicked
             visibilityOfIcon[6] = View.INVISIBLE
             binding.information2 = Information2(
@@ -271,7 +271,7 @@ class OrderActivity : AppCompatActivity() {
     }
 
     @SuppressLint("InflateParams")
-    private fun createList(array: Array<String>, int: Int) {
+    private fun createList(array: Array<String>, int: Int, name:String) {
         val bottomSheetDialog = BottomSheetDialog(
             this@OrderActivity, R.style.BottomSheetDialog
         )
@@ -281,6 +281,9 @@ class OrderActivity : AppCompatActivity() {
         behavior.peekHeight = maxHeight
         bottomSheetDialog.show()
         val listOfOrder = bottomSheetView.findViewById<ListView>(R.id.list)
+        val text=bottomSheetView.findViewById<TextView>(R.id.textoffields)
+        text.text= "$name:"
+        listOfOrder.setSelector(R.drawable.list_item_select)
         val adapter = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,

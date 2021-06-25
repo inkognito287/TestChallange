@@ -2,7 +2,7 @@
 <inset xmlns:android="http://schemas.android.com/apk/res/android"
     android:insetBottom="4dp"
     android:insetTop="4dp">
-    <ripple android:color="?attr/colorControlHighlight">
+    <layer-list android:color="?attr/colorControlHighlight">
         <item>
             <shape android:shape="rectangle"
                 android:tint="#FFFFFF">
@@ -11,5 +11,5 @@
                 <padding android:bottom="6dp"/>
             </shape>
         </item>
-    </ripple>
+    </layer-list>
 </inset>

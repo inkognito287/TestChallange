@@ -4,7 +4,7 @@
     android:insetLeft="4dp"
     android:insetRight="4dp"
     android:insetTop="6dp">
-    <ripple android:color="?attr/colorControlHighlight">
+    <layer-list android:color="?attr/colorControlHighlight">
         <item>
             <shape android:shape="rectangle"
                 android:tint="#FFFFFF">
@@ -13,5 +13,5 @@
                 <padding android:bottom="6dp"/>
             </shape>
         </item>
-    </ripple>
+    </layer-list>
 </inset>
