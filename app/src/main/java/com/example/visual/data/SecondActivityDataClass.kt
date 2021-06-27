@@ -1,13 +1,13 @@
-package com.example.visual.model
+package com.example.visual.data
 
 import com.example.visual.R
-import com.example.visual.data.RecyclerClass
+import com.example.visual.model.RecyclerClass
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ModelOfSecondActivity:Observable() {
+class SecondActivityDataClass:Observable() {
     private var list=ArrayList<RecyclerClass>()
-    private var itemOfRecList:RecyclerClass = RecyclerClass(R.drawable.rc_1, "Видеонаблюдение")
+    private var itemOfRecList: RecyclerClass = RecyclerClass(R.drawable.rc_1, "Видеонаблюдение")
 
     init {
         list.add(itemOfRecList)

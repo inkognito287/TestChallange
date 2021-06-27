@@ -1,11 +1,11 @@
-package com.example.visual.model
+package com.example.visual.data
 
 import com.example.visual.R
-import com.example.visual.data.RecyclerClass
+import com.example.visual.model.RecyclerClass
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ModelOfThirdActivity:Observable() {
+class ThirdActivityDataClass:Observable() {
     private var list=ArrayList<ArrayList<RecyclerClass>>()
     lateinit var itemOfRecList: RecyclerClass
     private val imageList = listOf(
@@ -44,5 +44,4 @@ class ModelOfThirdActivity:Observable() {
     fun getList():ArrayList<ArrayList<RecyclerClass>>{
         return list
     }
-
 }

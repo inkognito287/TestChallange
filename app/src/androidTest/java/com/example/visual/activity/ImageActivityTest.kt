@@ -3,7 +3,7 @@ package com.example.visual.activity
 import android.content.Context
 import android.widget.ImageView
 import androidx.test.core.app.ApplicationProvider
-import com.example.visual.data.ItemUrl
+import com.example.visual.model.ItemUrl
 import com.squareup.picasso.Picasso
 import org.junit.Test
 

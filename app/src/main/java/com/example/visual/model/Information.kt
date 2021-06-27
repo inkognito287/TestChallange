@@ -1,4 +1,4 @@
-package com.example.visual.data
+package com.example.visual.model
 
 
 

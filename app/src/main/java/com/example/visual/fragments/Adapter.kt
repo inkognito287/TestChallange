@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.visual.data.ImageActivityDataClass
 
 class Adapter(fragment:FragmentActivity):FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int {
@@ -13,8 +14,9 @@ class Adapter(fragment:FragmentActivity):FragmentStateAdapter(fragment) {
 
     override fun createFragment(position: Int): Fragment {
         val fragment=ImageFragment()
+        val array=ImageActivityDataClass().getList()
         fragment.arguments= Bundle().apply {
-            putString(ARG_OBJECT,"https://get.wallhere.com/photo/2560x1600-px-lake-mountain-nature-1092998.jpg")
+            putString(ARG_OBJECT,array[position].url)
         }
         return fragment
     }

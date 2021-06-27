@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -12,9 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.visual.R
 import com.example.visual.RecyclerAdapter
-import com.example.visual.data.RecyclerClass
+import com.example.visual.model.RecyclerClass
 import com.example.visual.databinding.ActivitySecondBinding
-import com.example.visual.model.ModelOfSecondActivity
+import com.example.visual.data.SecondActivityDataClass
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -27,7 +26,7 @@ class SecondActivity :
     RecyclerAdapter.OnItemClickListener {
     lateinit var binding: ActivitySecondBinding
     private lateinit var array: MutableList<Int>
-    private lateinit var model:ModelOfSecondActivity
+    private lateinit var model: SecondActivityDataClass
     private var recList = ArrayList<RecyclerClass>()
     private val adapter = RecyclerAdapter(recList, this)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +36,7 @@ class SecondActivity :
         array = ArrayList()
         val rcView = findViewById<RecyclerView>(R.id.rcView)
         binding.apply {
-            model=ModelOfSecondActivity()
+            model= SecondActivityDataClass()
             recList.addAll(model.getList())
             rcView.layoutManager = LinearLayoutManager(this@SecondActivity)
             rcView.adapter = adapter

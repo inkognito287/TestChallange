@@ -1,6 +1,5 @@
-package com.example.visual
+package com.example.test
 
-import com.example.visual.model.ItemUrl
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -15,10 +14,4 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
-    @Test
-    fun correct1() {
-        assertEquals("3", ItemUrl("3").getUrl())
-    }
-
-
 }

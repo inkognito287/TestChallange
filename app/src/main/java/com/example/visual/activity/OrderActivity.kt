@@ -21,7 +21,7 @@ import androidx.databinding.DataBindingUtil
 import com.airbnb.lottie.LottieAnimationView
 import com.example.visual.R
 import com.example.visual.controllers.FieldsOfOrderActivityController
-import com.example.visual.data.Information2
+import com.example.visual.model.Information2
 import com.example.visual.databinding.ActivityOrderBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog

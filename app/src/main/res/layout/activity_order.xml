@@ -6,7 +6,7 @@
    <data>
          <variable
              name="information2"
-             type="com.example.visual.data.Information2" />
+             type="com.example.visual.model.Information2" />
 
    </data>
 

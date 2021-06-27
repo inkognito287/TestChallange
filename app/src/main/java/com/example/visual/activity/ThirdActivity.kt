@@ -7,9 +7,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.visual.RecyclerAdapter
-import com.example.visual.data.RecyclerClass
+import com.example.visual.model.RecyclerClass
 import com.example.visual.databinding.ActivityThirdBinding
-import com.example.visual.model.ModelOfThirdActivity
+import com.example.visual.data.ThirdActivityDataClass
 
 class ThirdActivity :
     AppCompatActivity(),
@@ -29,7 +29,7 @@ class ThirdActivity :
             adapter.recList.clear()
             rcView2.layoutManager = LinearLayoutManager(this@ThirdActivity)
             rcView2.adapter = adapter
-            recList.addAll(ModelOfThirdActivity().getList()[position])
+            recList.addAll(ThirdActivityDataClass().getList()[position])
         }
     }
     override fun onClick(v: View?) {

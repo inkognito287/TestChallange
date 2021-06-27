@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.visual.R
 
 import com.example.visual.databinding.ActivityMainBinding
-import com.example.visual.model.ModelOfFirstActivity
+import com.example.visual.data.FirstActivityDataClass
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding? =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding?.information =ModelOfFirstActivity().getInformation()[0]
+        binding?.information = FirstActivityDataClass().getInformation()[0]
 
         val documentation = findViewById<View>(R.id.Documentation)
        // documentation.setBackgroundResource(R.drawable.main_item_select)

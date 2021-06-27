@@ -1,15 +1,16 @@
-package com.example.visual.model
+package com.example.visual.data
 
 import com.example.visual.R
-import com.example.visual.data.Information
+import com.example.visual.model.Information
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ModelOfFirstActivity:Observable() {
+class FirstActivityDataClass:Observable() {
    private var list=ArrayList<Information>()
 
     init {
-        list.add(Information(
+        list.add(
+            Information(
             arrayOf(
                 R.drawable.but1,
                 R.drawable.but2,
@@ -24,7 +25,8 @@ class ModelOfFirstActivity:Observable() {
                 "Поиск заявок",
                 "Документация"
             )
-        ))
+        )
+        )
     }
     fun getInformation():ArrayList<Information>{
         return list

@@ -14,8 +14,6 @@ class ImageActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
-//        var progressBar=findViewById <ProgressBar>(R.id.progressBar)
-//        progressBar.visibility=View.VISIBLE
         var viewPager2: ViewPager2 = findViewById<ViewPager2>(R.id.viewpager2)
         viewPager2.offscreenPageLimit = 3
         imageAdapter = Adapter(this)
