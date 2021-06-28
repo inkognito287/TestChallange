@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="Ваш комментарий"
+        android:text="@string/Comment"
         android:textColor="#D63434"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"

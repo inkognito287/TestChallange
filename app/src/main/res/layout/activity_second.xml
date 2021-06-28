@@ -44,7 +44,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:text="Новая задача"
+                android:text="@string/Title_New_Task"
                 android:textColor="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
-            android:text="Выберите систему"
+            android:text="@string/SecondActivity_Title2_Сhoose_System"
             android:textColor="#000000"
             android:textSize="20sp" />
 
@@ -86,7 +86,7 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="по которой хотите  оформить заявку или" />
+            android:text="@string/SecondActivity_Title2_Description" />
 
         <EditText
             android:id="@+id/search"
@@ -97,7 +97,7 @@
             android:drawableLeft="@drawable/resizebut4"
             android:drawablePadding="2dip"
             android:ems="10"
-            android:hint="Опишите ситуацию ключевыми словами..."
+            android:hint="@string/SecondActivity_Search_Hint"
             android:inputType="textPersonName"
             android:paddingLeft="2dip"
             android:paddingRight="50dip"

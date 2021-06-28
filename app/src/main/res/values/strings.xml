@@ -2,4 +2,19 @@
     <string name="app_name">Visual</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="MainActivityTitle">on-line</string>
+    <string name="MainActivityTitleSecond">езопасность</string>
+    <string name="MainActivityTitleThird">Обеспечиваем безопасность</string>
+    <string name="Order_Button_name">Создать заявку</string>
+    <string name="Title_New_Task">Новая задача</string>
+    <string name="SecondActivity_Title2_Сhoose_System">Выберите систему</string>
+    <string name="SecondActivity_Title2_Description">по которой хотите оформить заявку или</string>
+    <string name="SecondActivity_Search_Hint">Опишите ситуацию ключевыми словами…</string>
+    <string name="ThirdActivity_Title2_Сhoose_Pattern">Выберите шаблон</string>
+    <string name="ThirdActivity_Title2_Description">подходящий под вашу ситуацию</string>
+    <string name="New_Event">Новое событие</string>
+    <string name="Comment">Ваш комментарий</string>
+    <string name="Add_Photo">Добавить фото</string>
+    <string name="Save">Сохранить</string>
+    <string name="Coordinate">Согласовать</string>
 </resources>

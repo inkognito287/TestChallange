@@ -30,7 +30,7 @@ open class FieldsOfOrderActivityController(var view: OrderActivity?) {
         R.drawable.notification,
         R.drawable.notification,
         R.drawable.notification,
-        R.drawable.notification
+        R.drawable.order_item_clicked
     )
     private val department = arrayOf(
         "TCP",
@@ -57,6 +57,10 @@ open class FieldsOfOrderActivityController(var view: OrderActivity?) {
     }
     fun getActions(): Array<String> {
         return actions
+    }
+    fun setImageofOrderFields(image:Int,position:Int){
+      imageOfOrderFields[position]=image
+
     }
 
 }

@@ -21,8 +21,8 @@ import androidx.databinding.DataBindingUtil
 import com.airbnb.lottie.LottieAnimationView
 import com.example.visual.R
 import com.example.visual.controllers.FieldsOfOrderActivityController
-import com.example.visual.model.Information2
 import com.example.visual.databinding.ActivityOrderBinding
+import com.example.visual.model.Information2
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.makeramen.roundedimageview.RoundedImageView
@@ -74,7 +74,7 @@ class OrderActivity : AppCompatActivity() {
         binding.information2 = Information2(
             controller.getTitleOfOrderFields(),
             textArr,
-            imageOfOrderFields,
+            controller.getImageOfOrderFields(),
             visibilityOfIcon
         )
         dadConstraintLayout = findViewById(R.id.dad)
@@ -152,81 +152,82 @@ class OrderActivity : AppCompatActivity() {
             submit.setOnClickListener {
                 bottomSheetDialog.dismiss()
                 Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-                imageOfOrderFields[0] = R.drawable.order_item_clicked
+                controller.setImageofOrderFields(R.drawable.order_item_clicked,0)
                 visibilityOfIcon[0] = View.INVISIBLE
                 textArr[0] = text
                 binding.information2 = Information2(
                     controller.getTitleOfOrderFields(),
                     textArr,
-                    imageOfOrderFields,
+                    controller.getImageOfOrderFields(),
                     visibilityOfIcon
                 )
             }
         }
         view1.setOnClickListener {
             createList(controller.getDepartment(), 1,controller.getTitleOfOrderFields()[1])
-            imageOfOrderFields[1] = R.drawable.order_item_clicked
+            //imageOfOrderFields[1] = R.drawable.order_item_clicked
             visibilityOfIcon[1] = View.INVISIBLE
+            controller.setImageofOrderFields(R.drawable.order_item_clicked,1)
             binding.information2 = Information2(
                 controller.getTitleOfOrderFields(),
                 textArr,
-                imageOfOrderFields,
+                controller.getImageOfOrderFields(),
                 visibilityOfIcon
             )
         }
         view2.setOnClickListener {
             createList(controller.getEmployers(), 2,controller.getTitleOfOrderFields()[2])
-            imageOfOrderFields[2] = R.drawable.order_item_clicked
+            controller.setImageofOrderFields(R.drawable.order_item_clicked,2)
             visibilityOfIcon[2] = View.INVISIBLE
             binding.information2 = Information2(
                 controller.getTitleOfOrderFields(),
                 textArr,
-                imageOfOrderFields,
+                controller.getImageOfOrderFields(),
                 visibilityOfIcon
             )
         }
         view3.setOnClickListener {
             createList(controller.getDepartment(), 3,controller.getTitleOfOrderFields()[3])
-            imageOfOrderFields[3] = R.drawable.order_item_clicked
+            controller.setImageofOrderFields(R.drawable.order_item_clicked,3)
             visibilityOfIcon[3] = View.INVISIBLE
             binding.information2 = Information2(
                 controller.getTitleOfOrderFields(),
                 textArr,
-                imageOfOrderFields,
+                controller.getImageOfOrderFields(),
                 visibilityOfIcon
             )
         }
         view4.setOnClickListener {
             createList(controller.getEmployers(),4, controller.getTitleOfOrderFields()[4])
-            imageOfOrderFields[4] = R.drawable.order_item_clicked
+            controller.setImageofOrderFields(R.drawable.order_item_clicked,4)
             visibilityOfIcon[4] = View.INVISIBLE
             binding.information2 = Information2(
                 controller.getTitleOfOrderFields(),
                 textArr,
-                imageOfOrderFields,
+                controller.getImageOfOrderFields(),
                 visibilityOfIcon
             )
         }
 
         view5.setOnClickListener {
             createList(controller.getActions(), 5,controller.getTitleOfOrderFields()[5])
-            imageOfOrderFields[5] = R.drawable.order_item_clicked
+            controller.setImageofOrderFields(R.drawable.order_item_clicked,5)
             visibilityOfIcon[5] = View.INVISIBLE
             binding.information2 = Information2(
                 controller.getTitleOfOrderFields(),
                 textArr,
-                imageOfOrderFields,
+                controller.getImageOfOrderFields(),
                 visibilityOfIcon
             )
         }
         view6.setOnClickListener {
             createList(controller.getEmployers(), 6,controller.getTitleOfOrderFields()[6])
-            imageOfOrderFields[6] = R.drawable.order_item_clicked
+            controller.setImageofOrderFields(R.drawable.order_item_clicked,6)
             visibilityOfIcon[6] = View.INVISIBLE
             binding.information2 = Information2(
                 controller.getTitleOfOrderFields(),
                 textArr,
-                imageOfOrderFields,
+                controller.getImageOfOrderFields(),
                 visibilityOfIcon
             )
         }
@@ -295,7 +296,7 @@ class OrderActivity : AppCompatActivity() {
             binding.information2 = Information2(
                 controller.getTitleOfOrderFields(),
                 textArr,
-                imageOfOrderFields,
+                controller.getImageOfOrderFields(),
                 visibilityOfIcon
             )
             bottomSheetDialog.dismiss()
