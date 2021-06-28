@@ -1,11 +1,14 @@
 package com.example.visual
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.widget.ImageView
 import androidx.test.core.app.ApplicationProvider
 import com.example.visual.data.SecondActivityDataClass
 import com.squareup.picasso.Picasso
 import org.junit.Test
+import org.mockito.Mockito
 
 class Testetete {
 
@@ -16,7 +19,11 @@ class Testetete {
         val classData= SecondActivityDataClass()
         print("erere")
         var imageView=ImageView(ApplicationProvider.getApplicationContext())
-       Picasso.get().load("rerete").into(imageView)
-            assert(imageView.getDrawable()!= null)
+        Handler(Looper.getMainLooper()).post {
+            Mockito.verify( Picasso.get().load("rerete").into(imageView))
+        }
+
+
+
     }
 }

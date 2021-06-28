@@ -28,6 +28,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.makeramen.roundedimageview.RoundedImageView
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class OrderActivity : AppCompatActivity() {
@@ -121,7 +122,16 @@ class OrderActivity : AppCompatActivity() {
         val view5 = findViewById<View>(R.id.createList5)
         val view6 = findViewById<View>(R.id.createList6)
         val calendar = findViewById<View>(R.id.createCalendar)
-        calendar.setOnClickListener {
+        val listView=ArrayList<android.view.View>()
+        with(listView){
+            add(view1)
+            add(view2)
+            add(view3)
+            add(view4)
+            add(view5)
+            add(view6)
+        }
+            calendar.setOnClickListener {
             val bottomSheetDialog = BottomSheetDialog(
                 this@OrderActivity, R.style.BottomSheetDialog
             )
@@ -163,73 +173,19 @@ class OrderActivity : AppCompatActivity() {
                 )
             }
         }
-        view1.setOnClickListener {
-            createList(controller.getDepartment(), 1,controller.getTitleOfOrderFields()[1])
-            //imageOfOrderFields[1] = R.drawable.order_item_clicked
-            visibilityOfIcon[1] = View.INVISIBLE
-            controller.setImageofOrderFields(R.drawable.order_item_clicked,1)
-            binding.information2 = Information2(
-                controller.getTitleOfOrderFields(),
-                textArr,
-                controller.getImageOfOrderFields(),
-                visibilityOfIcon
-            )
-        }
-        view2.setOnClickListener {
-            createList(controller.getEmployers(), 2,controller.getTitleOfOrderFields()[2])
-            controller.setImageofOrderFields(R.drawable.order_item_clicked,2)
-            visibilityOfIcon[2] = View.INVISIBLE
-            binding.information2 = Information2(
-                controller.getTitleOfOrderFields(),
-                textArr,
-                controller.getImageOfOrderFields(),
-                visibilityOfIcon
-            )
-        }
-        view3.setOnClickListener {
-            createList(controller.getDepartment(), 3,controller.getTitleOfOrderFields()[3])
-            controller.setImageofOrderFields(R.drawable.order_item_clicked,3)
-            visibilityOfIcon[3] = View.INVISIBLE
-            binding.information2 = Information2(
-                controller.getTitleOfOrderFields(),
-                textArr,
-                controller.getImageOfOrderFields(),
-                visibilityOfIcon
-            )
-        }
-        view4.setOnClickListener {
-            createList(controller.getEmployers(),4, controller.getTitleOfOrderFields()[4])
-            controller.setImageofOrderFields(R.drawable.order_item_clicked,4)
-            visibilityOfIcon[4] = View.INVISIBLE
-            binding.information2 = Information2(
-                controller.getTitleOfOrderFields(),
-                textArr,
-                controller.getImageOfOrderFields(),
-                visibilityOfIcon
-            )
-        }
-
-        view5.setOnClickListener {
-            createList(controller.getActions(), 5,controller.getTitleOfOrderFields()[5])
-            controller.setImageofOrderFields(R.drawable.order_item_clicked,5)
-            visibilityOfIcon[5] = View.INVISIBLE
-            binding.information2 = Information2(
-                controller.getTitleOfOrderFields(),
-                textArr,
-                controller.getImageOfOrderFields(),
-                visibilityOfIcon
-            )
-        }
-        view6.setOnClickListener {
-            createList(controller.getEmployers(), 6,controller.getTitleOfOrderFields()[6])
-            controller.setImageofOrderFields(R.drawable.order_item_clicked,6)
-            visibilityOfIcon[6] = View.INVISIBLE
-            binding.information2 = Information2(
-                controller.getTitleOfOrderFields(),
-                textArr,
-                controller.getImageOfOrderFields(),
-                visibilityOfIcon
-            )
+        for((posit,View) in listView.withIndex()){
+            View.setOnClickListener {
+                var position=posit+1
+                createList(controller.chooseArray(posit), position,controller.getTitleOfOrderFields()[position])
+                visibilityOfIcon[position] = android.view.View.INVISIBLE
+                controller.setImageofOrderFields(R.drawable.order_item_clicked,position)
+                binding.information2 = Information2(
+                    controller.getTitleOfOrderFields(),
+                    textArr,
+                    controller.getImageOfOrderFields(),
+                    visibilityOfIcon
+                )
+            }
         }
     }
 

@@ -4,6 +4,8 @@ import com.example.visual.R
 import com.example.visual.activity.OrderActivity
 
 open class FieldsOfOrderActivityController(var view: OrderActivity?) {
+
+
     private val employers = arrayOf(
         "Коротаев Александр",
         "Барбороскин Николай",
@@ -62,5 +64,12 @@ open class FieldsOfOrderActivityController(var view: OrderActivity?) {
       imageOfOrderFields[position]=image
 
     }
+    private val arrayOfListFields=arrayOf(
+        getDepartment(),getEmployers(),getDepartment(),getEmployers(),getActions(),getEmployers()
+    )
+    fun chooseArray(position: Int): Array<String> {
+        return arrayOfListFields[position]
+    }
+
 
 }
