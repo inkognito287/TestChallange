@@ -1,5 +1,6 @@
 package com.example.visual.controllers
 
+import android.view.View
 import com.example.visual.R
 import com.example.visual.activity.OrderActivity
 
@@ -41,9 +42,25 @@ open class FieldsOfOrderActivityController(var view: OrderActivity?) {
         "AMD",
         "UFC"
     )
+    private var visibilityOfIcon = arrayOf(
+        View.VISIBLE,
+        View.VISIBLE,
+        View.VISIBLE,
+        View.VISIBLE,
+        View.VISIBLE,
+        View.VISIBLE,
+        View.VISIBLE,
+        View.INVISIBLE
+    )
     private val actions = arrayOf("Согласование", "Разрешение", "Управление")
     fun getListSze(): Int {
         return employers.size
+    }
+    fun getVisibilityOfIcon(): Array<Int> {
+        return visibilityOfIcon
+    }
+    fun setVisibilityOfIcon(position: Int){
+        visibilityOfIcon[position]=View.INVISIBLE
     }
     fun getEmployers(): Array<String> {
         return employers

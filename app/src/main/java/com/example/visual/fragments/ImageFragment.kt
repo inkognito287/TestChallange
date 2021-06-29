@@ -23,15 +23,17 @@ lateinit var progressBar: ProgressBar
         savedInstanceState: Bundle?
 
     ): View? {
-        progressBar= activity?.findViewById(R.id.progressBar)!!
-        progressBar.visibility =View.VISIBLE
+        /**находим [progressBar] и делаем его видимым*/
+        progressBar = activity?.findViewById(R.id.progressBar)!!
+        progressBar.visibility = View.VISIBLE
+        /**инфлейтим fragment_image в [container]*/
         return inflater.inflate(R.layout.fragment_image, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         arguments?.takeIf { it.containsKey(ARG_OBJECT) }?.apply {
             val imageView:SubsamplingScaleImageView=view.findViewById(R.id.subscale)
-
 
             Thread(Runnable {
                 val image=ImageSource.bitmap(Picasso.get().load(getString(ARG_OBJECT)).get())
@@ -39,8 +41,6 @@ lateinit var progressBar: ProgressBar
                 progressBar.visibility =View.GONE}
 
             }).start()
-
-
 
         }
     }

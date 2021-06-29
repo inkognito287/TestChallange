@@ -32,26 +32,6 @@ import kotlin.collections.ArrayList
 
 
 class OrderActivity : AppCompatActivity() {
-    private var imageOfOrderFields = arrayOf(
-        R.drawable.notification,
-        R.drawable.notification,
-        R.drawable.notification,
-        R.drawable.notification,
-        R.drawable.notification,
-        R.drawable.notification,
-        R.drawable.notification,
-        R.drawable.order_item_clicked
-    )
-    private var visibilityOfIcon = arrayOf(
-        View.VISIBLE,
-        View.VISIBLE,
-        View.VISIBLE,
-        View.VISIBLE,
-        View.VISIBLE,
-        View.VISIBLE,
-        View.VISIBLE,
-        View.INVISIBLE
-    )
     private lateinit var dadConstraintLayout: ConstraintLayout
     private lateinit var linearLayout: LinearLayout
     private lateinit var images: LinearLayout
@@ -76,7 +56,7 @@ class OrderActivity : AppCompatActivity() {
             controller.getTitleOfOrderFields(),
             textArr,
             controller.getImageOfOrderFields(),
-            visibilityOfIcon
+            controller.getVisibilityOfIcon()
         )
         dadConstraintLayout = findViewById(R.id.dad)
         val dateFormat = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
@@ -115,6 +95,7 @@ class OrderActivity : AppCompatActivity() {
                 runOnUiThread { dadConstraintLayout.removeView(progress) }
             }.start()
         }
+
         val view1 = findViewById<View>(R.id.createList)
         val view2 = findViewById<View>(R.id.createList2)
         val view3 = findViewById<View>(R.id.createList3)
@@ -163,13 +144,14 @@ class OrderActivity : AppCompatActivity() {
                 bottomSheetDialog.dismiss()
                 Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
                 controller.setImageofOrderFields(R.drawable.order_item_clicked,0)
-                visibilityOfIcon[0] = View.INVISIBLE
+                controller.setVisibilityOfIcon(0)
+
                 textArr[0] = text
                 binding.information2 = Information2(
                     controller.getTitleOfOrderFields(),
                     textArr,
                     controller.getImageOfOrderFields(),
-                    visibilityOfIcon
+                   controller.getVisibilityOfIcon()
                 )
             }
         }
@@ -177,13 +159,13 @@ class OrderActivity : AppCompatActivity() {
             View.setOnClickListener {
                 var position=posit+1
                 createList(controller.chooseArray(posit), position,controller.getTitleOfOrderFields()[position])
-                visibilityOfIcon[position] = android.view.View.INVISIBLE
+                controller.setVisibilityOfIcon(position)
                 controller.setImageofOrderFields(R.drawable.order_item_clicked,position)
                 binding.information2 = Information2(
                     controller.getTitleOfOrderFields(),
                     textArr,
                     controller.getImageOfOrderFields(),
-                    visibilityOfIcon
+                    controller.getVisibilityOfIcon()
                 )
             }
         }
@@ -207,7 +189,6 @@ class OrderActivity : AppCompatActivity() {
     private var resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                // There are no request codes
                 val data: Intent? = result.data
                 images = findViewById(R.id.imagesGallery)
                 val img = RoundedImageView(this)
@@ -226,7 +207,6 @@ class OrderActivity : AppCompatActivity() {
         intent.type = "image/*"
         resultLauncher.launch(intent)
     }
-
     @SuppressLint("InflateParams")
     private fun createList(array: Array<String>, int: Int, name:String) {
         val bottomSheetDialog = BottomSheetDialog(
@@ -253,7 +233,7 @@ class OrderActivity : AppCompatActivity() {
                 controller.getTitleOfOrderFields(),
                 textArr,
                 controller.getImageOfOrderFields(),
-                visibilityOfIcon
+                controller.getVisibilityOfIcon()
             )
             bottomSheetDialog.dismiss()
         }

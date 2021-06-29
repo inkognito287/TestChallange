@@ -1,20 +1,12 @@
 package com.example.visual.activity
 
-import android.os.Handler
-import android.os.Looper
-import android.widget.ImageView
-import androidx.test.core.app.ApplicationProvider
 import com.example.visual.data.FirstActivityDataClass
 import com.example.visual.data.ImageActivityDataClass
 import com.example.visual.model.ItemUrl
-import com.squareup.picasso.Picasso
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import org.junit.runner.RunWith
-import org.mockito.Mockito
-import org.robolectric.RobolectricTestRunner
 
-class MainActivityTest{
+class MainTest{
 
 
     @Test
@@ -42,11 +34,17 @@ class MainActivityTest{
         assert(classData.getInformation()[0].title[3]=="Поиск заявок")
     }
     @Test
-    fun `heheeh`(){
-    var imageView= ImageView(ApplicationProvider.getApplicationContext())
-    Handler(Looper.getMainLooper()).post {
-        Mockito.verify( Picasso.get().load("rerete").into(imageView))
+    fun `check function`(){
+
     }
 
+//    @Test
+//    fun `heheeh`(){
+//    var imageView= ImageView(ApplicationProvider.getApplicationContext())
+//    android.os.Handler(Looper.getMainLooper()).post {
+//        Mockito.verify( Picasso.get().load("rerete").into(imageView))
+//    }
+//    }
+}
 
-}}
+
