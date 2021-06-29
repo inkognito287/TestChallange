@@ -5,11 +5,15 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.visual.R
 import com.example.visual.RecyclerAdapter
 import com.example.visual.data.SecondActivityDataClass
 import com.example.visual.databinding.ActivitySecondBinding
+import com.example.visual.fragments.BlankFragment1
 import com.example.visual.model.RecyclerClass
 import java.util.*
 import kotlin.collections.ArrayList
@@ -45,6 +49,11 @@ class SecondActivity :
         binding = ActivitySecondBinding.inflate(layoutInflater)
         /**установка корневого View в качестве ContentView*/
         setContentView(binding.root)
+        var fragment1=BlankFragment1()
+        var fragmentTransaction=supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentContainer,fragment1)
+        fragmentTransaction.commit()
+        var search=findViewById<EditText>(R.id.search)
         /**создание объекта [ArrayList]*/
         array = ArrayList()
         /**применяем [binding] ко всему блоку*/
@@ -54,10 +63,13 @@ class SecondActivity :
             /**получаем list, присваиваем содержимое [recList]*/
             recList.addAll(model.getList())
             /**инициализация layoutManager*/
+
+            var rcView=findViewById<RecyclerView>(R.id.rcView)
             rcView.layoutManager = LinearLayoutManager(this@SecondActivity)
             /**установка адаптера*/
             rcView.adapter = adapter
             /**устанавливаем слушатель изменения текста*/
+
             search.addTextChangedListener(
                 object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {
@@ -110,7 +122,8 @@ class SecondActivity :
         val intent = Intent(this@SecondActivity, ThirdActivity::class.java)
         /**если форма поиска пустая, то в качестве позиции передаём позицию из
          * вспомогательного массива*/
-        if (binding.search.text.toString() != "")
+        var search=findViewById<EditText>(R.id.search)
+        if (search.text.toString() != "")
             intent.putExtra("position", array[position])
         /**в противном случае саму позицию элемента*/
         else intent.putExtra("position", position)
