@@ -12,27 +12,37 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="windowActionBar">false</item>
+        <item name="android:colorControlActivated">#FF6D00</item>
         <item name="windowNoTitle">true</item>
         <!-- Customize your theme here. -->
     </style>
     <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
+        <item name="android:colorControlActivated">#FF6D00</item>
+        <item name="colorAccent">@color/accent_material_light</item>
+
     </style>
-    <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
+    <style name="bottomSheetStyleWrapper" >
         <item name="behavior_peekHeight">300dp</item>
         <item name="android:background">@drawable/bottom_sheet_corner_round</item>
+        <item name="android:colorControlActivated">#FF6D00</item>
+      
+
+
     </style>
     <style name="Splash" parent="Theme.MaterialComponents.DayNight.DarkActionBar" >
     <item name="android:windowBackground">@drawable/splashscreen</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/purple_500</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
     <style name="RoundedCornerButton" parent="@style/Widget.AppCompat.Button.Colored">
         <item name="background">@drawable/button</item>
         <item name="colorButtonNormal">#1a237e</item>
         <item name="colorControlHighlight">#673ab7</item>
     </style>
+    <style name="Calendar" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="android:colorControlActivated">#FF6D00</item>
+    </style>
+
 </resources>

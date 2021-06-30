@@ -26,12 +26,15 @@
 
         <CalendarView
             android:id="@+id/calendar"
+            style="@style/Calendar"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="2"
             android:datePickerMode="calendar"
-            android:spinnersShown="false">
+            android:spinnersShown="false"
+           >
+
 
         </CalendarView>
 
@@ -50,12 +53,11 @@
             android:layout_height="0dp"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:layout_weight="0.5"
+            android:layout_weight="0.7"
             android:timePickerMode="spinner" />
 
         <Button
             android:id="@+id/submit"
-            style="@null"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="8dp"

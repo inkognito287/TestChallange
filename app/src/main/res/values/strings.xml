@@ -2,7 +2,7 @@
     <string name="app_name">Visual</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="MainActivityTitle">on-line</string>
+    <string name="MainActivityTitle">on-line </string>
     <string name="MainActivityTitleSecond">езопасность</string>
     <string name="MainActivityTitleThird">Обеспечиваем безопасность</string>
     <string name="Order_Button_name">Создать заявку</string>

@@ -37,7 +37,7 @@ lateinit var progressBar: ProgressBar
 
             Thread(Runnable {
                 val image=ImageSource.bitmap(Picasso.get().load(getString(ARG_OBJECT)).get())
-            activity?.runOnUiThread { imageView.setImage(image)
+                activity?.runOnUiThread { imageView.setImage(image)
                 progressBar.visibility =View.GONE}
 
             }).start()

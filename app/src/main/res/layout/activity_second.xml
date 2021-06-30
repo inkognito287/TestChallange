@@ -5,7 +5,7 @@
     android:id="@+id/cvc"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1F1F1">
+    android:background="@color/background">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -91,6 +91,7 @@
         android:id="@+id/fragmentContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline22"
         app:layout_constraintStart_toStartOf="@+id/guideline21"

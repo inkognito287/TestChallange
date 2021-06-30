@@ -27,6 +27,6 @@ internal class SecondActivityTest {
         }
         assert(!array.isEmpty())
     }
-    @Test
+
 
 }
