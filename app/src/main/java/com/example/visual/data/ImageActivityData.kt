@@ -1,9 +1,8 @@
 package com.example.visual.data
 
-import com.example.visual.model.Information
 import com.example.visual.model.ItemUrl
 
-class ImageActivityDataClass {
+class ImageActivityData {
     private var list=ArrayList<ItemUrl>()
     init{
     list.add(ItemUrl("https://i1.wallbox.ru/wallpapers/main/201120/2d56741e0a7ee12673870def1d8a9856.jpg"))

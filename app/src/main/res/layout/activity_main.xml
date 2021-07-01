@@ -7,7 +7,7 @@
 
         <variable
             name="information"
-            type="com.example.visual.model.Information" />
+            type="com.example.visual.model.MenuItems" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,8 +53,8 @@
                     app:layout_minHeight="-1dp"
                     app:layout_minWidth="-1dp"
                     app:layout_order="1"
-                    app:name="@{information.title[0]}"
-                    app:vari="@{information.imgId[0]}" />
+                    app:name="@{information.jobOrders.titleOfMenuItem}"
+                    app:vari="@{information.jobOrders.imageOfMenuTitle}" />
 
                 <include
                     layout="@layout/item_for_main_recycler"
@@ -67,8 +67,8 @@
                     app:layout_minHeight="-1dp"
                     app:layout_minWidth="-1dp"
                     app:layout_order="1"
-                    app:name="@{information.title[1]}"
-                    app:vari="@{information.imgId[1]}"
+                    app:name="@{information.coordinationOrders.titleOfMenuItem}"
+                    app:vari="@{information.coordinationOrders.imageOfMenuTitle}"
                     tools:layout_editor_absoluteX="168dp"
                     tools:layout_editor_absoluteY="130dp" />
 
@@ -83,8 +83,8 @@
                     app:layout_minHeight="-1dp"
                     app:layout_minWidth="-1dp"
                     app:layout_order="1"
-                    app:name="@{information.title[2]}"
-                    app:vari="@{information.imgId[2]}"
+                    app:name="@{information.completeOrders.titleOfMenuItem}"
+                    app:vari="@{information.completeOrders.imageOfMenuTitle}"
                     tools:layout_editor_absoluteX="380dp"
                     tools:layout_editor_absoluteY="135dp" />
 
@@ -100,8 +100,8 @@
                     app:layout_minHeight="-1dp"
                     app:layout_minWidth="-1dp"
                     app:layout_order="1"
-                    app:name="@{information.title[3]}"
-                    app:vari="@{information.imgId[3]}"
+                    app:name="@{information.findOrders.titleOfMenuItem}"
+                    app:vari="@{information.findOrders.imageOfMenuTitle}"
                     tools:layout_editor_absoluteX="168dp"
                     tools:layout_editor_absoluteY="135dp" />
 
@@ -118,8 +118,8 @@
                     app:layout_minHeight="-1dp"
                     app:layout_minWidth="-1dp"
                     app:layout_order="1"
-                    app:name="@{information.title[4]}"
-                    app:vari="@{information.imgId[4]}"
+                    app:name="@{information.documentation.titleOfMenuItem}"
+                    app:vari="@{information.documentation.imageOfMenuTitle}"
                     tools:layout_editor_absoluteY="270dp" />
 
 

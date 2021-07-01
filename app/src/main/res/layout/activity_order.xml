@@ -5,9 +5,11 @@
 
    <data>
          <variable
-             name="information2"
-             type="com.example.visual.model.Information2" />
-
+             name="OrderItems"
+             type="com.example.visual.model.OrderItems" />
+             <variable
+                 name="Activity"
+                 type="com.example.visual.activity.OrderActivity" />
    </data>
 
    <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,7 +46,10 @@
              android:fontFamily="sans-serif-medium"
              android:gravity="center_vertical"
              android:text="@string/New_Event"
-             android:textColor="#000000" />
+             android:textColor="#000000"
+             android:clickable="true"
+             android:focusable="true"
+            />
       </LinearLayout>
 
       <ScrollView
@@ -81,10 +86,10 @@
                       android:layout_height="wrap_content"
                       android:layout_margin="2dp"
                       android:layout_weight="1"
-                      app:image="@{information2.image[7]}"
-                      app:text="@{information2.text[7]}"
-                      app:title="@{information2.title[7]}"
-                      app:visibility="@{information2.visibility[7]}">
+                      app:image="@{OrderItems.admission.image}"
+                      app:text="@{OrderItems.admission.text}"
+                      app:title="@{OrderItems.admission.title}"
+                      app:visibility="@{OrderItems.admission.visibility}">
 
                   </include>
 
@@ -95,10 +100,10 @@
                       android:layout_height="wrap_content"
                       android:layout_margin="2dp"
                       android:layout_weight="1"
-                      app:image="@{information2.image[0]}"
-                      app:text="@{information2.text[0]}"
-                      app:title="@{information2.title[0]}"
-                      app:visibility="@{information2.visibility[0]}" />
+                      app:image="@{OrderItems.control.image}"
+                      app:text="@{OrderItems.control.text}"
+                      app:title="@{OrderItems.control.title}"
+                      app:visibility="@{OrderItems.control.visibility}" />
 
                </LinearLayout>
 
@@ -108,11 +113,15 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:layout_margin="2dp"
-                   app:image="@{information2.image[1]}"
+                   android:clickable="true"
+                   android:focusable="true"
+                   android:onClick="@{()->Activity.orderFieldClick(OrderItems.executiveDepartment)}"
+                   app:image="@{OrderItems.executiveDepartment.image}"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                   app:text="@{information2.text[1]}"
-                   app:title="@{information2.title[1]}"
-                   app:visibility="@{information2.visibility[1]}" />
+                   app:text="@{OrderItems.executiveDepartment.text}"
+                   app:title="@{OrderItems.executiveDepartment.title}"
+                   app:visibility="@{OrderItems.executiveDepartment.visibility}"
+                   tools:ignore="UsingOnClickInXml" />
 
 
                <include
@@ -121,11 +130,14 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:layout_margin="2dp"
-                   app:image="@{information2.image[2]}"
+                   android:clickable="true"
+                   android:focusable="true"
+                   android:onClick="@{()->Activity.orderFieldClick(OrderItems.employeeOfTheContractorsDepartment)}"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                   app:text="@{information2.text[2]}"
-                   app:title="@{information2.title[2]}"
-                   app:visibility="@{information2.visibility[2]}">
+                   app:image="@{OrderItems.employeeOfTheContractorsDepartment.image}"
+                   app:text="@{OrderItems.employeeOfTheContractorsDepartment.text}"
+                   app:title="@{OrderItems.employeeOfTheContractorsDepartment.title}"
+                   app:visibility="@{OrderItems.employeeOfTheContractorsDepartment.visibility}">
 
                </include>
 
@@ -135,11 +147,14 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:layout_margin="2dp"
-                   app:image="@{information2.image[3]}"
+                   android:clickable="true"
+                   android:focusable="true"
+                   android:onClick="@{()->Activity.orderFieldClick(OrderItems.connectedDepartment)}"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                   app:text="@{information2.text[3]}"
-                   app:title="@{information2.title[3]}"
-                   app:visibility="@{information2.visibility[3]}">
+                   app:image="@{OrderItems.connectedDepartment.image}"
+                   app:text="@{OrderItems.connectedDepartment.text}"
+                   app:title="@{OrderItems.connectedDepartment.title}"
+                   app:visibility="@{OrderItems.connectedDepartment.visibility}">
 
                </include>
 
@@ -149,11 +164,14 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:layout_margin="2dp"
-                   app:image="@{information2.image[4]}"
+                   android:clickable="true"
+                   android:focusable="true"
+                   android:onClick="@{()->Activity.orderFieldClick(OrderItems.employeeOfTheConnectedDepartment)}"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                   app:text="@{information2.text[4]}"
-                   app:title="@{information2.title[4]}"
-                   app:visibility="@{information2.visibility[4]}">
+                   app:image="@{OrderItems.employeeOfTheConnectedDepartment.image}"
+                   app:text="@{OrderItems.employeeOfTheConnectedDepartment.text}"
+                   app:title="@{OrderItems.employeeOfTheConnectedDepartment.title}"
+                   app:visibility="@{OrderItems.employeeOfTheConnectedDepartment.visibility}">
 
                </include>
 
@@ -163,11 +181,14 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:layout_margin="2dp"
-                   app:image="@{information2.image[5]}"
+                   android:clickable="true"
+                   android:focusable="true"
+                   android:onClick="@{()->Activity.orderFieldClick(OrderItems.requiredFor)}"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                   app:text="@{information2.text[5]}"
-                   app:title="@{information2.title[5]}"
-                   app:visibility="@{information2.visibility[5]}" />
+                   app:image="@{OrderItems.requiredFor.image}"
+                   app:text="@{OrderItems.requiredFor.text}"
+                   app:title="@{OrderItems.requiredFor.title}"
+                   app:visibility="@{OrderItems.requiredFor.visibility}" />
 
                <include
                    android:id="@+id/createList6"
@@ -175,11 +196,14 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:layout_margin="2dp"
-                   app:image="@{information2.image[6]}"
+                   android:clickable="true"
+                   android:focusable="true"
+                   android:onClick="@{()->Activity.orderFieldClick(OrderItems.contactInTheCO)}"
                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                   app:text="@{information2.text[6]}"
-                   app:title="@{information2.title[6]}"
-                   app:visibility="@{information2.visibility[6]}">
+                   app:image="@{OrderItems.contactInTheCO.image}"
+                   app:text="@{OrderItems.contactInTheCO.text}"
+                   app:title="@{OrderItems.contactInTheCO.title}"
+                   app:visibility="@{OrderItems.contactInTheCO.visibility}">
 
                </include>
 

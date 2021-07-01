@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.visual.RecyclerAdapter
 import com.example.visual.activity.OrderActivity
-import com.example.visual.data.ThirdActivityDataClass
+import com.example.visual.data.ThirdActivityData
 import com.example.visual.databinding.FragmentBlank2Binding
 import com.example.visual.model.RecyclerClass
 
@@ -43,8 +43,8 @@ class BlankFragment2 : Fragment(), RecyclerAdapter.OnItemClickListener {
         binding.rcView2.layoutManager = LinearLayoutManager(activity)
         /**инициализация [adapter]*/
         binding.rcView2.adapter = adapter
-        /**достаём элементы из класса [ThirdActivityDataClass]*/
-        recList.addAll(ThirdActivityDataClass().getList()[position])
+        /**достаём элементы из класса [ThirdActivityData]*/
+        recList.addAll(ThirdActivityData().getList()[position])
     }
 
     override fun onItemClick(position: Int) {

@@ -26,7 +26,7 @@
         <item name="behavior_peekHeight">300dp</item>
         <item name="android:background">@drawable/bottom_sheet_corner_round</item>
         <item name="android:colorControlActivated">#FF6D00</item>
-      
+
 
 
     </style>

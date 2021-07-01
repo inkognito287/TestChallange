@@ -12,7 +12,7 @@ import com.example.visual.R
 import com.example.visual.RecyclerAdapter
 import com.example.visual.activity.SecondActivity
 import com.example.visual.activity.filteredList
-import com.example.visual.data.SecondActivityDataClass
+import com.example.visual.data.SecondActivityData
 import com.example.visual.databinding.FragmentBlank1Binding
 import com.example.visual.model.RecyclerClass
 
@@ -20,8 +20,8 @@ var fragmentnum=0
 class BlankFragment1 : Fragment(), RecyclerAdapter.OnItemClickListener {
     /**вспомогательный массив для хранения позиций item после фильтрации*/
     private lateinit var array: MutableList<Int>
-    /**экземпляр класса [SecondActivityDataClass] черезе который достаётся информация*/
-    private lateinit var model: SecondActivityDataClass
+    /**экземпляр класса [SecondActivityData] черезе который достаётся информация*/
+    private lateinit var model: SecondActivityData
     /**лист хранящий в себе объекты класса [RecyclerClass]*/
     private var recList = ArrayList<RecyclerClass>()
     /**переменная которая передаёт в [RecyclerAdapter]
@@ -39,20 +39,18 @@ class BlankFragment1 : Fragment(), RecyclerAdapter.OnItemClickListener {
         savedInstanceState: Bundle?
     ): View {
 
-        binding= FragmentBlank1Binding.inflate(inflater, container, false)
+        binding = FragmentBlank1Binding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fragmentnum=1
-
-
         //var search=activity?.findViewById<EditText>(R.id.search)
         /**создание объекта [ArrayList]*/
         array = ArrayList()
         /**создаём объект класса*/
-        model = SecondActivityDataClass()
+        model = SecondActivityData()
         /**получаем list, присваиваем содержимое [recList]*/
         recList.addAll(model.getList())
         //var rcView=activity?.findViewById<RecyclerView>(R.id.rcView)
@@ -76,7 +74,6 @@ class BlankFragment1 : Fragment(), RecyclerAdapter.OnItemClickListener {
                 }
             }
         )
-
     }
 
 
@@ -104,9 +101,9 @@ class BlankFragment1 : Fragment(), RecyclerAdapter.OnItemClickListener {
     override fun onItemClick(position: Int) {
         val bundle = Bundle()
         bundle.putInt("position", position)
-        var fragment2=BlankFragment2()
-        fragment2.arguments=bundle
-        var fragmentTransaction=activity?.supportFragmentManager?.beginTransaction()
+        val fragment2 = BlankFragment2()
+        fragment2.arguments = bundle
+        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
         fragmentTransaction?.replace(R.id.fragmentContainer,fragment2)
         fragmentTransaction?.commit()
 

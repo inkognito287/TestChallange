@@ -22,7 +22,8 @@ import com.airbnb.lottie.LottieAnimationView
 import com.example.visual.R
 import com.example.visual.controllers.FieldsOfOrderActivityController
 import com.example.visual.databinding.ActivityOrderBinding
-import com.example.visual.model.Information2
+import com.example.visual.model.OrderItem
+import com.example.visual.model.OrderItems
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.makeramen.roundedimageview.RoundedImageView
@@ -38,37 +39,58 @@ class OrderActivity : AppCompatActivity() {
     private lateinit var controller: FieldsOfOrderActivityController
     private var listView: ListView? = null
     private var scrollview: ScrollView? = null
-    lateinit var context: Context
     private var paramsForImage: ConstraintLayout.LayoutParams = ConstraintLayout.LayoutParams(
         ViewGroup.LayoutParams.WRAP_CONTENT,
         ViewGroup.LayoutParams.WRAP_CONTENT
     )
     private var textArr = arrayOfNulls<String>(8)
     lateinit var binding: ActivityOrderBinding
+    lateinit var context: Context
+    lateinit var cc:OrderItems
 
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("ResourceType", "SimpleDateFormat", "NewApi", "InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         controller = FieldsOfOrderActivityController(this)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_order)
-        binding.information2 = Information2(
-            controller.getTitleOfOrderFields(),
-            textArr,
-            controller.getImageOfOrderFields(),
-            controller.getVisibilityOfIcon()
+        //binding = ActivityOrderBinding.inflate(layoutInflater)
+        binding= DataBindingUtil.setContentView(this,R.layout.activity_order)
+        setContentView(binding.root)
+        binding.setActivity(this)
+        //binding.presenter= Presenter()
+
+       // binding = DataBindingUtil.setContentView(this, R.layout.activity_order)
+
+        val admission = OrderItem("Поступила:",R.drawable.order_item_clicked,View.INVISIBLE,"", emptyArray()
         )
-        dadConstraintLayout = findViewById(R.id.dad)
+        val control = OrderItem("Контроль",R.drawable.notification,View.VISIBLE,"",emptyArray())
+        val executiveDepartment = OrderItem("Отдел исполнитель:",R.drawable.notification,View.VISIBLE,"",controller.getDepartment())
+        val employeeOfTheContractorsDepartment = OrderItem("Сотрудник отдела исоплнителя:",R.drawable.notification,View.VISIBLE,"",controller.getEmployers())
+        val connectedDepartment = OrderItem("Подключаемый отдел:",R.drawable.notification,View.VISIBLE,"",controller.getDepartment())
+        val employeeOfTheConnectedDepartment = OrderItem("Сотрудник подключаемого отдела:",R.drawable.notification,View.VISIBLE,"",controller.getEmployers())
+        val requiredFor = OrderItem("Требуется на:",R.drawable.notification,View.VISIBLE,"",controller.getActions())
+        val contactInTheCO = OrderItem("Контакт в ЦО:",R.drawable.notification,View.VISIBLE,"",controller.getEmployers())
+
+        cc = OrderItems( admission,
+        control,
+        executiveDepartment,
+        employeeOfTheContractorsDepartment,
+        connectedDepartment,
+        employeeOfTheConnectedDepartment,
+        requiredFor,
+        contactInTheCO)
+        binding.orderItems = cc
+       // dadConstraintLayout = findViewById(R.id.dad)
         val dateFormat = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
         textArr[7] = dateFormat.format(Date())
-        val save = findViewById<Button>(R.id.button2)
-        save.setOnClickListener {
+       // val save = findViewById<Button>(R.id.button2)
+        binding.button2.setOnClickListener {
             val progress = LottieAnimationView(this)
             progress.setAnimation(R.raw.loader)
             progress.id = 1121
             progress.setPadding(0, 0, 0, 0)
             progress.layoutParams = paramsForImage
-            dadConstraintLayout.addView(progress)
+           binding.dad.addView(progress)
             ConstraintSet().apply {
                 clone(dadConstraintLayout)
                 connect(progress.id, ConstraintSet.TOP, dadConstraintLayout.id, ConstraintSet.TOP)
@@ -95,24 +117,17 @@ class OrderActivity : AppCompatActivity() {
                 runOnUiThread { dadConstraintLayout.removeView(progress) }
             }.start()
         }
-
-        val view1 = findViewById<View>(R.id.createList)
-        val view2 = findViewById<View>(R.id.createList2)
-        val view3 = findViewById<View>(R.id.createList3)
-        val view4 = findViewById<View>(R.id.createList4)
-        val view5 = findViewById<View>(R.id.createList5)
-        val view6 = findViewById<View>(R.id.createList6)
-        val calendar = findViewById<View>(R.id.createCalendar)
-        val listView=ArrayList<android.view.View>()
+        //val calendar = findViewById<View>(R.id.createCalendar)
+        val listView=ArrayList<View>()
         with(listView){
-            add(view1)
-            add(view2)
-            add(view3)
-            add(view4)
-            add(view5)
-            add(view6)
+            add(binding.createList.root)
+            add(binding.createList2.root)
+            add(binding.createList3.root)
+            add(binding.createList4.root)
+            add(binding.createList5.root)
+            add(binding.createList6.root)
         }
-            calendar.setOnClickListener {
+binding.createCalendar.root.setOnClickListener {
             val bottomSheetDialog = BottomSheetDialog(
                 this@OrderActivity, R.style.BottomSheetDialog
             )
@@ -143,32 +158,35 @@ class OrderActivity : AppCompatActivity() {
             submit.setOnClickListener {
                 bottomSheetDialog.dismiss()
                 Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-                controller.setImageofOrderFields(R.drawable.order_item_clicked,0)
-                controller.setVisibilityOfIcon(0)
+                control.visibility=View.INVISIBLE
+                control.image = R.drawable.order_item_clicked
+               // controller.setImageofOrderFields(R.drawable.order_item_clicked,0)
+                //controller.setVisibilityOfIcon(0)
+                control.text=text
+                //textArr[0] = text
+              binding.orderItems = cc
 
-                textArr[0] = text
-                binding.information2 = Information2(
-                    controller.getTitleOfOrderFields(),
-                    textArr,
-                    controller.getImageOfOrderFields(),
-                   controller.getVisibilityOfIcon()
-                )
+//                    controller.getTitleOfOrderFields(),
+//                    textArr,
+//                    controller.getImageOfOrderFields(),
+//                    controller.getVisibilityOfIcon()
+//                )
             }
         }
-        for((posit,View) in listView.withIndex()){
-            View.setOnClickListener {
-                var position=posit+1
-                createList(controller.chooseArray(posit), position,controller.getTitleOfOrderFields()[position])
-                controller.setVisibilityOfIcon(position)
-                controller.setImageofOrderFields(R.drawable.order_item_clicked,position)
-                binding.information2 = Information2(
-                    controller.getTitleOfOrderFields(),
-                    textArr,
-                    controller.getImageOfOrderFields(),
-                    controller.getVisibilityOfIcon()
-                )
-            }
-        }
+//        for((posit,View) in listView.withIndex()){
+//            View.setOnClickListener {
+//                var position=posit+1
+//                createList(controller.chooseArray(posit), position,controller.getTitleOfOrderFields()[position])
+//                controller.setVisibilityOfIcon(position)
+//                controller.setImageofOrderFields(R.drawable.order_item_clicked,position)
+////                binding.information2 = Information2(
+////                    controller.getTitleOfOrderFields(),
+////                    textArr,
+////                    controller.getImageOfOrderFields(),
+////                    controller.getVisibilityOfIcon()
+////                )
+//            }
+//        }
     }
 
     fun addPhoto(v: View) {
@@ -208,7 +226,7 @@ class OrderActivity : AppCompatActivity() {
         resultLauncher.launch(intent)
     }
     @SuppressLint("InflateParams")
-    private fun createList(array: Array<String>, int: Int, name:String) {
+    private fun createList(array: Array<String>, name:String,orderItem: OrderItem) {
         val bottomSheetDialog = BottomSheetDialog(
             this@OrderActivity, R.style.BottomSheetDialog
         )
@@ -227,19 +245,21 @@ class OrderActivity : AppCompatActivity() {
             array
         )
         listOfOrder.adapter = adapter
-        listOfOrder.setOnItemClickListener { _, _, position, _ ->
-            textArr[int] = array[position]
-            binding.information2 = Information2(
-                controller.getTitleOfOrderFields(),
-                textArr,
-                controller.getImageOfOrderFields(),
-                controller.getVisibilityOfIcon()
-            )
+        listOfOrder.setOnItemClickListener { adapterView, view, position, l ->
+           orderItem.text = orderItem.array[position]
+            binding.orderItems = cc
             bottomSheetDialog.dismiss()
         }
     }
     fun back(v:View){
         finish()
     }
+    fun orderFieldClick(orderItem: OrderItem){
+        orderItem.visibility = View.INVISIBLE
+        orderItem.image = R.drawable.order_item_clicked
+        createList(orderItem.array,orderItem.title,orderItem)
+
+    }
+
 }
 

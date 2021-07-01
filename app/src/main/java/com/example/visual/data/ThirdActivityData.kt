@@ -5,7 +5,7 @@ import com.example.visual.model.RecyclerClass
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ThirdActivityDataClass:Observable() {
+class ThirdActivityData:Observable() {
     private var list=ArrayList<ArrayList<RecyclerClass>>()
     lateinit var itemOfRecList: RecyclerClass
     private val imageList = listOf(

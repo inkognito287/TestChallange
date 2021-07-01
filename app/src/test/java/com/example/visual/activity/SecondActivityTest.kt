@@ -1,6 +1,6 @@
 package com.example.visual.activity
 
-import com.example.visual.data.SecondActivityDataClass
+import com.example.visual.data.SecondActivityData
 import com.example.visual.model.RecyclerClass
 import org.junit.jupiter.api.Test
 
@@ -12,7 +12,7 @@ internal class SecondActivityTest {
     fun filter() {
         var array: MutableList<Int>
        var recList = ArrayList<RecyclerClass>()
-        var  kek=SecondActivityDataClass()
+        var  kek=SecondActivityData()
         array= ArrayList()
         filteredList.clear()
         array.clear()
