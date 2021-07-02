@@ -9,7 +9,4 @@ class OrderItems(
     val employeeOfTheConnectedDepartment: OrderItem,
     val requiredFor: OrderItem,
     val contactInTheCO: OrderItem
-) {
-   // var observableObj: ObservableField<OrderItems> = ObservableField()
-
-}
+)

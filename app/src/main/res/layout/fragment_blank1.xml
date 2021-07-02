@@ -48,12 +48,14 @@
                 android:drawableLeft="@drawable/resizebut4"
                 android:drawablePadding="2dip"
                 android:ems="10"
+                android:fontFamily="sans-serif"
                 android:hint="@string/SecondActivity_Search_Hint"
+                android:includeFontPadding="false"
                 android:inputType="textPersonName"
                 android:paddingLeft="2dip"
-                android:paddingRight="50dip"
+                android:paddingEnd="11dip"
                 android:singleLine="true"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcView"

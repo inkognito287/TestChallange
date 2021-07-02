@@ -10,17 +10,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <DatePicker
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:text="Выберите дату"
+            android:textColor="#000000" />
+
+        <CalendarView
             android:id="@+id/calendar"
-            android:layout_width="wrap_content"
+            style="@style/Calendar"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:layout_weight="2.5">
+            android:layout_weight="2"
+            android:datePickerMode="calendar"
+            android:spinnersShown="false"
+            >
 
-        </DatePicker>
+
+        </CalendarView>
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:text="Выберите время"
+            android:textColor="#000000" />
 
         <TimePicker
             android:id="@+id/timePicker1"
@@ -28,17 +53,24 @@
             android:layout_height="0dp"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="0.7"
             android:timePickerMode="spinner" />
 
         <Button
+
             android:id="@+id/submit"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.4"
-            android:background="@drawable/button"
-            android:backgroundTint="@null"
-            android:text="Подтвердить" />
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="0.3"
+            android:background="@drawable/button_data_time_picker"
+            android:backgroundTint="@color/black"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Выбрать"
+            android:textColor="@color/white"
+            app:iconTint="@null" />
     </LinearLayout>
 
 

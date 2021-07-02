@@ -14,7 +14,7 @@
         android:id="@+id/dad"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F1F1F1">
+        android:background="@color/background">
 
 
         <LinearLayout
@@ -108,8 +108,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="2dp"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="@{()->Activity.orderFieldClick(OrderItems.executiveDepartment)}"
                         app:image="@{OrderItems.executiveDepartment.image}"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                         app:text="@{OrderItems.executiveDepartment.text}"
                         app:title="@{OrderItems.executiveDepartment.title}"
                         app:visibility="@{OrderItems.executiveDepartment.visibility}" />
@@ -121,8 +124,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="2dp"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="@{()->Activity.orderFieldClick(OrderItems.employeeOfTheContractorsDepartment)}"
                         app:image="@{OrderItems.employeeOfTheContractorsDepartment.image}"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                         app:text="@{OrderItems.employeeOfTheContractorsDepartment.text}"
                         app:title="@{OrderItems.employeeOfTheContractorsDepartment.title}"
                         app:visibility="@{OrderItems.employeeOfTheContractorsDepartment.visibility}">
@@ -135,8 +141,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="2dp"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="@{()->Activity.orderFieldClick(OrderItems.connectedDepartment)}"
                         app:image="@{OrderItems.connectedDepartment.image}"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                         app:text="@{OrderItems.connectedDepartment.text}"
                         app:title="@{OrderItems.connectedDepartment.title}"
                         app:visibility="@{OrderItems.connectedDepartment.visibility}">
@@ -149,8 +158,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="2dp"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="@{()->Activity.orderFieldClick(OrderItems.employeeOfTheConnectedDepartment)}"
                         app:image="@{OrderItems.employeeOfTheConnectedDepartment.image}"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                         app:text="@{OrderItems.employeeOfTheConnectedDepartment.text}"
                         app:title="@{OrderItems.employeeOfTheConnectedDepartment.title}"
                         app:visibility="@{OrderItems.employeeOfTheConnectedDepartment.visibility}">
@@ -163,8 +175,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="2dp"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="@{()->Activity.orderFieldClick(OrderItems.requiredFor)}"
                         app:image="@{OrderItems.requiredFor.image}"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                         app:text="@{OrderItems.requiredFor.text}"
                         app:title="@{OrderItems.requiredFor.title}"
                         app:visibility="@{OrderItems.requiredFor.visibility}" />
@@ -175,8 +190,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="2dp"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="@{()->Activity.orderFieldClick(OrderItems.contactInTheCO)}"
                         app:image="@{OrderItems.contactInTheCO.image}"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                         app:text="@{OrderItems.contactInTheCO.text}"
                         app:title="@{OrderItems.contactInTheCO.title}"
                         app:visibility="@{OrderItems.contactInTheCO.visibility}">
@@ -191,14 +209,15 @@
 
                     </include>
 
-                    <com.google.android.material.button.MaterialButton
+                    <include
+                        android:id="@+id/add_photo"
+                        layout="@layout/add_photo"
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
-                        android:layout_margin="5dp"
                         android:background="@drawable/button2"
                         android:drawableLeft="@drawable/add_photo"
                         android:fontFamily="sans-serif"
-                        android:onClick="addPhoto"
+
                         android:paddingLeft="90dip"
                         android:paddingRight="90dp"
                         android:text="@string/Add_Photo"

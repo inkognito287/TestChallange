@@ -85,5 +85,6 @@ dependencies {
     testImplementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.9.12'
     testImplementation "org.robolectric:robolectric:4.2.1"
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.github.Yumenokanata:KeyboardVisibilityEvent:1.1'
 
 }

@@ -16,7 +16,7 @@
        android:id="@+id/dad"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:background="#F1F1F1">
+       android:background="@color/background">
 
 
       <LinearLayout
@@ -43,13 +43,12 @@
              android:layout_width="0dp"
              android:layout_height="match_parent"
              android:layout_weight="1"
+             android:clickable="true"
+             android:focusable="true"
              android:fontFamily="sans-serif-medium"
              android:gravity="center_vertical"
              android:text="@string/New_Event"
-             android:textColor="#000000"
-             android:clickable="true"
-             android:focusable="true"
-            />
+             android:textColor="#000000" />
       </LinearLayout>
 
       <ScrollView
@@ -133,8 +132,8 @@
                    android:clickable="true"
                    android:focusable="true"
                    android:onClick="@{()->Activity.orderFieldClick(OrderItems.employeeOfTheContractorsDepartment)}"
-                   app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:image="@{OrderItems.employeeOfTheContractorsDepartment.image}"
+                   app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:text="@{OrderItems.employeeOfTheContractorsDepartment.text}"
                    app:title="@{OrderItems.employeeOfTheContractorsDepartment.title}"
                    app:visibility="@{OrderItems.employeeOfTheContractorsDepartment.visibility}">
@@ -150,8 +149,8 @@
                    android:clickable="true"
                    android:focusable="true"
                    android:onClick="@{()->Activity.orderFieldClick(OrderItems.connectedDepartment)}"
-                   app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:image="@{OrderItems.connectedDepartment.image}"
+                   app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:text="@{OrderItems.connectedDepartment.text}"
                    app:title="@{OrderItems.connectedDepartment.title}"
                    app:visibility="@{OrderItems.connectedDepartment.visibility}">
@@ -167,8 +166,8 @@
                    android:clickable="true"
                    android:focusable="true"
                    android:onClick="@{()->Activity.orderFieldClick(OrderItems.employeeOfTheConnectedDepartment)}"
-                   app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:image="@{OrderItems.employeeOfTheConnectedDepartment.image}"
+                   app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:text="@{OrderItems.employeeOfTheConnectedDepartment.text}"
                    app:title="@{OrderItems.employeeOfTheConnectedDepartment.title}"
                    app:visibility="@{OrderItems.employeeOfTheConnectedDepartment.visibility}">
@@ -184,8 +183,8 @@
                    android:clickable="true"
                    android:focusable="true"
                    android:onClick="@{()->Activity.orderFieldClick(OrderItems.requiredFor)}"
-                   app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:image="@{OrderItems.requiredFor.image}"
+                   app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:text="@{OrderItems.requiredFor.text}"
                    app:title="@{OrderItems.requiredFor.title}"
                    app:visibility="@{OrderItems.requiredFor.visibility}" />
@@ -199,8 +198,8 @@
                    android:clickable="true"
                    android:focusable="true"
                    android:onClick="@{()->Activity.orderFieldClick(OrderItems.contactInTheCO)}"
-                   app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:image="@{OrderItems.contactInTheCO.image}"
+                   app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                    app:text="@{OrderItems.contactInTheCO.text}"
                    app:title="@{OrderItems.contactInTheCO.title}"
                    app:visibility="@{OrderItems.contactInTheCO.visibility}">
@@ -208,6 +207,7 @@
                </include>
 
                <include
+                   android:id="@+id/commentary"
                    layout="@layout/order_edit_text"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
@@ -215,14 +215,15 @@
 
                </include>
 
-               <com.google.android.material.button.MaterialButton
+               <include
+                   android:id="@+id/add_photo"
+                   layout="@layout/add_photo"
                    android:layout_width="match_parent"
                    android:layout_height="70dp"
-                   android:layout_margin="5dp"
                    android:background="@drawable/button2"
                    android:drawableLeft="@drawable/add_photo"
                    android:fontFamily="sans-serif"
-                   android:onClick="addPhoto"
+
                    android:paddingLeft="90dip"
                    android:paddingRight="90dp"
                    android:text="@string/Add_Photo"

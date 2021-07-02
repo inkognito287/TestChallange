@@ -9,8 +9,6 @@ import com.example.visual.databinding.ActivitySecondBinding
 import com.example.visual.fragments.BlankFragment1
 import com.example.visual.fragments.fragmentnum
 import com.example.visual.model.RecyclerClass
-import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * [filteredList] глобальная переменная хранящая в себе отфильтрованный список, после
@@ -24,20 +22,15 @@ var filteredList: ArrayList<RecyclerClass> = ArrayList()
  */
 class SecondActivity :
     AppCompatActivity() {
-    var position=0
     lateinit var binding: ActivitySecondBinding
-    /**переменная для биндинга в layout файле*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         /**создание объекта класса [ActivitySecondBinding]*/
         binding = ActivitySecondBinding.inflate(layoutInflater)
-        /**установка корневого View в качестве ContentView*/
         setContentView(binding.root)
         setFragment1()
     }
-    /**функция заупска [ThirdActivity]*/
-
     /**завершение активити на нажатию на кнопку стрелочка*/
     fun back(v: View) {
         if (fragmentnum==1)
@@ -53,7 +46,6 @@ class SecondActivity :
         else {
          setFragment1()
         }
-
     }
     private fun setFragment1(){
         val fragment1=BlankFragment1()
