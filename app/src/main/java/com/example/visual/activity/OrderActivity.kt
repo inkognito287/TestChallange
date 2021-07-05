@@ -126,7 +126,6 @@ class OrderActivity : AppCompatActivity() {
 
             pickDateTimeBinding.submit.setOnClickListener {
                 bottomSheetDialog.dismiss()
-                Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
                 items.control.visibility.set(View.INVISIBLE)
                 items.control.image.set(R.drawable.order_item_clicked)
                 items.control.text.set(text)
