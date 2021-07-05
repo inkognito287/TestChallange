@@ -15,14 +15,15 @@ class Adapter(fragment:FragmentActivity):FragmentStateAdapter(fragment) {
     }
 
     override fun createFragment(position: Int): Fragment {
-        /**объект класса [ImageFragment]*/
-        val fragment=ImageFragment()
+        val fragment = ImageFragment()
         /**получить все объекты*/
-        val array=ImageActivityData().getList()
+        val array = ImageActivityData().getList()
+
         /**вкладываем аргументы с ссылкой на картинку*/
         fragment.arguments= Bundle().apply {
             putString(ARG_OBJECT,array[position].url)
         }
+
         /**возвращаем фрагмент*/
         return fragment
     }

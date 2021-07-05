@@ -2,7 +2,6 @@
     <!-- Base application theme. -->
     <style name="Theme.Visual" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="android:windowBackground">@drawable/splashscreen</item>
         <item name="colorPrimary">#FF6D00</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -14,6 +13,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="android:colorControlActivated">#FF6D00</item>
         <item name="windowNoTitle">true</item>
+
         <!-- Customize your theme here. -->
     </style>
     <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">

@@ -8,6 +8,9 @@
         <variable
             name="information"
             type="com.example.visual.model.MenuItems" />
+        <variable
+            name="Activity"
+            type="com.example.visual.activity.MainActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,6 +61,7 @@
                     app:layout_minHeight="-1dp"
                     app:layout_minWidth="-1dp"
                     app:layout_order="1"
+                    android:onClick="@{(view)->Activity.jobOrdersClick(view)}"
                     app:name="@{information.jobOrders.titleOfMenuItem}"
                     app:vari="@{information.jobOrders.imageOfMenuTitle}" />
 
@@ -72,6 +76,7 @@
                     app:layout_minHeight="-1dp"
                     app:layout_minWidth="-1dp"
                     app:layout_order="1"
+                    android:onClick="@{(view)->Activity.completeOrdersClick(view)}"
                     app:name="@{information.coordinationOrders.titleOfMenuItem}"
                     app:vari="@{information.coordinationOrders.imageOfMenuTitle}"
                     tools:layout_editor_absoluteX="168dp"
@@ -88,6 +93,7 @@
                     app:layout_minHeight="-1dp"
                     app:layout_minWidth="-1dp"
                     app:layout_order="1"
+                    android:onClick="@{(view)->Activity.jobOrdersClick(view)}"
                     app:name="@{information.completeOrders.titleOfMenuItem}"
                     app:vari="@{information.completeOrders.imageOfMenuTitle}"
                     tools:layout_editor_absoluteX="380dp"
@@ -105,6 +111,7 @@
                     app:layout_minHeight="-1dp"
                     app:layout_minWidth="-1dp"
                     app:layout_order="1"
+                    android:onClick="@{(view)->Activity.findOrdersClick(view)}"
                     app:name="@{information.findOrders.titleOfMenuItem}"
                     app:vari="@{information.findOrders.imageOfMenuTitle}"
                     tools:layout_editor_absoluteX="168dp"
@@ -151,9 +158,10 @@
             android:id="@+id/imageButton"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/circle"
-            android:paddingBottom="2dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/circle"
+            android:onClick="completeOrdersClick"
+            android:paddingBottom="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="4:4"
             app:layout_constraintEnd_toStartOf="@+id/guideline15"
@@ -165,6 +173,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/notification"
+            android:onClick="completeOrdersClick"
             app:layout_constraintBottom_toTopOf="@+id/guideline16"
             app:layout_constraintEnd_toStartOf="@+id/guideline20"
             app:layout_constraintStart_toStartOf="@+id/guideline14"
@@ -211,6 +220,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
 
+            android:onClick="completeOrdersClick"
             android:src="@drawable/icprofile"
             app:layout_constraintBottom_toTopOf="@+id/guideline12"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"

@@ -32,6 +32,7 @@ class RecyclerAdapter(var recList: ArrayList<RecyclerClass>, val listener: OnIte
         /**биндим [item]*/
         val binding = RcItemBinding.bind(item)
         fun bind(recycler: RecyclerClass) = with(binding) {
+
             /**присваем значения элементам внутри [item]*/
             image.setImageResource(recycler.imageId)
             rcTitle.text = recycler.title
@@ -39,10 +40,13 @@ class RecyclerAdapter(var recList: ArrayList<RecyclerClass>, val listener: OnIte
     }
     /**Идентификация отдельного айтема*/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecHolder {
+
         /**заполняем view элементами*/
         val view = LayoutInflater.from(parent.context).inflate(R.layout.rc_item, parent, false)
+
         /**возвращаем*/
         return RecHolder(view)
+
     }
     /**Связываем данные*/
     override fun onBindViewHolder(holder: RecHolder, position: Int) {
@@ -55,6 +59,7 @@ class RecyclerAdapter(var recList: ArrayList<RecyclerClass>, val listener: OnIte
     /**сюда передаётся отфильтрованный список для его присваивания в [recList]*/
     fun filterList(filteredList: ArrayList<RecyclerClass>) {
         recList = filteredList
+
         /**обновляем дату*/
         notifyDataSetChanged()
     }

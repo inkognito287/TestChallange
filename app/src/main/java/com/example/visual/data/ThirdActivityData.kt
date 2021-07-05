@@ -2,10 +2,8 @@ package com.example.visual.data
 
 import com.example.visual.R
 import com.example.visual.model.RecyclerClass
-import java.util.*
-import kotlin.collections.ArrayList
 
-class ThirdActivityData:Observable() {
+class ThirdActivityData {
     private var list=ArrayList<ArrayList<RecyclerClass>>()
     lateinit var itemOfRecList: RecyclerClass
     private val imageList = listOf(
@@ -33,10 +31,10 @@ class ThirdActivityData:Observable() {
         listOf("Охранная сигнализация", "Охранная сигнализация", "Охранная сигнализация", "Охранная сигнализация")
     )
     init {
-        for(x in 0..informationList.size-1){
-            list.add(ArrayList<RecyclerClass>())
-           for(y in 0..informationList[x].size-1){
-               itemOfRecList = RecyclerClass(imageList[x], informationList[x][y])
+        for(x in informationList.indices){
+            list.add(ArrayList())
+           for(element in informationList[x]){
+               itemOfRecList = RecyclerClass(imageList[x], element)
                list[x].add(itemOfRecList)
            }
         }

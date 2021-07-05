@@ -1,4 +1,4 @@
-package com.example.visual .fragments
+package com.example.visual.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -35,12 +35,14 @@ lateinit var progressBar: ProgressBar
         arguments?.takeIf { it.containsKey(ARG_OBJECT) }?.apply {
             val imageView:SubsamplingScaleImageView=view.findViewById(R.id.subscale)
 
-            Thread(Runnable {
-                val image=ImageSource.bitmap(Picasso.get().load(getString(ARG_OBJECT)).get())
-                activity?.runOnUiThread { imageView.setImage(image)
-                progressBar.visibility =View.GONE}
+            Thread {
+                val image = ImageSource.bitmap(Picasso.get().load(getString(ARG_OBJECT)).get())
+                activity?.runOnUiThread {
+                    imageView.setImage(image)
+                    progressBar.visibility = View.GONE
+                }
 
-            }).start()
+            }.start()
 
         }
     }

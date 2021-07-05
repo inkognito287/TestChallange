@@ -4,8 +4,8 @@ package com.example.visual.activity
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.FragmentActivity
-import androidx.viewpager2.widget.ViewPager2
 import com.example.visual.R
+import com.example.visual.databinding.ActivityImageBinding
 import com.example.visual.fragments.Adapter
 
 class ImageActivity : FragmentActivity() {
@@ -13,11 +13,14 @@ class ImageActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
-        val viewPager2: ViewPager2 = findViewById(R.id.viewpager2)
+        val binding: ActivityImageBinding =
+            ActivityImageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         /**устанавливаем количество подгружаемых страниц для viewpager*/
-        viewPager2.offscreenPageLimit = 3
+        binding.viewpager2.offscreenPageLimit = 3
         imageAdapter = Adapter(this)
-        viewPager2.adapter = imageAdapter
+        binding.viewpager2.adapter = imageAdapter
     }
 
     /**выход по нажатию стрелки*/

@@ -1,6 +1,6 @@
 package com.example.visual.controllers
 
-open class FieldsOfOrderActivityController {
+open class FieldsOfOrderActivity {
 
 
     private val employers = arrayOf(

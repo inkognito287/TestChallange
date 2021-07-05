@@ -345,7 +345,9 @@
              android:background="@drawable/left_circle"
              android:backgroundTint="#F1F1F1"
              android:backgroundTintMode="screen"
-             android:src="@drawable/bottom_panel_1" />
+             android:src="@drawable/bottom_panel_1"
+             android:onClick="notImplemented"
+             tools:ignore="UsingOnClickInXml" />
 
          <ImageButton
              android:id="@+id/imageButton7"
@@ -353,7 +355,9 @@
              android:layout_height="match_parent"
              android:layout_weight="1"
              android:background="#FFFFFF"
-             android:src="@drawable/bottom_panel_2" />
+             android:src="@drawable/bottom_panel_2"
+             android:onClick="notImplemented"
+             tools:ignore="UsingOnClickInXml"/>
 
          <ImageButton
              android:id="@+id/imageButton8"
@@ -361,7 +365,9 @@
              android:layout_height="match_parent"
              android:layout_weight="1"
              android:background="#FFFFFF"
-             android:src="@drawable/bottom_panel_3" />
+             android:src="@drawable/bottom_panel_3"
+             android:onClick="notImplemented"
+             tools:ignore="UsingOnClickInXml"/>
 
          <ImageButton
              android:id="@+id/imageButton9"
@@ -369,7 +375,9 @@
              android:layout_height="match_parent"
              android:layout_weight="1"
              android:background="#FFFFFF"
-             android:src="@drawable/bottom_panel_4" />
+             android:src="@drawable/bottom_panel_4"
+             android:onClick="notImplemented"
+             tools:ignore="UsingOnClickInXml"/>
 
          <ImageButton
              android:id="@+id/imageButton12"
@@ -379,7 +387,9 @@
              android:background="@drawable/right_circle"
              android:backgroundTint="#F1F1F1"
              android:backgroundTintMode="screen"
-             android:src="@drawable/bottom_panel_5" />
+             android:src="@drawable/bottom_panel_5"
+             android:onClick="notImplemented"
+             tools:ignore="UsingOnClickInXml"/>
       </LinearLayout>
 
       <androidx.constraintlayout.widget.Guideline

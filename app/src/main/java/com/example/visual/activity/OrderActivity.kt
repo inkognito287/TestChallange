@@ -18,7 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.contains
 import androidx.databinding.DataBindingUtil
 import com.example.visual.R
-import com.example.visual.controllers.FieldsOfOrderActivityController
+import com.example.visual.controllers.FieldsOfOrderActivity
 import com.example.visual.data.OrderActivityData
 import com.example.visual.databinding.ActivityOrderBinding
 import com.example.visual.databinding.ListBinding
@@ -35,25 +35,30 @@ import java.util.*
 class OrderActivity : AppCompatActivity() {
     private lateinit var linearLayout: LinearLayout
     private lateinit var images: LinearLayout
-    private lateinit var controller: FieldsOfOrderActivityController
+    private lateinit var controller: FieldsOfOrderActivity
+
     private var listView: ListView? = null
     private var scrollview: ScrollView? = null
-    lateinit var binding: ActivityOrderBinding
-    lateinit var context: Context
-  //  lateinit var bindingVariableOfOrderItems: OrderItems
 
-    private lateinit var bottomSheetDialog: BottomSheetDialog
+    private var bottomSheetIsExist:Boolean = false
 
     @SuppressLint("SimpleDateFormat")
     private val dateFormat = SimpleDateFormat("dd.MM.yyyy")
+
     @SuppressLint("SimpleDateFormat")
     private val timeFormat = SimpleDateFormat("hh:mm")
+
+    lateinit var binding: ActivityOrderBinding
+    lateinit var context: Context
+
+    private lateinit var bottomSheetDialog: BottomSheetDialog
+
 
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("ResourceType", "SimpleDateFormat", "NewApi", "InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        controller = FieldsOfOrderActivityController()
+        controller = FieldsOfOrderActivity()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_order)
         setContentView(binding.root)
         KeyboardVisibilityEvent.setEventListener(this) {
@@ -63,68 +68,25 @@ class OrderActivity : AppCompatActivity() {
 
         }
         binding.activity = this
-//        val admission = OrderItem(
-//            "Поступила:", ObservableInt(R.drawable.order_item_clicked),
-//            ObservableInt(View.INVISIBLE), ObservableField(), emptyArray()
-//        )
-//        val control = OrderItem(
-//            "Контроль", ObservableInt(R.drawable.notification),
-//            ObservableInt(View.VISIBLE), ObservableField(), emptyArray()
-//        )
-//        val executiveDepartment = OrderItem(
-//            "Отдел исполнитель:", ObservableInt(R.drawable.notification),
-//            ObservableInt(View.VISIBLE), ObservableField(), controller.getDepartment()
-//        )
-//        val employeeOfTheContractorsDepartment = OrderItem(
-//            "Сотрудник отдела исполнителя:", ObservableInt(R.drawable.notification),
-//            ObservableInt(View.VISIBLE), ObservableField(), controller.getEmployers()
-//        )
-//        val connectedDepartment = OrderItem(
-//            "Подключаемый отдел:", ObservableInt(R.drawable.notification),
-//            ObservableInt(View.VISIBLE), ObservableField(), controller.getDepartment()
-//        )
-//        val employeeOfTheConnectedDepartment = OrderItem(
-//            "Сотрудник подключаемого отдела:", ObservableInt(R.drawable.notification),
-//            ObservableInt(View.VISIBLE), ObservableField(), controller.getEmployers()
-//        )
-//        val requiredFor = OrderItem(
-//            "Требуется на:", ObservableInt(R.drawable.notification),
-//            ObservableInt(View.VISIBLE), ObservableField(), controller.getActions()
-//        )
-//        val contactInTheCO = OrderItem(
-//            "Контакт в ЦО:", ObservableInt(R.drawable.notification),
-//            ObservableInt(View.VISIBLE), ObservableField(), controller.getEmployers()
-//        )
-//
-//        bindingVariableOfOrderItems = OrderItems(
-//            admission,
-//            control,
-//            executiveDepartment,
-//            employeeOfTheContractorsDepartment,
-//            connectedDepartment,
-//            employeeOfTheConnectedDepartment,
-//            requiredFor,
-//            contactInTheCO
-//        )
 
         binding.addPhoto.root.setOnClickListener() {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             openSomeActivityForResult()
         }
-        var items= OrderActivityData().getItems()
-        binding.orderItems =  items
+        val items = OrderActivityData().getItems()
+        binding.orderItems = items
 
-       items.admission.text.set(dateFormat.format(Date())+" "+timeFormat.format(Date()))
+        items.admission.text.set(dateFormat.format(Date()) + " " + timeFormat.format(Date()))
 
 
         binding.buttonSave.root.setOnClickListener {
-            val lottie=binding.lottie
+            val lottie = binding.lottie
             lottie?.visibility = View.VISIBLE
             binding.commentary?.comment?.clearFocus()
             lottie?.setAnimation(R.raw.loader)
             lottie?.loop(true)
-           lottie?.playAnimation()
+            lottie?.playAnimation()
         }
 
 
@@ -161,13 +123,13 @@ class OrderActivity : AppCompatActivity() {
             bottomSheetDialog.setOnDismissListener {
                 binding.createCalendar.root.isClickable = true
             }
+
             pickDateTimeBinding.submit.setOnClickListener {
                 bottomSheetDialog.dismiss()
-
                 Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-               items.control.visibility.set(View.INVISIBLE)
-               items.control.image.set(R.drawable.order_item_clicked)
-               items.control.text.set(text)
+                items.control.visibility.set(View.INVISIBLE)
+                items.control.image.set(R.drawable.order_item_clicked)
+                items.control.text.set(text)
             }
             bottomSheetDialog.setContentView(pickDateTimeBinding.root)
         }
@@ -190,15 +152,19 @@ class OrderActivity : AppCompatActivity() {
                 images = binding.imagesGallery
                 val img = RoundedImageView(this)
                 img.setImageURI(data?.data)
+
                 img.scaleType = ImageView.ScaleType.CENTER_CROP
                 img.cornerRadius = 30F
                 images.addView(img, 350, 350)
+
                 val imgDelete = ImageView(this)
                 images.addView(imgDelete, 40, 40)
                 imgDelete.setImageResource(R.mipmap.ic_clear)
+
                 val divider = View(this)
                 divider.layoutParams = ConstraintLayout.LayoutParams(30, 1)
                 images.addView(divider)
+
                 imgDelete.setOnClickListener() {
                     images.removeView(img)
                     images.removeView(imgDelete)
@@ -236,6 +202,7 @@ class OrderActivity : AppCompatActivity() {
         )
         listBinding.list.adapter = adapter
         listBinding.list.setOnItemClickListener { _, _, position, _ ->
+
             orderItem.text.set(orderItem.array[position])
             orderItem.visibility.set(View.INVISIBLE)
             orderItem.image.set(R.drawable.order_item_clicked)
@@ -243,7 +210,7 @@ class OrderActivity : AppCompatActivity() {
         }
         bottomSheetDialog.setContentView(listBinding.root)
         bottomSheetDialog.setOnDismissListener {
-
+           bottomSheetIsExist = false
         }
     }
 
@@ -252,10 +219,16 @@ class OrderActivity : AppCompatActivity() {
     }
 
     fun orderFieldClick(orderItem: OrderItem, v: View) {
+
         Log.d("MyLog", v.toString())
-        createList(orderItem.array, orderItem.title, orderItem, v)
+        if (!bottomSheetIsExist) {
+            createList(orderItem.array, orderItem.title, orderItem, v)
+            bottomSheetIsExist = true
+        }
 
     }
-
+    fun notImplemented(v:View){
+        Toast.makeText(this, "not implemented", Toast.LENGTH_SHORT).show()
+    }
 }
 

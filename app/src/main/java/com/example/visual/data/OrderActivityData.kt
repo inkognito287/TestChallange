@@ -4,12 +4,12 @@ import android.view.View
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
 import com.example.visual.R
-import com.example.visual.controllers.FieldsOfOrderActivityController
+import com.example.visual.controllers.FieldsOfOrderActivity
 import com.example.visual.model.OrderItem
 import com.example.visual.model.OrderItems
 
 class OrderActivityData {
-    private  val controller = FieldsOfOrderActivityController()
+    private  val controller = FieldsOfOrderActivity()
     private val admission = OrderItem(
         "Поступила:", ObservableInt(R.drawable.order_item_clicked),
         ObservableInt(View.INVISIBLE), ObservableField(), emptyArray()
@@ -43,7 +43,7 @@ class OrderActivityData {
         ObservableInt(View.VISIBLE), ObservableField(), controller.getEmployers()
     )
 
-   var bindingVariableOfOrderItems = OrderItems(
+   private var bindingVariableOfOrderItems = OrderItems(
     admission,
     control,
     executiveDepartment,

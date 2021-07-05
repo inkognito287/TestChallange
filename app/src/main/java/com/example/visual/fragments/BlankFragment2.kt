@@ -39,18 +39,15 @@ class BlankFragment2 : Fragment(), RecyclerAdapter.OnItemClickListener {
         val info = bundle?.getInt("position")
         position = info!!
         adapter.recList.clear()
-        /**инициализация [layoutManager]*/
         binding.rcView2.layoutManager = LinearLayoutManager(activity)
-        /**инициализация [adapter]*/
         binding.rcView2.adapter = adapter
+
         /**достаём элементы из класса [ThirdActivityData]*/
         recList.addAll(ThirdActivityData().getList()[position])
     }
 
     override fun onItemClick(position: Int) {
-        /**запуск  [OrderActivity]*/
         val intent = Intent(activity, OrderActivity::class.java)
-        /**пердаём позицию*/
         intent.putExtra("position", position)
         startActivity(intent)
     }
