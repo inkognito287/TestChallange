@@ -13,7 +13,7 @@ class ImageActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
-        val viewPager2: ViewPager2 = findViewById<ViewPager2>(R.id.viewpager2)
+        val viewPager2: ViewPager2 = findViewById(R.id.viewpager2)
         /**устанавливаем количество подгружаемых страниц для viewpager*/
         viewPager2.offscreenPageLimit = 3
         imageAdapter = Adapter(this)

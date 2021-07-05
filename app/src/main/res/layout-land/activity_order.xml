@@ -110,7 +110,7 @@
                         android:layout_margin="2dp"
                         android:clickable="true"
                         android:focusable="true"
-                        android:onClick="@{()->Activity.orderFieldClick(OrderItems.executiveDepartment)}"
+                        android:onClick="@{(view)->Activity.orderFieldClick(OrderItems.executiveDepartment,view)}"
                         app:image="@{OrderItems.executiveDepartment.image}"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                         app:text="@{OrderItems.executiveDepartment.text}"
@@ -126,7 +126,7 @@
                         android:layout_margin="2dp"
                         android:clickable="true"
                         android:focusable="true"
-                        android:onClick="@{()->Activity.orderFieldClick(OrderItems.employeeOfTheContractorsDepartment)}"
+                        android:onClick="@{(view)->Activity.orderFieldClick(OrderItems.employeeOfTheContractorsDepartment,view)}"
                         app:image="@{OrderItems.employeeOfTheContractorsDepartment.image}"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                         app:text="@{OrderItems.employeeOfTheContractorsDepartment.text}"
@@ -143,7 +143,7 @@
                         android:layout_margin="2dp"
                         android:clickable="true"
                         android:focusable="true"
-                        android:onClick="@{()->Activity.orderFieldClick(OrderItems.connectedDepartment)}"
+                        android:onClick="@{(view)->Activity.orderFieldClick(OrderItems.connectedDepartment,view)}"
                         app:image="@{OrderItems.connectedDepartment.image}"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                         app:text="@{OrderItems.connectedDepartment.text}"
@@ -160,7 +160,7 @@
                         android:layout_margin="2dp"
                         android:clickable="true"
                         android:focusable="true"
-                        android:onClick="@{()->Activity.orderFieldClick(OrderItems.employeeOfTheConnectedDepartment)}"
+                        android:onClick="@{(view)->Activity.orderFieldClick(OrderItems.employeeOfTheConnectedDepartment,view)}"
                         app:image="@{OrderItems.employeeOfTheConnectedDepartment.image}"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                         app:text="@{OrderItems.employeeOfTheConnectedDepartment.text}"
@@ -177,7 +177,7 @@
                         android:layout_margin="2dp"
                         android:clickable="true"
                         android:focusable="true"
-                        android:onClick="@{()->Activity.orderFieldClick(OrderItems.requiredFor)}"
+                        android:onClick="@{(view)->Activity.orderFieldClick(OrderItems.requiredFor,view)}"
                         app:image="@{OrderItems.requiredFor.image}"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                         app:text="@{OrderItems.requiredFor.text}"
@@ -192,7 +192,7 @@
                         android:layout_margin="2dp"
                         android:clickable="true"
                         android:focusable="true"
-                        android:onClick="@{()->Activity.orderFieldClick(OrderItems.contactInTheCO)}"
+                        android:onClick="@{(view)->Activity.orderFieldClick(OrderItems.contactInTheCO,view)}"
                         app:image="@{OrderItems.contactInTheCO.image}"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                         app:text="@{OrderItems.contactInTheCO.text}"
@@ -274,19 +274,19 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/order_activity_background_for_two_button"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/guideline25"
             app:layout_constraintEnd_toStartOf="@+id/guideline24"
             app:layout_constraintStart_toStartOf="@+id/guideline23"
             app:layout_constraintTop_toTopOf="@+id/guideline26">
 
-            <Button
-                android:id="@+id/button2"
+            <include
+                android:id="@+id/button_save"
+                layout="@layout/button_save"
                 android:layout_width="0dp"
 
-                android:layout_height="0dp"
+                android:layout_height="50dp"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
                 android:background="@drawable/button2"
@@ -310,10 +310,11 @@
 
             </androidx.constraintlayout.widget.Guideline>
 
-            <Button
+            <include
                 android:id="@+id/button4"
+                layout="@layout/button_sogl"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="50dp"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
 
@@ -335,7 +336,7 @@
             android:layout_height="0dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline25">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
             <ImageButton
                 android:id="@+id/imageButton6"
@@ -395,13 +396,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.97" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline25"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.9" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline26"

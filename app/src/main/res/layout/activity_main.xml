@@ -165,20 +165,14 @@
             app:layout_constraintTop_toTopOf="@+id/guideline13"
             app:srcCompat="@drawable/ic_launcher_foreground" />
 
-        <Button
-            android:id="@+id/button3"
+        <include layout="@layout/button_create_order"
+            android:id="@+id/button_create_order_binding"
             style="@style/RoundedCornerButton"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/buttoncircle"
-
-            android:drawableLeft="@drawable/ic_baseline_add_24"
             android:gravity="center"
-            android:onClick="buttonRecycler"
-            android:paddingStart="40dp"
             android:singleLine="true"
-            android:text="@string/Order_Button_name"
             app:backgroundTint="#FF5722"
             app:iconPadding="-20dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline34"

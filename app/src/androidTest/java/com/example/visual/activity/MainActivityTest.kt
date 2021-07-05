@@ -19,7 +19,7 @@ internal class MainActivityTest{
     }
     @Test
     fun `testLaunchSecondActivity`(){
-        onView(withId(R.id.button3)).perform(click())
+        onView(withId(R.id.`@+id/button_create_order_binding`)).perform(click())
         onView(withId(R.id.rcView)).check(matches(isDisplayed()))
     }
     @Test

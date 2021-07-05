@@ -24,11 +24,9 @@ class RecyclerAdapter(var recList: ArrayList<RecyclerClass>, val listener: OnIte
             itemView.setOnClickListener(this)
         }
         override fun onClick(v: View?) {
-            if (listener != null) {
-                if (adapterPosition != RecyclerView.NO_POSITION) {
-                    /**вызываем событие клика в текущем активити*/
-                    listener.onItemClick(adapterPosition)
-                }
+            if (adapterPosition != RecyclerView.NO_POSITION) {
+                /**вызываем событие клика в текущем активити*/
+                listener.onItemClick(adapterPosition)
             }
         }
         /**биндим [item]*/
