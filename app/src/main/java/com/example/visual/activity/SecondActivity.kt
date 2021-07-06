@@ -27,6 +27,7 @@ class SecondActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         /**создание объекта класса [ActivitySecondBinding]*/
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)

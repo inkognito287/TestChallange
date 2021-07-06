@@ -8,7 +8,7 @@
     <View
         android:id="@+id/view9"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:background="@drawable/button2"
         android:backgroundTint="#0CA54B"
         app:layout_constraintEnd_toEndOf="parent"

@@ -9,5 +9,4 @@ class OrderItem(
     var visibility: ObservableInt,
     var text: ObservableField<String>,
     val array: Array<String>
-) {
-}
+)

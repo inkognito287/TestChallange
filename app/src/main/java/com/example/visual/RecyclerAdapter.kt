@@ -46,7 +46,6 @@ class RecyclerAdapter(var recList: ArrayList<RecyclerClass>, val listener: OnIte
 
         /**возвращаем*/
         return RecHolder(view)
-
     }
     /**Связываем данные*/
     override fun onBindViewHolder(holder: RecHolder, position: Int) {

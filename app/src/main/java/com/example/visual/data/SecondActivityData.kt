@@ -4,7 +4,7 @@ import com.example.visual.R
 import com.example.visual.model.RecyclerClass
 
 class SecondActivityData {
-    private var list=ArrayList<RecyclerClass>()
+    private var list = ArrayList<RecyclerClass>()
     private var itemOfRecList: RecyclerClass = RecyclerClass(R.drawable.rc_1, "Видеонаблюдение")
 
     init {

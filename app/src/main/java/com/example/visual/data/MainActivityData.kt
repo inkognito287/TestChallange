@@ -12,6 +12,7 @@ class MainActivityData {
     private val documentation = MenuItem("Документация", R.drawable.but5)
     private val informationObject =
         MenuItems(jobOrders, coordinationOrder, completeOrders, findOrder, documentation)
+
     fun getMenuItems(): MenuItems {
         return informationObject
     }

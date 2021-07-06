@@ -158,6 +158,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline34"
             app:layout_constraintDimensionRatio="4:4"
             app:layout_constraintEnd_toStartOf="@+id/guideline15"
+            app:layout_constraintStart_toEndOf="@+id/button_create_order_binding"
             app:layout_constraintTop_toTopOf="@+id/guideline4"
             app:srcCompat="@drawable/ic_baseline_add_ic_call_24" />
 

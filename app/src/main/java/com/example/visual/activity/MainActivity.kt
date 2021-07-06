@@ -21,12 +21,13 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Splash)
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_AppCompat_DayNight_NoActionBar)
+
         /** переменная необходимая для DataBinding, биндинга переменных в layout файле*/
         val binding: ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
         val informationObject = MainActivityData().getMenuItems()
         binding.information = informationObject
-        binding.activity=this
+        binding.activity = this
         /**  customLayout по нажатию на которую создаётся [ImageActivity]*/
         binding.Documentation.root.setOnClickListener {
             val intent = Intent(this@MainActivity, ImageActivity::class.java)
@@ -38,16 +39,19 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-    fun jobOrdersClick(v: View){
+    fun jobOrdersClick(v: View) {
         Toast.makeText(this, "not implemented", Toast.LENGTH_SHORT).show()
     }
-    fun coordinationOrderClick(v: View){
+    fun coordinationOrderClick(v: View) {
+
+        val intent=Intent(this,Registration::class.java)
+        startActivity(intent)
+        //Toast.makeText(this, "not implemented", Toast.LENGTH_SHORT).show()
+    }
+    fun completeOrdersClick(v: View) {
         Toast.makeText(this, "not implemented", Toast.LENGTH_SHORT).show()
     }
-    fun completeOrdersClick(v: View){
-        Toast.makeText(this, "not implemented", Toast.LENGTH_SHORT).show()
-    }
-    fun findOrdersClick(v: View){
+    fun findOrdersClick(v: View) {
         Toast.makeText(this, "not implemented", Toast.LENGTH_SHORT).show()
     }
 

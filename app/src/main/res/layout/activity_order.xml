@@ -280,9 +280,10 @@
       <androidx.constraintlayout.widget.ConstraintLayout
           android:id="@+id/constraintLayout2"
           android:layout_width="0dp"
-          android:layout_height="wrap_content"
+          android:layout_height="0dp"
           android:background="@drawable/order_activity_background_for_two_button"
           android:orientation="horizontal"
+          app:layout_constraintBottom_toTopOf="@+id/guideline25"
           app:layout_constraintEnd_toStartOf="@+id/guideline24"
           app:layout_constraintStart_toStartOf="@+id/guideline23"
           app:layout_constraintTop_toTopOf="@+id/guideline26">
@@ -291,7 +292,7 @@
              android:id="@+id/button_save"
              layout="@layout/button_save"
              android:layout_width="0dp"
-             android:layout_height="50dp"
+             android:layout_height="0dp"
              android:layout_margin="1dp"
              android:layout_weight="1"
              app:layout_constraintBottom_toBottomOf="parent"
@@ -312,7 +313,7 @@
              android:id="@+id/button4"
              layout="@layout/button_sogl"
              android:layout_width="0dp"
-             android:layout_height="50dp"
+             android:layout_height="0dp"
              android:layout_margin="1dp"
              android:layout_weight="1"
 
@@ -332,10 +333,11 @@
           android:id="@+id/linearLayout3"
           android:layout_width="match_parent"
           android:layout_height="0dp"
-          android:layout_marginTop="4dp"
           android:orientation="horizontal"
           app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="@+id/guideline25">
 
          <ImageButton
              android:id="@+id/imageButton6"
@@ -345,8 +347,8 @@
              android:background="@drawable/left_circle"
              android:backgroundTint="#F1F1F1"
              android:backgroundTintMode="screen"
-             android:src="@drawable/bottom_panel_1"
              android:onClick="notImplemented"
+             android:src="@drawable/bottom_panel_1"
              tools:ignore="UsingOnClickInXml" />
 
          <ImageButton
@@ -355,9 +357,9 @@
              android:layout_height="match_parent"
              android:layout_weight="1"
              android:background="#FFFFFF"
-             android:src="@drawable/bottom_panel_2"
              android:onClick="notImplemented"
-             tools:ignore="UsingOnClickInXml"/>
+             android:src="@drawable/bottom_panel_2"
+             tools:ignore="UsingOnClickInXml" />
 
          <ImageButton
              android:id="@+id/imageButton8"
@@ -365,9 +367,9 @@
              android:layout_height="match_parent"
              android:layout_weight="1"
              android:background="#FFFFFF"
-             android:src="@drawable/bottom_panel_3"
              android:onClick="notImplemented"
-             tools:ignore="UsingOnClickInXml"/>
+             android:src="@drawable/bottom_panel_3"
+             tools:ignore="UsingOnClickInXml" />
 
          <ImageButton
              android:id="@+id/imageButton9"
@@ -375,9 +377,9 @@
              android:layout_height="match_parent"
              android:layout_weight="1"
              android:background="#FFFFFF"
-             android:src="@drawable/bottom_panel_4"
              android:onClick="notImplemented"
-             tools:ignore="UsingOnClickInXml"/>
+             android:src="@drawable/bottom_panel_4"
+             tools:ignore="UsingOnClickInXml" />
 
          <ImageButton
              android:id="@+id/imageButton12"
@@ -387,9 +389,9 @@
              android:background="@drawable/right_circle"
              android:backgroundTint="#F1F1F1"
              android:backgroundTintMode="screen"
-             android:src="@drawable/bottom_panel_5"
              android:onClick="notImplemented"
-             tools:ignore="UsingOnClickInXml"/>
+             android:src="@drawable/bottom_panel_5"
+             tools:ignore="UsingOnClickInXml" />
       </LinearLayout>
 
       <androidx.constraintlayout.widget.Guideline
@@ -411,7 +413,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:orientation="horizontal"
-          app:layout_constraintGuide_percent="0.82" />
+          app:layout_constraintGuide_percent="0.84" />
 
       <androidx.constraintlayout.widget.Guideline
           android:id="@+id/guideline32"
@@ -436,6 +438,13 @@
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
+
+      <androidx.constraintlayout.widget.Guideline
+          android:id="@+id/guideline25"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          app:layout_constraintGuide_percent="0.92" />
 
    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -5,14 +5,13 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Internet permission -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
 
     <application
-        android:usesCleartextTraffic = "true"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
@@ -20,23 +19,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Visual"
+        android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".activity.ImageActivity"/>
-        <activity android:name=".activity.OrderActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".activity.Registration"></activity>
+        <activity android:name=".activity.ImageActivity" />
         <activity
-            android:name=".activity.SecondActivity"
-             />
+            android:name=".activity.OrderActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".activity.SecondActivity" />
+        <activity android:name=".SplashScreen"></activity>
         <activity
-            android:name=".SplashScreen"
-            >
-
-        </activity>
-        <activity android:name=".activity.MainActivity"
-            android:theme="@style/Splash"
-            android:windowSoftInputMode="stateHidden"
+            android:name=".activity.MainActivity"
             android:focusableInTouchMode="true"
-            >
+            android:theme="@style/Splash"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

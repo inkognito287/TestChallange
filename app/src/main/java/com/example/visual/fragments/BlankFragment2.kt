@@ -18,17 +18,13 @@ class BlankFragment2 : Fragment(), RecyclerAdapter.OnItemClickListener {
     private var position = 0
     private var recList = ArrayList<RecyclerClass>()
     private val adapter = RecyclerAdapter(recList,this)
-    lateinit var binding:FragmentBlank2Binding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    lateinit var binding: FragmentBlank2Binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding= FragmentBlank2Binding.inflate(inflater, container, false)
+        binding = FragmentBlank2Binding.inflate(inflater, container, false)
         return binding.root
     }
 

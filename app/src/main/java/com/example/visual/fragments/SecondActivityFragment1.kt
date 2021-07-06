@@ -34,10 +34,6 @@ class BlankFragment1 : Fragment(), RecyclerAdapter.OnItemClickListener {
     private val adapter = RecyclerAdapter(recList, this)
 
     lateinit var binding: FragmentBlank1Binding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +46,6 @@ class BlankFragment1 : Fragment(), RecyclerAdapter.OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fragmentnum = 1
-        //var search=activity?.findViewById<EditText>(R.id.search)
         /**создание объекта [ArrayList]*/
         array = ArrayList()
         model = SecondActivityData()
@@ -80,7 +75,6 @@ class BlankFragment1 : Fragment(), RecyclerAdapter.OnItemClickListener {
             }
         )
     }
-
 
     /**
      * @param text текст по которому производится фильтрация*/
@@ -115,8 +109,5 @@ class BlankFragment1 : Fragment(), RecyclerAdapter.OnItemClickListener {
         val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
         fragmentTransaction?.replace(R.id.fragmentContainer, fragment2)
         fragmentTransaction?.commit()
-
     }
-
-
 }

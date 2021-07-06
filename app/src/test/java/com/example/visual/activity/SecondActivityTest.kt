@@ -18,7 +18,7 @@ internal class SecondActivityTest {
         array.clear()
      recList.addAll(kek.getList())
         val list= listOf<String>("Управление","Розетки","Абракадабра","A<b")
-        val text= list[(0..1).random()]
+        val text = list[(0..1).random()]
         for ((index, d) in recList.withIndex()) {
             if (d.title.lowercase().contains(text.lowercase())) {
                 filteredList.add(d)
@@ -27,6 +27,4 @@ internal class SecondActivityTest {
         }
         assert(!array.isEmpty())
     }
-
-
 }
