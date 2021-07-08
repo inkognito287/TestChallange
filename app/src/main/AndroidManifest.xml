@@ -12,6 +12,7 @@
         android:required="true" />
 
     <application
+
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
