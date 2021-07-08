@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.visual.R
@@ -17,21 +18,29 @@ class Registration : AppCompatActivity() {
     }
     @RequiresApi(Build.VERSION_CODES.N)
     fun authorization(v: View){
-        var name =findViewById<EditText>(R.id.editTextTextPersonName)
-        val url = URL("https://9b1a30d6f3ac.ngrok.io/Home/Aut")
+        val name =findViewById<EditText>(R.id.editTextTextPersonName)
+        val password= findViewById<EditText>(R.id.editTextTextPersonPassword)
+        val url = URL("https://ea4830e3da13.ngrok.io/Home/Check?Name=${name.getText()}&Password=${password.getText()}")
 
         Thread(){
         with(url.openConnection() as HttpURLConnection) {
             requestMethod = "POST"  // optional default is GET
 
             println("\nSent 'GET' request to URL : $url; Response Code : $responseCode")
-
+            var string=""
             inputStream.bufferedReader().use {
                 it.lines().forEach { line ->
-                    println(line)
+                   string=line
                 }
+               runOnUiThread(){
+                   if (string=="true")
+                       Toast.makeText(this@Registration, "Вы авторизованы", Toast.LENGTH_SHORT).show()
+                   else
+                       Toast.makeText(this@Registration, "Проверьте введённые данные", Toast.LENGTH_SHORT).show()
+               }
             }
         }}.start()
+
 
     }
 }
