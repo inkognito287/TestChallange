@@ -22,7 +22,13 @@
         android:theme="@style/Theme.Visual"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".activity.Registration"></activity>
+        <activity android:name=".activity.AuthorizationRegistration">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.ImageActivity" />
         <activity
             android:name=".activity.OrderActivity"
@@ -34,12 +40,12 @@
             android:focusableInTouchMode="true"
             android:theme="@style/Splash"
             android:windowSoftInputMode="stateHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

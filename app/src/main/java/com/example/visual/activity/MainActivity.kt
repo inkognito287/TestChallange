@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun coordinationOrderClick(v: View) {
 
-        val intent=Intent(this,Registration::class.java)
+        val intent=Intent(this,AuthorizationRegistration::class.java)
         startActivity(intent)
         //Toast.makeText(this, "not implemented", Toast.LENGTH_SHORT).show()
     }
