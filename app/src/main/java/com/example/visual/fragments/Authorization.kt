@@ -38,14 +38,15 @@ class Authorization : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAuthorizationBinding.inflate(inflater, container, false)
-        return inflater.inflate(R.layout.fragment_authorization, container, false)
+        return binding.root
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.authorizationButton.setOnClickListener() {
+        binding.authorizationButton.setOnClickListener {
+            if (passwordLoginValidation())
             authorization()
         }
 
@@ -67,12 +68,12 @@ class Authorization : Fragment() {
         binding.authorizationPassword.clearFocus()
         val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         val layout = activity?.findViewById<ConstraintLayout>(R.id.main)
-        imm.hideSoftInputFromWindow(layout?.getWindowToken(), 0)
+        imm.hideSoftInputFromWindow(layout?.windowToken, 0)
         val url =
-            URL("https://381669a1e512.ngrok.io/Home/Check?Name=${binding.authorizationLogin.getText()}&Password=${binding.authorizationPassword.getText()}")
+            URL("http://7c06714a6639.ngrok.io/Home/Check?Name=${binding.authorizationLogin.text}&Password=${binding.authorizationPassword.text}")
         val progress = activity?.findViewById<ProgressBar>(R.id.progressBaraAuth)
         progress?.visibility = View.VISIBLE
-        Thread() {
+        Thread {
             with(url.openConnection() as HttpURLConnection) {
                 requestMethod = "POST"  // optional default is GET
 
@@ -82,8 +83,8 @@ class Authorization : Fragment() {
                     it.lines().forEach { line ->
                         string = line
                     }
-                    activity?.runOnUiThread(Runnable() {
-
+                    activity?.runOnUiThread(Runnable {
+                        println(string)
                         if (string == "true") {
                             if (binding.checkBox.isChecked == true) {
                                 saveLogin()
@@ -114,12 +115,15 @@ class Authorization : Fragment() {
 
 
     }
+    private fun passwordLoginValidation(): Boolean {
+        return !(binding.authorizationPassword.text.isEmpty() or binding.authorizationLogin.text.isEmpty())
+    }
 
     fun savePassword() {
 
 
         val edit = saveVariable.edit()
-        edit.putString("password", binding.authorizationPassword.getText().toString())
+        edit.putString("password", binding.authorizationPassword.text.toString())
         edit.apply()
     }
 
@@ -140,7 +144,7 @@ class Authorization : Fragment() {
     private fun saveLogin() {
 
         val edit = saveVariable.edit()
-        edit.putString("login", binding.authorizationLogin.getText().toString())
+        edit.putString("login", binding.authorizationLogin.text.toString())
         edit.apply()
     }
 }

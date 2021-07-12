@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="splash">#EAEAEA</color>
+    <color name="error">#FF0303</color>
     <color name="background">#EBEEF2</color>
 </resources>
